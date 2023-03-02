@@ -1,11 +1,9 @@
 <mat-drawer-container class="example-container" autosize>
 
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>Toggle extra text</button>
-    <button (click)="onClickButSezTavoli()" mat-raised-button>Sezione Tavoli</button>
-    <button (click)="onClickButSezCucina()" mat-raised-button>Sezione Cucina</button>
+    <p>Menu</p>
+    <button (click)="onClickBtnSez(0)" mat-raised-button>Sezione Tavoli</button><br>
+    <button (click)="onClickBtnSez(1)" mat-raised-button>Sezione Cucina</button>
   </mat-drawer>
 
   <div class="example-sidenav-content">
@@ -13,7 +11,7 @@
       Toggle sidenav
     </button>
     <app-sezione-tavoli *ngIf="showSezioneTavoli"> </app-sezione-tavoli>
-    <app-sezione-tavoli *ngIf="showSezioneCucina"> </app-sezione-tavoli>
+    <app-sezione-cucina *ngIf="showSezioneCucina"> </app-sezione-cucina>
   </div>
 
 </mat-drawer-container>

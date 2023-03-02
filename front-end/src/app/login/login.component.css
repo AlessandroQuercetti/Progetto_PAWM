@@ -6,6 +6,10 @@
   margin: auto;
   background-color: aqua;
   padding: 2%;
+  /*
+  align-items: center;
+  justify-content: center;
+  */
 }
 
 .login-full-width {

@@ -20,8 +20,12 @@ export class SezioneTavoliComponent {
     console.log("addTavolo")
   }
 
-  addComanda(id:any){
-    console.log("crea comanda tavolo", id)
+  getComanda(id:any){
+    console.log("vedi comanda tavolo", id)
+  }
+
+  getTavoli(){
+    return this.tavoli;
   }
 
 }
