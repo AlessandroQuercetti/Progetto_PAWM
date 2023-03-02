@@ -1,0 +1,10 @@
+<div style = "background-color: aqua;">
+  <mat-list role="list">
+    <div mat-subheader>Tavoli</div>
+    <mat-list-item *ngFor="let tavolo of tavoli">
+      Numero: {{tavolo.numero}}, Persone: {{tavolo.persone}}
+      <button mat-flat-button (click)="addComanda(tavolo.id)">Crea Comanda</button>
+    </mat-list-item>
+  </mat-list>
+  <button mat-flat-button (click)="addTavolo()">Aggiungi Tavolo</button>
+</div>

@@ -1,0 +1,64 @@
+
+html {
+  font-family: "Open Sans", sans-serif;
+}
+
+body{
+  /* 0; margin: 20px;
+  padding: 20px;*/
+
+  background-color: pink;
+}
+
+
+
+/*
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+.navbar{
+    list-style-type: none;
+    text-align: center;
+    background-color: #4388d1;
+    padding: 1vw;
+    font-size: 0;
+}
+
+.navbar li{
+    display: inline;
+    margin-right: 10vw;
+}
+
+.navbar li:last-child{
+    margin-right: 0;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+}
+
+.navbar a:hover{
+    color:white;
+    transition-duration: 0.5s;
+}
+
+.footer{
+  background-color: #4388d1;
+  padding: 1vw;
+  font-size: 1.1em;
+}
+
+.footerIcon{
+  margin-bottom: 3vh;
+}
+
+.footerIcon i{
+  float: right;
+  margin-right: 2vw;
+  color: black;
+}
+
+
+*/
+
