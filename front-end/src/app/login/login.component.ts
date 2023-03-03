@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent {
 
-  utenti = [
-    {username: "user1", password: "pass1", nome: "nome1"},
-    {username: "user2", password: "pass2", nome: "nome2"}
-  ]
+  constructor(private authService: AuthService) {}
 
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);

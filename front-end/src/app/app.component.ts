@@ -13,4 +13,8 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     console.log("vedi la faccenda dei token"); //TODO vedi token
   }
+
+  onClickLogout(){
+    this.isLoggedIn = false;
+  }
 }

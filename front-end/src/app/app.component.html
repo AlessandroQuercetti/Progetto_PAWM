@@ -1,35 +1,27 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8"><!--
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-  <title>Pawm Restaurant</title>
-</head>
-
 <body>
+  <div *ngIf="!isLoggedIn">
+    <app-login></app-login>
+  </div>
 
- <div>
-  <app-login *ngIf="!isLoggedIn"> </app-login>
-  <app-home *ngIf="isLoggedIn"> </app-home>
+  <div *ngIf="isLoggedIn">
+    <ul class="navbar" *ngIf="isLoggedIn">
+      <li><a routerLink="">Home</a></li>
+      <li><a routerLink="sezione-tavoli">Sezione Tavoli</a></li>
+      <li><a routerLink="sezione-cucina">Sezione Cucina</a></li>
+      <!-- <li *ngIf="isLoggedIn"><a routerLink="/profile">Profile</a></li> -->
+      <li><a routerLink="/login">Logout</a></li> <!-- TODO vedi come fare logout-->
+    </ul>
+    <router-outlet></router-outlet>
+  </div>
 
- </div>
   <!--
-  <ul class="navbar">
-    <li><a routerLink="">Home</a></li>
-    <li><a routerLink="/prenota">Prenota</a></li>
-    <li><a routerLink="/eventi">Eventi</a></li>
-    <li><a routerLink="/menu">Menu</a></li>
-    <li *ngIf="isLoggedIn"><a routerLink="/profile">Profile</a></li>
-    <li *ngIf="!isLoggedIn"><a routerLink="/login">Login</a></li>
-    <li *ngIf="!isLoggedIn"><a routerLink="/register">Register</a></li>
-    <li *ngIf="isLoggedIn"><a routerLink="/login">Logout</a></li>
-    <li><a routerLink="/cart"><i class="fa fa-shopping-cart"></i></a></li>
-  </ul>
-  -->
+  <div class="footer">
+    <p>Cameo Beach, All rights reserved</p>
+    <p><a href="mailto:cameoBeach@gmail.com">cameoBeach@gmail.com</a></p>
+    <div class="footerIcon">
+      <a href="#"><i class="fa fa-instagram"></i></a>
+      <a href="#"><i class="fa fa-facebook-f"></i></a>
+    </div>
+  </div>-->
 
 </body>
-
-</html>
