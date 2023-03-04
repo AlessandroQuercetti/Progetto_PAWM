@@ -23,6 +23,7 @@ import { LoginComponent } from './login/login.component';
 import { SezioneTavoliComponent } from './sezione-tavoli/sezione-tavoli.component';
 import { HomeComponent } from './home/home.component';
 import { SezioneCucinaComponent } from './sezione-cucina/sezione-cucina.component';
+import { SezioneBarComponent } from './sezione-bar/sezione-bar.component';
 
 
 
@@ -32,7 +33,8 @@ import { SezioneCucinaComponent } from './sezione-cucina/sezione-cucina.componen
     LoginComponent,
     SezioneTavoliComponent,
     HomeComponent,
-    SezioneCucinaComponent
+    SezioneCucinaComponent,
+    SezioneBarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 <body>
   <div *ngIf="!isLoggedIn">
-    <app-login></app-login>
+    <app-login></app-login> <!-- TODO vedi come fare login-->
   </div>
 
   <div *ngIf="isLoggedIn">
@@ -8,8 +8,8 @@
       <li><a routerLink="">Home</a></li>
       <li><a routerLink="sezione-tavoli">Sezione Tavoli</a></li>
       <li><a routerLink="sezione-cucina">Sezione Cucina</a></li>
-      <!-- <li *ngIf="isLoggedIn"><a routerLink="/profile">Profile</a></li> -->
-      <li><a routerLink="/login">Logout</a></li> <!-- TODO vedi come fare logout-->
+      <li><a routerLink="sezione-bar">Sezione Bar</a></li>
+      <li><a routerLink="login" (click)="onClickLogout()">Logout</a></li> <!-- TODO vedi come fare logout-->
     </ul>
     <router-outlet></router-outlet>
   </div>
