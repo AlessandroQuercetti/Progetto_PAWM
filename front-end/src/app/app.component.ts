@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
 
   title = 'front-end';
-  isLoggedIn = false;
+  isLoggedIn = true;
 
   ngOnInit(): void {
     console.log("vedi la faccenda dei token"); //TODO vedi token

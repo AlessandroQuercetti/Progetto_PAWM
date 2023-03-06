@@ -1,10 +1,15 @@
-<div style = "background-color: aqua;">
+<div class="warapper" *ngIf="!vistaTavolo; else profiloTavolo">
   <mat-list role="list">
-    <div mat-subheader>Tavoli</div>
-    <mat-list-item *ngFor="let tavolo of getTavoli()">
+    <div mat-subheader>TAVOLI</div>
+    <mat-list-item class="item" *ngFor="let tavolo of getTavoli()">
       Numero: {{tavolo.numero}}, Persone: {{tavolo.persone}}
-      <button mat-flat-button (click)="getComanda(tavolo.id)">Vedi Comanda</button>
+      <button mat-flat-button (click)="getComandaByTavolo(tavolo.id)">Vedi Comanda</button>
     </mat-list-item>
   </mat-list>
   <button mat-flat-button (click)="addTavolo()">Aggiungi Tavolo</button>
 </div>
+
+<ng-template #profiloTavolo class="wrapper">
+  <p>profilo del tavolo con tutte le comande</p>
+  <button mat-flat-button (click)="vistaTavolo = false">Indietro</button>
+</ng-template>

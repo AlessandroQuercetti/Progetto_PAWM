@@ -8,10 +8,13 @@ import { TavoliService } from '../services/tavoli.service';
 })
 export class SezioneTavoliComponent {
 
+  vistaTavolo = false;
+
   constructor(private tavoliService: TavoliService) {}
 
   getTavoli(){
-    return this.tavoliService.getTavoli();
+    let idRistorante = 1;
+    return this.tavoliService.getTavoliByRistorante(idRistorante);
   }
 
   addTavolo(){
@@ -23,7 +26,9 @@ export class SezioneTavoliComponent {
   }
 
   getComandaByTavolo(id: number){
-    this.tavoliService.getComandaByTavolo();
+    this.vistaTavolo = true;
+    let idTavolo = 1;
+    this.tavoliService.getComandaByTavolo(idTavolo);
   }
 
 
