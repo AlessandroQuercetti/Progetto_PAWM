@@ -17,6 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 
 //components
 import { LoginComponent } from './login/login.component';
@@ -24,6 +25,8 @@ import { SezioneTavoliComponent } from './sezione-tavoli/sezione-tavoli.componen
 import { HomeComponent } from './home/home.component';
 import { SezioneCucinaComponent } from './sezione-cucina/sezione-cucina.component';
 import { SezioneBarComponent } from './sezione-bar/sezione-bar.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { AddTableDialogComponent } from './add-table-dialog/add-table-dialog.component';
 
 
 
@@ -34,8 +37,12 @@ import { SezioneBarComponent } from './sezione-bar/sezione-bar.component';
     SezioneTavoliComponent,
     HomeComponent,
     SezioneCucinaComponent,
-    SezioneBarComponent
+    SezioneBarComponent,
+    NotfoundComponent,
+    AddTableDialogComponent
+
   ],
+  //entryComponents: [AddTableDialogComponent], //vedi bene se serve, non lo so
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -49,7 +56,8 @@ import { SezioneBarComponent } from './sezione-bar/sezione-bar.component';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

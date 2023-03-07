@@ -1,12 +1,15 @@
-<div class="warapper" *ngIf="!vistaTavolo; else profiloTavolo">
-  <mat-list role="list">
-    <div mat-subheader>TAVOLI</div>
-    <mat-list-item class="item" *ngFor="let tavolo of getTavoli()">
-      Numero: {{tavolo.numero}}, Persone: {{tavolo.persone}}
+<div class="wrapper" *ngIf="!vistaTavolo; else profiloTavolo">
+  <h1>TAVOLI</h1>
+  <mat-card class="card" *ngFor="let tavolo of getTavoli()">
+    <mat-card-header>
+      <mat-card-title>Numero: {{tavolo.numero}}</mat-card-title>
+      <mat-card-subtitle>Persone: {{tavolo.persone}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
       <button mat-flat-button (click)="getComandaByTavolo(tavolo.id)">Vedi Comanda</button>
-    </mat-list-item>
-  </mat-list>
-  <button mat-flat-button (click)="addTavolo()">Aggiungi Tavolo</button>
+    </mat-card-actions>
+  </mat-card>
+  <button mat-flat-button (click)="openDialogAddTavolo()">Aggiungi Tavolo</button>
 </div>
 
 <ng-template #profiloTavolo class="wrapper">

@@ -18,15 +18,21 @@ export class LoginComponent {
   isLoggedIn = false;
   logInFailed = false;
 
-  getErrorMessage() {
+  getErrorMessage(){
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  onClickLoginButton(){
+  onSubmit(){
     console.log(this.email, this.password);
+    let risposta = this.authService.doLogIn(String(this.email), this.password!); //vedi se questo cast va bene, non lo so
+    if(risposta)
+      this.isLoggedIn = true;
+    else
+      alert("login errato");
 
   }
+
 }

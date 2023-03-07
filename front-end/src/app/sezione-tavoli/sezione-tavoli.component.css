@@ -1,9 +1,15 @@
 .wrapper {
   background-color: #4388d1;
+  margin-top: 4px;
 }
 
 .item {
   background-color: #4388d1;
   margin: 2px;
+}
 
+.card {
+  width: 50%;
+  margin: 4px;
+  border-style: solid;
 }

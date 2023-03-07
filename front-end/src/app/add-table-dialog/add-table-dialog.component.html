@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>ADD TAVOLO</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Numero tavolo:</mat-label>
+    <input matInput > <!--[(ngModel)]="data.numeroTavolo"-->
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Persone:</mat-label>
+    <input matInput > <!--[(ngModel)]="data.persone"-->
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Annulla</button>
+  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+</div>
+

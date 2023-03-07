@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { TavoliService } from '../services/tavoli.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTableDialogComponent } from '../add-table-dialog/add-table-dialog.component';
+
 
 @Component({
   selector: 'app-sezione-tavoli',
@@ -10,15 +13,14 @@ export class SezioneTavoliComponent {
 
   vistaTavolo = false;
 
-  constructor(private tavoliService: TavoliService) {}
+  numeroTavolo: number = 0;
+  numeroPersone: number = 0;
+
+  constructor(private tavoliService: TavoliService, public dialog: MatDialog) {}
 
   getTavoli(){
     let idRistorante = 1;
     return this.tavoliService.getTavoliByRistorante(idRistorante);
-  }
-
-  addTavolo(){
-    this.tavoliService.addTavolo();
   }
 
   removeTavolo(id: number){
@@ -31,6 +33,22 @@ export class SezioneTavoliComponent {
     this.tavoliService.getComandaByTavolo(idTavolo);
   }
 
+  openDialogAddTavolo(): void {
 
+    const dialogRef = this.dialog.open(AddTableDialogComponent)
 
+    /*
+    const dialogRef = this.dialog.open(AddTableDialog, {
+      data: {numeroTavolo: this.numeroTavolo, persone: this.numeroPersone},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.numeroTavolo = result.numeroTavolo;
+      this.numeroPersone = result.persone;
+    });
+      */
+    this.tavoliService.addTavolo();
+  }
 }
+
