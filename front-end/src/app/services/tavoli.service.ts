@@ -21,7 +21,7 @@ export class TavoliService {
   constructor() { }
 
   getTavoliByRistorante(idRis: number){
-    console.log("get tavoli by ristorante da fare")
+    //console.log("get tavoli by ristorante da fare")
     return this.tavoli; //TODO poi fai query giusta
   }
 

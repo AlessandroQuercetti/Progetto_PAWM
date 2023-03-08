@@ -34,20 +34,18 @@ export class SezioneTavoliComponent {
   }
 
   openDialogAddTavolo(): void {
-
-    const dialogRef = this.dialog.open(AddTableDialogComponent)
-
-    /*
-    const dialogRef = this.dialog.open(AddTableDialog, {
-      data: {numeroTavolo: this.numeroTavolo, persone: this.numeroPersone},
-    });
+    const dialogRef = this.dialog.open(AddTableDialogComponent, {
+      //data: { descrizione: "apertura dialog per aggiungere tavolo"}
+    })
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.numeroTavolo = result.numeroTavolo;
-      this.numeroPersone = result.persone;
+      //this.numeroTavolo = result.numeroTavolo;
+      //this.numeroPersone = result.persone;
+      console.log(result)
+      console.log(result.numeroTavolo)
+      console.log(result.numeroPersone)
     });
-      */
+
     this.tavoliService.addTavolo();
   }
 }
