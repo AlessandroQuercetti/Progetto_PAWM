@@ -1,23 +1,23 @@
-<form class="login-form" (ngSubmit)="onSubmit()" novalidate>
+<form #loginForm="ngForm" class="login-form" (ngSubmit)="onSubmit(loginForm)">
 
   <div class="title">
     <h1>LOG-IN PAGE</h1>
   </div>
 
-  <mat-form-field class ="login-full-width">
-    <mat-label>Enter your email</mat-label>
-    <input matInput [formControl]="email" required>
-    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  <mat-form-field class="login-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" name="email" ngModel required email> <!--[formControl]="email"-->
+    <!--<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
   </mat-form-field>
 
-  <mat-form-field  class ="login-full-width">
-    <mat-label>Enter your password</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+  <mat-form-field class="login-full-width">
+    <mat-label>Password</mat-label>
+    <input matInput name="password" [type]="hide ? 'password' : 'text'" ngModel required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
 
-  <button mat-raised-button color="primary">LOGIN</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">LOGIN</button>
 </form>
-

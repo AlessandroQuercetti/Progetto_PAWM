@@ -9,7 +9,7 @@ export class AppComponent implements OnInit {
 
   title = 'front-end';
 
-  isLoggedIn = true;
+  isLoggedIn = false;
 
   ngOnInit(): void {
     console.log("vedi la faccenda dei token"); //TODO vedi token

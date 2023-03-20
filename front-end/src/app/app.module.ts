@@ -47,7 +47,7 @@ import { AddTableDialogComponent } from './add-table-dialog/add-table-dialog.com
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, //per gestire form lato typescript
     MatInputModule,
     MatIconModule,
     MatButtonModule,
@@ -57,7 +57,7 @@ import { AddTableDialogComponent } from './add-table-dialog/add-table-dialog.com
     MatCardModule,
     MatCheckboxModule,
     MatDialogModule,
-    FormsModule
+    FormsModule //per gestire form lato template
   ],
   providers: [],
   bootstrap: [AppComponent]
