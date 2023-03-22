@@ -9,14 +9,15 @@ export class AppComponent implements OnInit {
 
   title = 'front-end';
 
-  isLoggedIn = false;
+  isLoggedIn(){
+    //vedi bene questo, fai controllo
+    return true;
+  }
 
   ngOnInit(): void {
     console.log("vedi la faccenda dei token"); //TODO vedi token
   }
 
-  onClickLogout(){
-    this.isLoggedIn = false;
-  }
+  //devi aggiungere un observable per vedere login e logout oppure cambia metodo
 
 }

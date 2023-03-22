@@ -1,36 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TavoliService } from '../services/tavoli.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTableDialogComponent } from '../add-table-dialog/add-table-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
+import { table } from '../interfaces/table'; //vedi se riesci
 
 @Component({
   selector: 'app-sezione-tavoli',
   templateUrl: './sezione-tavoli.component.html',
   styleUrls: ['./sezione-tavoli.component.css']
 })
-export class SezioneTavoliComponent {
+export class SezioneTavoliComponent implements OnInit {
 
   vistaTavolo = false;
+  tavoli: any;
+  comande: any;
+
+  //tavoloDaAggiungere: table;
 
   numeroTavolo: number = 0;
   numeroPersone: number = 0;
 
-  constructor(private tavoliService: TavoliService, public dialog: MatDialog) {}
+  constructor(private tavoliService: TavoliService, public dialog: MatDialog, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+
+    let idRistorante = 1; //questo è da prendere in qualche variabile di sessione
+    let idTavolo = this.route.snapshot.paramMap.get('id');
+
+    if(idTavolo){
+      this.vistaTavolo = true;
+      this.comande = this.tavoliService.getComandeByTavolo(parseInt(idTavolo));
+      console.log("vistaTavolo, indice: ", this.route.snapshot.paramMap.get('id'));
+
+    }else{
+      this.vistaTavolo = false;
+      this.tavoli = this.tavoliService.getTavoliByRistorante(idRistorante);
+      console.log("vistaGenerale, indice: ", this.route.snapshot.paramMap.get('id'));
+    }
+
+  }
 
   getTavoli(){
-    let idRistorante = 1;
-    return this.tavoliService.getTavoliByRistorante(idRistorante);
+    return this.tavoli;
   }
 
   removeTavolo(id: number){
     this.tavoliService.removeTavolo();
   }
 
-  getComandaByTavolo(id: number){
-    this.vistaTavolo = true;
-    let idTavolo = 1;
-    this.tavoliService.getComandaByTavolo(idTavolo);
+  getComandeByTavolo(id: number){
+    return this.comande;
   }
 
   openDialogAddTavolo(): void {
@@ -39,11 +60,15 @@ export class SezioneTavoliComponent {
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      //this.numeroTavolo = result.numeroTavolo;
-      //this.numeroPersone = result.persone;
-      console.log(result)
-      console.log(result.numeroTavolo)
-      console.log(result.numeroPersone)
+      if(result.numeroTavolo != undefined && result.numeroPersone != undefined){
+        console.log(result)
+        console.log(result.numeroTavolo)
+        console.log(result.numeroPersone)
+        //this.numeroTavolo = result.numeroTavolo;
+        //this.numeroPersone = result.persone;
+      }else{
+        console.log("dialog chiuso per annullamento")
+      }
     });
 
     this.tavoliService.addTavolo();

@@ -1,1 +1,10 @@
-<p> home</p>
+<div>
+  <ul class="navbar">
+    <li><a routerLink="profile">Profile</a></li>
+    <li><a routerLink="sezione-tavoli">Sezione Tavoli</a></li>
+    <li><a routerLink="sezione-cucina">Sezione Cucina</a></li>
+    <li><a routerLink="sezione-bar">Sezione Bar</a></li>
+    <li><a  (click)="onClickLogout()">Logout</a></li> <!-- routerLink="login" non dovresti cambiare pagina cosi oppure vedi meglio come fare-->
+  </ul>
+  <router-outlet></router-outlet>
+</div>

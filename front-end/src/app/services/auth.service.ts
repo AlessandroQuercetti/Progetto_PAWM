@@ -10,7 +10,15 @@ export class AuthService {
     {username: "user2", password: "pass2", nome: "nome2"}
   ]
 
+  //serve per guard
+  isAuth = false; //questa sara una verifica con i token
+
   constructor() { }
+
+  //serve per guard
+  isAuthenticated(){
+    return this.isAuth;
+  }
 
   getUtenti() {
     return this.utenti;
@@ -28,6 +36,9 @@ export class AuthService {
       i++;
     }
     return false;
+  }
 
+  doLogOut(){
+    console.log("doLogOut da fare");
   }
 }

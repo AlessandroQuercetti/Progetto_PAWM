@@ -1,18 +1,22 @@
 <body>
-  <div *ngIf="!isLoggedIn">
+  <div *ngIf="!isLoggedIn()">
     <app-login></app-login> <!-- TODO vedi come fare login-->
   </div>
 
-  <div *ngIf="isLoggedIn">
+  <div *ngIf="isLoggedIn()">
+    <app-home> </app-home>
+    <!--
     <ul class="navbar" *ngIf="isLoggedIn">
       <li><a routerLink="">Home</a></li>
       <li><a routerLink="sezione-tavoli">Sezione Tavoli</a></li>
       <li><a routerLink="sezione-cucina">Sezione Cucina</a></li>
       <li><a routerLink="sezione-bar">Sezione Bar</a></li>
-      <li><a routerLink="login" (click)="onClickLogout()">Logout</a></li> <!-- TODO vedi come fare logout-->
+      <li><a routerLink="login" (click)="onClickLogout()">Logout</a></li>
     </ul>
     <router-outlet></router-outlet>
+    -->
   </div>
+
 
   <!--
   <div class="footer">

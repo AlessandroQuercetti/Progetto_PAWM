@@ -26,6 +26,7 @@ import { SezioneCucinaComponent } from './sezione-cucina/sezione-cucina.componen
 import { SezioneBarComponent } from './sezione-bar/sezione-bar.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { AddTableDialogComponent } from './add-table-dialog/add-table-dialog.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -38,7 +39,8 @@ import { AddTableDialogComponent } from './add-table-dialog/add-table-dialog.com
     SezioneCucinaComponent,
     SezioneBarComponent,
     NotfoundComponent,
-    AddTableDialogComponent
+    AddTableDialogComponent,
+    ProfileComponent
 
   ],
   //entryComponents: [AddTableDialogComponent], //vedi bene se serve, non lo so

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TavoliService } from '../services/tavoli.service';
 
 @Component({
   selector: 'app-sezione-cucina',
@@ -7,16 +8,9 @@ import { Component } from '@angular/core';
 })
 export class SezioneCucinaComponent {
 
-  comande = [
-    {id: 0, tavolo: 1, stato: "new", elementi: ["piatto1", "piatto2", "piatto3"]},
-    {id: 1, tavolo: 2, stato: "done", elementi: ["piatto1", "piatto2", "piatto3"]},
-    {id: 2, tavolo: 3, stato: "new", elementi: ["piatto1", "piatto2", "piatto3"]},
-    {id: 3, tavolo: 4, stato: "done", elementi: ["piatto1", "piatto2", "piatto3"]},
-    {id: 4, tavolo: 5, stato: "new", elementi: ["piatto1", "piatto2", "piatto3"]},
-    {id: 5, tavolo: 1, stato: "new", elementi: ["piatto1", "piatto2", "piatto3"]},
-  ]
+  constructor(private tavoliService: TavoliService) {}
 
   getComande(){
-    return this.comande;
+    return this.tavoliService.getAllComande(); //ovviamente filtra per quelle "da fare"
   }
 }

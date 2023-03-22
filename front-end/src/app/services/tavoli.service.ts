@@ -15,7 +15,12 @@ export class TavoliService {
   ]
 
   comande = [
-    {id: 0, idTavolo: 1, idElementi: [2, 3, 4]},
+    {id: 0, idTavolo: 1, stato: "new", elementi: ["piatto1", "piatto2", "piatto3"]},
+    {id: 1, idTavolo: 2, stato: "done", elementi: ["piatto1", "piatto2", "piatto3"]},
+    {id: 2, idTavolo: 3, stato: "new", elementi: ["piatto1", "piatto2", "piatto3"]},
+    {id: 3, idTavolo: 4, stato: "done", elementi: ["piatto1", "piatto2", "piatto3"]},
+    {id: 4, idTavolo: 5, stato: "new", elementi: ["piatto1", "piatto2", "piatto3"]},
+    {id: 5, idTavolo: 1, stato: "new", elementi: ["piatto1", "piatto2", "piatto3"]},
   ]
 
   constructor() { }
@@ -33,7 +38,11 @@ export class TavoliService {
     console.log("remove tavolo da fare")
   }
 
-  getComandaByTavolo(idTavolo: number){
-    console.log("get comanda by tavolo da fare")
+  getComandeByTavolo(idTavolo: number){
+    console.log("get comande by tavolo da fare")
+  }
+
+  getAllComande(){
+    return this.comande;
   }
 }

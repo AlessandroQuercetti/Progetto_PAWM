@@ -1,18 +1,21 @@
 <div class="wrapper" *ngIf="!vistaTavolo; else profiloTavolo">
   <h1>TAVOLI</h1>
-  <mat-card class="card" *ngFor="let tavolo of getTavoli()">
+  <mat-card class="card" *ngFor="let tavolo of getTavoli(); index as i">
     <mat-card-header>
       <mat-card-title>Numero: {{tavolo.numero}}</mat-card-title>
       <mat-card-subtitle>Persone: {{tavolo.persone}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-actions>
-      <button mat-flat-button (click)="getComandaByTavolo(tavolo.id)">Vedi Comanda</button>
+      <!--<button mat-flat-button routerLink="sezione-tavoli/{{i}}">Vedi Comanda</button>-->
+      <a routerLink="/sezione-tavoli/{{i}}">Vedi Comanda</a>
     </mat-card-actions>
   </mat-card>
   <button mat-flat-button (click)="openDialogAddTavolo()">Aggiungi Tavolo</button>
+
 </div>
 
 <ng-template #profiloTavolo class="wrapper">
-  <p>profilo del tavolo con tutte le comande</p>
-  <button mat-flat-button (click)="vistaTavolo = false">Indietro</button>
+  <p>profilo del tavolo con tutte le comande, da finire!</p>
+  <!--<button mat-flat-button (click)="vistaTavolo = false">Indietro</button>-->
+  <a routerLink="/sezione-tavoli">Indietro</a>
 </ng-template>
