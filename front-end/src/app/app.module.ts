@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//angular
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 //angular material
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -16,7 +20,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //components
 import { LoginComponent } from './login/login.component';
@@ -27,8 +30,6 @@ import { SezioneBarComponent } from './sezione-bar/sezione-bar.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { AddTableDialogComponent } from './add-table-dialog/add-table-dialog.component';
 import { ProfileComponent } from './profile/profile.component';
-
-
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ProfileComponent } from './profile/profile.component';
     MatCardModule,
     MatCheckboxModule,
     MatDialogModule,
-    FormsModule //per gestire form lato template
+    FormsModule, //per gestire form lato template
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

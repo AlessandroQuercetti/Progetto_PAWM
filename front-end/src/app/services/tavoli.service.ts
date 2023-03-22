@@ -1,9 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+const API = "https://restaurantdb-812bc-default-rtdb.europe-west1.firebasedatabase.app/"
 
 @Injectable({
   providedIn: 'root'
 })
 export class TavoliService {
+
+  constructor(private http: HttpClient) {}
+
 
   tavoli = [
     { id: 0, numero: 1, persone: 4, idRistorante: 1},
@@ -23,15 +29,14 @@ export class TavoliService {
     {id: 5, idTavolo: 1, stato: "new", elementi: ["piatto1", "piatto2", "piatto3"]},
   ]
 
-  constructor() { }
-
   getTavoliByRistorante(idRis: number){
     //console.log("get tavoli by ristorante da fare")
     return this.tavoli; //TODO poi fai query giusta
   }
 
-  addTavolo(){
-    console.log("add tavolo da fare")
+  addTavolo(body: {}){
+    //console.log(body);
+    return this.http.post(API + 'table.json', body);
   }
 
   removeTavolo(){

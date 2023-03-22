@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -19,6 +20,15 @@ const routes: Routes = [
   { path: 'sezione-tavoli/:id', component: SezioneTavoliComponent},
   { path: 'sezione-cucina', component: SezioneCucinaComponent},
   { path: 'sezione-bar', component: SezioneBarComponent},
+
+  /* se vuoi fare cosi vedi il video numero 25
+  { path: 'home', component: HomeComponent, children: [
+    { path: 'profile', component: ProfileComponent },
+    { path: 'sezione-tavoli', component: SezioneTavoliComponent},
+    { path: 'sezione-tavoli/:id', component: SezioneTavoliComponent},
+    { path: 'sezione-cucina', component: SezioneCucinaComponent},
+    { path: 'sezione-bar', component: SezioneBarComponent}
+  ]}*/
 
   //altri
   { path: '404', component: NotfoundComponent},

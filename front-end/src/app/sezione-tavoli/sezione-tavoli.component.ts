@@ -19,9 +19,6 @@ export class SezioneTavoliComponent implements OnInit {
 
   //tavoloDaAggiungere: table;
 
-  numeroTavolo: number = 0;
-  numeroPersone: number = 0;
-
   constructor(private tavoliService: TavoliService, public dialog: MatDialog, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -55,23 +52,27 @@ export class SezioneTavoliComponent implements OnInit {
   }
 
   openDialogAddTavolo(): void {
+
     const dialogRef = this.dialog.open(AddTableDialogComponent, {
       //data: { descrizione: "apertura dialog per aggiungere tavolo"}
     })
 
     dialogRef.afterClosed().subscribe(result => {
       if(result.numeroTavolo != undefined && result.numeroPersone != undefined){
-        console.log(result)
-        console.log(result.numeroTavolo)
-        console.log(result.numeroPersone)
-        //this.numeroTavolo = result.numeroTavolo;
-        //this.numeroPersone = result.persone;
+        //console.log(result)
+        //console.log(result.numeroTavolo)
+        //console.log(result.numeroPersone)
+        this.tavoliService.addTavolo(
+          {numeroTavolo: result.numeroTavolo, numeroPersone: result.numeroPersone}
+          ).subscribe(data => {
+            console.log(data)
+          })
       }else{
         console.log("dialog chiuso per annullamento")
       }
     });
 
-    this.tavoliService.addTavolo();
+
   }
 }
 
