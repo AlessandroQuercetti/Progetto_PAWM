@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'sezione-tavoli', component: SezioneTavoliComponent},
   { path: 'sezione-tavoli/:id', component: SezioneTavoliComponent},
   { path: 'sezione-cucina', component: SezioneCucinaComponent},
-  { path: 'sezione-bar', component: SezioneBarComponent},
+  { path: 'sezione-bar', component: SezioneBarComponent}, //da togliere cosi
 
   /* se vuoi fare cosi vedi il video numero 25
   { path: 'home', component: HomeComponent, children: [

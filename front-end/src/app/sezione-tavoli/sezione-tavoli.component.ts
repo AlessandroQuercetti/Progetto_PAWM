@@ -4,8 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddTableDialogComponent } from '../add-table-dialog/add-table-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 
-import { table } from '../interfaces/table'; //vedi se riesci
-
 @Component({
   selector: 'app-sezione-tavoli',
   templateUrl: './sezione-tavoli.component.html',
@@ -28,51 +26,60 @@ export class SezioneTavoliComponent implements OnInit {
 
     if(idTavolo){
       this.vistaTavolo = true;
-      this.comande = this.tavoliService.getComandeByTavolo(parseInt(idTavolo));
-      console.log("vistaTavolo, indice: ", this.route.snapshot.paramMap.get('id'));
-
+      console.log(idTavolo)
+      this.comande = this.tavoliService.getComandeByTavolo(parseInt(idTavolo)); //.subscribe
     }else{
       this.vistaTavolo = false;
-      this.tavoli = this.tavoliService.getTavoliByRistorante(idRistorante);
-      console.log("vistaGenerale, indice: ", this.route.snapshot.paramMap.get('id'));
+      this.tavoliService.getTavoliByRistorante(idRistorante).subscribe((data: any) => {
+        //cose in piu fatte per il funzionamento di firebase, creo array senza gli id dati da firebase
+        this.tavoli = Object.keys(data).map((key) => {
+          data[key]['idTavolo'] = key;
+          return data[key]
+        });
+      })
     }
 
+  }
+
+  openDialogAddTavolo(): void {
+    const dialogRef = this.dialog.open(AddTableDialogComponent, {})
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.numeroTavolo != undefined && result.numeroPersone != undefined){
+        this.addTavolo(result);
+      }
+    });
   }
 
   getTavoli(){
     return this.tavoli;
   }
 
-  removeTavolo(id: number){
-    this.tavoliService.removeTavolo();
+  addTavolo(tavolo: any){
+    this.tavoliService.addTavolo(
+      {numeroTavolo: tavolo.numeroTavolo, numeroPersone: tavolo.numeroPersone}
+      ).subscribe(data => {
+        console.log(data)
+      })
+  }
+
+  eliminaTavolo(idTavolo: any){
+    console.log("elimina tavolo, ", idTavolo);
+    this.tavoliService.deleteTavolo( idTavolo
+      ).subscribe(data => {
+      console.log(data);
+    })
   }
 
   getComandeByTavolo(id: number){
     return this.comande;
   }
 
-  openDialogAddTavolo(): void {
-
-    const dialogRef = this.dialog.open(AddTableDialogComponent, {
-      //data: { descrizione: "apertura dialog per aggiungere tavolo"}
-    })
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result.numeroTavolo != undefined && result.numeroPersone != undefined){
-        //console.log(result)
-        //console.log(result.numeroTavolo)
-        //console.log(result.numeroPersone)
-        this.tavoliService.addTavolo(
-          {numeroTavolo: result.numeroTavolo, numeroPersone: result.numeroPersone}
-          ).subscribe(data => {
-            console.log(data)
-          })
-      }else{
-        console.log("dialog chiuso per annullamento")
-      }
-    });
-
-
+  addComanda(){
+    console.log("addComanda da fare");
   }
+
 }
+
+
 

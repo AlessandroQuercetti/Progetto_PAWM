@@ -10,17 +10,20 @@ import { TavoliService } from '../services/tavoli.service';
 export class SezioneCucinaComponent implements OnInit, OnDestroy{
 
   comande: any;
-  sottoscrizione: any;
+  //sottoscrizione: any;
 
   constructor(private tavoliService: TavoliService) {}
 
   ngOnInit(): void {
-    this.comande = this.tavoliService.getAllComande();
-
+    this.tavoliService.getAllComande().subscribe(data => {
+      this.comande = data;
+    })
 
     //in questo punto le comande devi farle attraverso una sottoscrizione ad un observable
     //il cambiamento dovrebbe essere lanciato ogni volta che viene aggiunta una comanda
     //però forse è piu semplice rifare la richiesta delle comande ogni tot tempo, vedere bene
+
+    /*
     this.sottoscrizione = new Observable((observer) => {
       let count = 0;
       setInterval(() => {
@@ -29,11 +32,11 @@ export class SezioneCucinaComponent implements OnInit, OnDestroy{
       }, 1000);
      }).subscribe((numero) => {
       console.log(numero);
-     });
+     });*/
   }
 
   ngOnDestroy(): void {
-    this.sottoscrizione.unsubscribe()
+    //this.sottoscrizione.unsubscribe()
   }
 
   getComande(){

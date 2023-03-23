@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Aggiungi Elemento del Menu</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Nome:</mat-label>
+    <input matInput [(ngModel)]="form.nome" required>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Descrizione:</mat-label>
+    <input matInput [(ngModel)]="form.descrizione" required>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Prezzo:</mat-label>
+    <input matInput [(ngModel)]="form.prezzo" required>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Annulla</button>
+  <button mat-button [mat-dialog-close]="form" cdkFocusInitial>Conferma</button>
+</div>
+

@@ -30,6 +30,7 @@ import { SezioneBarComponent } from './sezione-bar/sezione-bar.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { AddTableDialogComponent } from './add-table-dialog/add-table-dialog.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AddMenuElementDialogComponent } from './add-menu-element-dialog/add-menu-element-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ProfileComponent } from './profile/profile.component';
     SezioneBarComponent,
     NotfoundComponent,
     AddTableDialogComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddMenuElementDialogComponent
 
   ],
   //entryComponents: [AddTableDialogComponent], //vedi bene se serve, non lo so
