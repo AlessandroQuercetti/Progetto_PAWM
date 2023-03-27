@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddMenuElementDialogComponent } from '../add-menu-element-dialog/add-menu-element-dialog.component';
+import { MenuElementDialogComponent } from '../menu-element-dialog/menu-element-dialog.component';
 import { MenuElementService } from '../services/menu-element.service';
 
 @Component({
@@ -15,7 +15,6 @@ export class ProfileComponent implements OnInit{
   constructor(private menuElementService: MenuElementService, public dialog: MatDialog) {}
 
   ngOnInit(): any{
-    console.log("profilo component con tutti gli elementi del menu")
     this.menuElementService.getMenuElements().subscribe( (data: any) => {
       this.menuElements = Object.keys(data).map( (key) => {
         data[key]['idElement'] = key;
@@ -24,26 +23,26 @@ export class ProfileComponent implements OnInit{
     })
   }
 
-  openDialogAddMenuElement(){
-    const dialogRef = this.dialog.open(AddMenuElementDialogComponent, {})
+  openDialogMenuElement(tipoOperazione: number, idElement: string|void ){
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result.nome != undefined && result.descrizione != undefined && result.prezzo != undefined){
-        this.addMenuElement(result);
-      }
-    });
+    const dialogRef = this.dialog.open( MenuElementDialogComponent, {
+      data: { tipoOperazione: tipoOperazione, idElement: idElement }
+    })
+
+    dialogRef.afterClosed().subscribe( result => {} );
   }
 
+  //restituisce tutti gli elementi del menu
   getMenuElements(){
     return this.menuElements;
   }
 
-  addMenuElement(menuElement: any){
-
-    this.menuElementService.addMenuElement(
-      {nome: menuElement.nome, descrizione: menuElement.descrizione, prezzo: menuElement.prezzo }
-    ).subscribe(data => {
-      console.log(data)
-    })
+  //elimina elemento del menu
+  deleteMenuElement(id: any){
+    this.menuElementService.deleteMenuElement(id).subscribe(data => {
+      console.log(data);
+    });
   }
+
+
 }

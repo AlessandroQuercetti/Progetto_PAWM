@@ -20,6 +20,14 @@ export class MenuElementService {
     return this.http.post(API + 'menuElements.json', body);
   }
 
+  patchMenuElement(id: string, body: {}){
+    return this.http.patch(API + 'menuElements/' + id + '.json', body);
+  }
+
+  deleteMenuElement(id: string){
+    return this.http.delete(API + 'menuElements/' + id + '.json');
+  }
+
   /*
   getElement(id: number){ //non so se serve
     return this.menuElements[id]; //TODO vedi bene questo perchè deve prendere la persona giusta

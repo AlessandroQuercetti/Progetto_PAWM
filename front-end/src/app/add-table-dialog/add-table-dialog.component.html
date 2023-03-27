@@ -1,17 +1,21 @@
-<h2 mat-dialog-title>Aggiungi Tavolo</h2>
-<div mat-dialog-content>
-  <mat-form-field appearance="fill">
-    <mat-label>Numero tavolo:</mat-label>
-    <input matInput [(ngModel)]="form.numeroTavolo" required>
-  </mat-form-field>
-  <br>
-  <mat-form-field appearance="fill">
-    <mat-label>Persone:</mat-label>
-    <input matInput [(ngModel)]="form.numeroPersone" required>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Annulla</button>
-  <button mat-button [mat-dialog-close]="form" cdkFocusInitial>Conferma</button>
-</div>
+<form #addTavoloForm="ngForm" (ngSubmit)="onSubmit(addTavoloForm)">
+
+  <h2 mat-dialog-title>Aggiungi Tavolo</h2>
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Numero tavolo:</mat-label>
+      <input matInput type="number" name="numeroTavolo" ngModel required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Persone:</mat-label>
+      <input matInput type="number" name="numeroPersone" ngModel required>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Annulla</button>
+    <button mat-raised-button mat-dialog-close color="primary" type="submit" [disabled]="!addTavoloForm.valid">Conferma</button>
+  </div>
+
+</form>
 

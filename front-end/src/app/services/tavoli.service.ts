@@ -21,7 +21,7 @@ export class TavoliService {
   }
 
   deleteTavolo(idTavolo: string){
-    return this.http.delete(API + 'tavoli/' + idTavolo + '.json')
+    return this.http.delete(API + 'tavoli/' + idTavolo + '.json');
     //return this.http.delete(`${API}/tables/${idTavolo}.json`); //sintassi diversa con gli apici strani
   }
 

@@ -7,11 +7,16 @@
       <mat-card-subtitle>Prezzo: {{element.prezzo}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-actions>
-      <mat-checkbox>aggiungi</mat-checkbox>
+      <!--<mat-checkbox>aggiungi</mat-checkbox>-->
+      <button mat-flat-button (click)="openDialogMenuElement(1, element.idElement)">Modifica</button>
+      <button mat-icon-button aria-label="Elimina" (click)="deleteMenuElement(element.idElement)"><mat-icon>delete</mat-icon></button>
+
     </mat-card-actions>
+
   </mat-card>
 
-  <button class="item" mat-flat-button (click)="openDialogAddMenuElement()">Aggiungi Elemento del Menu</button>
+  <button class="item" mat-flat-button (click)="openDialogMenuElement(0)">Aggiungi Elemento del Menu</button>
+  <!--<button class="item" mat-flat-button (click)="openDialogAddMenuElement()">Aggiungi Elemento del Menu</button>-->
 </div>
 
 

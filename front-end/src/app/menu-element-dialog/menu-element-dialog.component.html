@@ -1,0 +1,59 @@
+<form #addMenuElementForm="ngForm" (ngSubmit)="onSubmit(addMenuElementForm)" *ngIf="tipoOperazione == 0">
+
+  <h2 mat-dialog-title>Aggiungi Elemento del Menu</h2>
+
+  <div mat-dialog-content>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nome:</mat-label>
+      <!--<input matInput [(ngModel)]="form.nome" required>-->
+      <input matInput type="text" name="nome" ngModel required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Descrizione:</mat-label>
+      <!--<input matInput [(ngModel)]="form.descrizione" required>-->
+      <input matInput type="text" name="descrizione" ngModel required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Prezzo:</mat-label>
+      <!--<input matInput [(ngModel)]="form.prezzo" required>-->
+      <input matInput type="number" name="prezzo" ngModel required>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Annulla</button>
+    <!--<button mat-button [mat-dialog-close]="form" cdkFocusInitial>Conferma</button>-->
+    <button mat-raised-button mat-dialog-close color="primary" type="submit" [disabled]="!addMenuElementForm.valid">Conferma</button>
+  </div>
+
+</form>
+
+<form #modificaMenuElementForm="ngForm" (ngSubmit)="onSubmit(modificaMenuElementForm)" *ngIf="tipoOperazione == 1">
+
+  <h2 mat-dialog-title>Modifica Elemento del Menu</h2>
+
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Nuovo nome:</mat-label>
+      <input matInput type="text" name="nome" ngModel required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Nuova descrizione:</mat-label>
+      <input matInput type="text" name="descrizione" ngModel required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Nuovo prezzo:</mat-label>
+      <input matInput type="number" name="prezzo" ngModel required>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Annulla</button>
+    <button mat-raised-button mat-dialog-close color="primary" type="submit" [disabled]="!modificaMenuElementForm.valid">Conferma</button>
+  </div>
+</form>

@@ -1,0 +1,36 @@
+<form #registrazioneForm="ngForm" class="login-form" (ngSubmit)="onSubmit(registrazioneForm)">
+
+  <div class="title">
+    <h1>REGISTRAZIONE</h1>
+  </div>
+
+  <mat-form-field appearance="fill" class="login-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" name="email" ngModel required/>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill" class="login-full-width">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" name="name" ngModel required/>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill" class="login-full-width">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" name="password" ngModel required/>
+  </mat-form-field>
+
+  <!--
+    <mat-form-field appearance="fill" class="login-full-width">
+    <mat-label>Password</mat-label>
+    <input matInput name="password" [type]="hide ? 'password' : 'text'" ngModel required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    </mat-form-field>
+  -->
+
+  <mat-action-list>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!registrazioneForm.valid">Registrati</button>
+  </mat-action-list>
+</form>

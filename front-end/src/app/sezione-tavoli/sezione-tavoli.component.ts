@@ -45,22 +45,12 @@ export class SezioneTavoliComponent implements OnInit {
     const dialogRef = this.dialog.open(AddTableDialogComponent, {})
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result.numeroTavolo != undefined && result.numeroPersone != undefined){
-        this.addTavolo(result);
-      }
+      console.log("result alla fine ", result)
     });
   }
 
   getTavoli(){
     return this.tavoli;
-  }
-
-  addTavolo(tavolo: any){
-    this.tavoliService.addTavolo(
-      {numeroTavolo: tavolo.numeroTavolo, numeroPersone: tavolo.numeroPersone}
-      ).subscribe(data => {
-        console.log(data)
-      })
   }
 
   eliminaTavolo(idTavolo: any){
