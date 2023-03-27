@@ -1,36 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './componenti/home/home.component';
 import { LoginComponent } from './componenti/login/login.component';
-import { NotfoundComponent } from './notfound/notfound.component';
-import { ProfileComponent } from './profile/profile.component';
-import { RegistrazioneComponent } from './registrazione/registrazione.component';
+import { NotfoundComponent } from './componenti/notfound/notfound.component';
+import { ProfileComponent } from './componenti/profile/profile.component';
+import { RegistrazioneComponent } from './componenti/registrazione/registrazione.component';
 import { AuthGuard } from './services/auth.guard';
-import { SezioneBarComponent } from './sezione-bar/sezione-bar.component';
-import { SezioneCucinaComponent } from './sezione-cucina/sezione-cucina.component';
-import { SezioneTavoliComponent } from './sezione-tavoli/sezione-tavoli.component';
+import { SezioneBarComponent } from './componenti/sezione-bar/sezione-bar.component';
+import { SezioneCucinaComponent } from './componenti/sezione-cucina/sezione-cucina.component';
+import { SezioneTavoliComponent } from './componenti/sezione-tavoli/sezione-tavoli.component';
 
 const routes: Routes = [
-  { path: "", pathMatch: 'full', redirectTo: ''}, //non va bene app, vedi bene questo
-  //{ path: "home", component: HomeComponent, canActivate: [AuthGuard] },// se metto home va lo stesso su profile
-  { path: 'login', component: LoginComponent},
-  { path: 'registrazione', component: RegistrazioneComponent},
 
-  //navbar
-  { path: "profile", component: ProfileComponent},
-  { path: 'sezione-tavoli', component: SezioneTavoliComponent},
-  { path: 'sezione-tavoli/:id', component: SezioneTavoliComponent},
-  { path: 'sezione-cucina', component: SezioneCucinaComponent},
-  { path: 'sezione-bar', component: SezioneBarComponent}, //da togliere cosi
-
-  /* se vuoi fare cosi vedi il video numero 25
-  { path: 'home', component: HomeComponent, children: [
+  { path: '', component: HomeComponent, canActivate: [AuthGuard], children: [
+    { path: '', redirectTo: 'profile', pathMatch: 'full'},
     { path: 'profile', component: ProfileComponent },
     { path: 'sezione-tavoli', component: SezioneTavoliComponent},
     { path: 'sezione-tavoli/:id', component: SezioneTavoliComponent},
     { path: 'sezione-cucina', component: SezioneCucinaComponent},
     { path: 'sezione-bar', component: SezioneBarComponent}
-  ]}*/
+  ]},
+
+  { path: 'login', component: LoginComponent},
+  { path: 'registrazione', component: RegistrazioneComponent},
 
   //altri
   { path: '404', component: NotfoundComponent},

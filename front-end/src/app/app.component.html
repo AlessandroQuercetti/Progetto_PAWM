@@ -1,10 +1,5 @@
 <body>
-  <div *ngIf="!isLoggedIn()">
-    <app-login></app-login> <!-- TODO vedi come fare login-->
-  </div>
-
-  <div *ngIf="isLoggedIn()">
-    <app-home> </app-home>
+    <router-outlet> </router-outlet>
     <!--
     <ul class="navbar" *ngIf="isLoggedIn">
       <li><a routerLink="">Home</a></li>
@@ -15,8 +10,6 @@
     </ul>
     <router-outlet></router-outlet>
     -->
-  </div>
-
 
   <!--
   <div class="footer">

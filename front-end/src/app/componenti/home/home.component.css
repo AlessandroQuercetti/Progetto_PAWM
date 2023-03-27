@@ -5,6 +5,11 @@
   background-color: #4388d1;
   padding: 1vw;
   font-size: 0;
+
+  /* questi 3 per bloccare la navbar di sopra */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar li{
@@ -25,4 +30,9 @@
 .navbar a:hover{
   color:white;
   transition-duration: 0.5s;
+  cursor: pointer;
+}
+
+.active{
+  font-weight: bold;
 }

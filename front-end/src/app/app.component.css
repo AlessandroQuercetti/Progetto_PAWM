@@ -1,31 +1,9 @@
 body{
-  /* 0; margin: 20px;
-  padding: 20px;*/
 
-  background-color: pink;
+  background-color: lightgrey;
   border: none !important;
   margin: 0px !important;
-  padding: 2px !important; /* TODO in caso cambia*/
+  padding-bottom: 5px !important;
 }
 
-/*
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-
-.footer{
-  background-color: #4388d1;
-  padding: 1vw;
-  font-size: 1.1em;
-}
-
-.footerIcon{
-  margin-bottom: 3vh;
-}
-
-.footerIcon i{
-  float: right;
-  margin-right: 2vw;
-  color: black;
-}
-
-*/
 

@@ -26,7 +26,9 @@ export class LoginComponent {
   }*/
 
   onSubmit(form: NgForm){
-    console.log(form.value);
+    const email = form.value.email;
+    const password = form.value.password;
+    console.log(email, password);
     /*
     let risposta = this.authService.doLogIn(String(this.email), this.password!); //vedi se questo cast va bene, non lo so
     if(risposta)

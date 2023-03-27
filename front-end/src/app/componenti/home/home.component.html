@@ -1,23 +1,11 @@
 <div>
   <ul class="navbar">
-    <li><a routerLink="profile">Profile</a></li>
-    <li><a routerLink="sezione-tavoli">Sezione Tavoli</a></li>
-    <li><a routerLink="sezione-cucina">Sezione Cucina</a></li>
-    <li><a routerLink="sezione-bar">Sezione Bar</a></li>
-    <li><a  (click)="onClickLogout()">Logout</a></li> <!-- routerLink="login" non dovresti cambiare pagina cosi oppure vedi meglio come fare-->
+    <li><a routerLink="profile" [routerLinkActive]="'active'">Profile</a></li>
+    <li><a routerLink="sezione-tavoli" [routerLinkActive]="'active'">Sezione Tavoli</a></li>
+    <li><a routerLink="sezione-cucina" [routerLinkActive]="'active'">Sezione Cucina</a></li>
+    <li><a routerLink="sezione-bar" [routerLinkActive]="'active'">Sezione Bar</a></li>
+    <li><a (click)="onClickLogout()">Logout</a></li>
   </ul>
-  <router-outlet></router-outlet>
-</div>
 
-<!-- in questo modo se vuoi fare routing con i child, da cambiare anche il file di routing!!!
-  <div>
-  <ul class="navbar">
-    <li><a routerLink="/home/profile">Profile</a></li>
-    <li><a routerLink="/home/sezione-tavoli">Sezione Tavoli</a></li>
-    <li><a routerLink="/home/sezione-cucina">Sezione Cucina</a></li>
-    <li><a routerLink="/home/sezione-bar">Sezione Bar</a></li>
-    <li><a  (click)="onClickLogout()">Logout</a></li>
-  </ul>
   <router-outlet></router-outlet>
 </div>
--->
