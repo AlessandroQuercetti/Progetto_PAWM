@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TavoliService } from '../services/tavoli.service';
+import { TavoliService } from 'src/app/services/tavoli.service';
+
 
 @Component({
   selector: 'app-sezione-bar',

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TavoliService } from '../services/tavoli.service';
+import { TavoliService } from 'src/app/services/tavoli.service';
 
 @Component({
   selector: 'app-sezione-cucina',

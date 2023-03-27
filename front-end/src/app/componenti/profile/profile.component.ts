@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MenuElementService } from 'src/app/services/menu-element.service';
 import { MenuElementDialogComponent } from '../menu-element-dialog/menu-element-dialog.component';
-import { MenuElementService } from '../services/menu-element.service';
+
 
 @Component({
   selector: 'app-profile',

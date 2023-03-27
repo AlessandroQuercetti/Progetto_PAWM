@@ -22,16 +22,16 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 
 //components
-import { LoginComponent } from './login/login.component';
-import { SezioneTavoliComponent } from './sezione-tavoli/sezione-tavoli.component';
-import { HomeComponent } from './home/home.component';
-import { SezioneCucinaComponent } from './sezione-cucina/sezione-cucina.component';
-import { SezioneBarComponent } from './sezione-bar/sezione-bar.component';
-import { NotfoundComponent } from './notfound/notfound.component';
-import { AddTableDialogComponent } from './add-table-dialog/add-table-dialog.component';
-import { ProfileComponent } from './profile/profile.component';
-import { MenuElementDialogComponent } from './menu-element-dialog/menu-element-dialog.component';
-import { RegistrazioneComponent } from './registrazione/registrazione.component';
+import { LoginComponent } from './componenti/login/login.component';
+import { SezioneTavoliComponent } from './componenti/sezione-tavoli/sezione-tavoli.component';
+import { HomeComponent } from './componenti/home/home.component';
+import { SezioneCucinaComponent } from './componenti/sezione-cucina/sezione-cucina.component';
+import { SezioneBarComponent } from './componenti/sezione-bar/sezione-bar.component';
+import { NotfoundComponent } from './componenti/notfound/notfound.component';
+import { AddTableDialogComponent } from './componenti/add-table-dialog/add-table-dialog.component';
+import { ProfileComponent } from './componenti/profile/profile.component';
+import { MenuElementDialogComponent } from './componenti/menu-element-dialog/menu-element-dialog.component';
+import { RegistrazioneComponent } from './componenti/registrazione/registrazione.component';
 
 @NgModule({
   declarations: [

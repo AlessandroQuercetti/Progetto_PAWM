@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TavoliService } from '../services/tavoli.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTableDialogComponent } from '../add-table-dialog/add-table-dialog.component';
 import { ActivatedRoute } from '@angular/router';
+import { TavoliService } from 'src/app/services/tavoli.service';
 
 @Component({
   selector: 'app-sezione-tavoli',
