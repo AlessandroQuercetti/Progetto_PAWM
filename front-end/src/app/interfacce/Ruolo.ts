@@ -1,0 +1,3 @@
+export enum Ruolo{
+  CAMERIERE, ACCOGLIENZA, CUCINA, BAR
+}

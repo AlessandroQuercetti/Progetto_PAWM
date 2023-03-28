@@ -1,19 +1,35 @@
 <form #registrazioneForm="ngForm" class="login-form" (ngSubmit)="onSubmit(registrazioneForm)">
 
   <div class="title">
-    <h1>REGISTRAZIONE</h1>
+    <h1 *ngIf="!vistaUtente">REGISTRAZIONE RISTORANTE</h1>
+    <h1 *ngIf="vistaUtente">REGISTRAZIONE UTENTE</h1>
   </div>
+
+  <mat-form-field class="login-full-width">
+    <mat-label>Nome</mat-label>
+    <input matInput type="text" name="nome" ngModel required/>
+  </mat-form-field>
+
+  <mat-form-field class="login-full-width" *ngIf="vistaUtente">
+    <mat-label>Cognome</mat-label>
+    <input matInput type="text" name="cognome" ngModel required/>
+  </mat-form-field>
+
+  <mat-form-field class="login-full-width" *ngIf="vistaUtente"> <!--da metterlo a scelta multipla-->
+    <mat-label>Ruolo</mat-label>
+    <input matInput type="text" name="ruolo" ngModel required/>
+  </mat-form-field>
+
+  <mat-form-field class="login-full-width">
+    <mat-label>Codice del Ristorante</mat-label>
+    <input matInput type="text" name="codice" ngModel required/>
+  </mat-form-field>
 
   <mat-form-field class="login-full-width">
     <mat-label>Email</mat-label>
     <input matInput type="email" name="email" ngModel required/>
   </mat-form-field>
-  <br>
-  <mat-form-field class="login-full-width">
-    <mat-label>Name</mat-label>
-    <input matInput type="text" name="name" ngModel required/>
-  </mat-form-field>
-  <br>
+
   <mat-form-field class="login-full-width">
     <mat-label>Password</mat-label>
     <input matInput name="password" [type]="hide ? 'password' : 'text'" ngModel required>
@@ -23,9 +39,10 @@
     </button>
   </mat-form-field>
 
-
   <mat-action-list>
     <button mat-raised-button color="primary" type="submit" [disabled]="!registrazioneForm.valid">Registrati</button>
     <button mat-raised-button color="primary" routerLink="/login">Torna al Log-in</button>
   </mat-action-list>
 </form>
+
+

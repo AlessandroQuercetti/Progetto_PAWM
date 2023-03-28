@@ -22,7 +22,7 @@ const routes: Routes = [
   ]},
 
   { path: 'login', component: LoginComponent},
-  { path: 'registrazione', component: RegistrazioneComponent},
+  { path: 'registrazione/:tipo', component: RegistrazioneComponent},
 
   //altri
   { path: '404', component: NotfoundComponent},

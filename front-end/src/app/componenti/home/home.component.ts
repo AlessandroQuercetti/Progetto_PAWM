@@ -13,9 +13,7 @@ export class HomeComponent {
   constructor(private authService: AuthService, private router: Router) {} //private readonly router: Router
 
   onClickLogout() {
-    //fai il log out
-    //chiama componente del parent dal child e cambia valore
-    //this.authService.doLogOut();
+    this.authService.doLogOut();
     this.router.navigate(["login"]);
   }
 

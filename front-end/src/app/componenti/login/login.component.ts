@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, NgForm, Validators } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -12,30 +12,13 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   hide = true;
-  //email = new FormControl('', [Validators.required, Validators.email]);
-  //password = null;
-
-  isLoggedIn = false;
-  logInFailed = false;
-
-  /*getErrorMessage(){
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  }*/
 
   onSubmit(form: NgForm){
-    const email = form.value.email;
-    const password = form.value.password;
-    console.log(email, password);
-    /*
-    let risposta = this.authService.doLogIn(String(this.email), this.password!); //vedi se questo cast va bene, non lo so
-    if(risposta)
-      this.isLoggedIn = true;
-    else
-      alert("login errato");*/
+    this.authService.doLogIn(form.value.email, form.value.password).subscribe((data: any) => {
+      console.log("dati: ", data);
+      //probabilmente qua sara da fare un controllo per errori
 
+    })
   }
 
 }

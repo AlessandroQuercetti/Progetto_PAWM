@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +10,12 @@ export class AppComponent implements OnInit {
 
   title = 'front-end';
 
-  isLoggedIn(){
-    //vedi bene questo, fai controllo
-    return true;
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    console.log("vedi la faccenda dei token"); //TODO vedi token
+    //vedi faccenda token
+    if(this.authService.getCurrentUser()){
+      this.authService.isLoggedIn = true;
+    }
   }
-
-  //devi aggiungere un observable per vedere login e logout oppure cambia metodo
-
 }
