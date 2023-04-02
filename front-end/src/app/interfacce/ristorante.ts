@@ -8,10 +8,4 @@ export interface Ristornate{
   nome: string;
   email: string;
   password: string;
-  codice: string;
-
-  //chiavi secondarie
-  utenti?: Utente[];
-  tavoli?: Tavolo[];
-  menuElements?: MenuElement[];
 }

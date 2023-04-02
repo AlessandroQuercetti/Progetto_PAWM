@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -10,12 +11,13 @@ export class AppComponent implements OnInit {
 
   title = 'front-end';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    //vedi faccenda token
+
     if(this.authService.getCurrentUser()){
       this.authService.isLoggedIn = true;
+      //this.router.navigate(['']);
     }
   }
 }

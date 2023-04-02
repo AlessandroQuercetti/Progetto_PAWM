@@ -1,18 +1,25 @@
-import { Component } from '@angular/core';
-import { TavoliService } from 'src/app/services/tavoli.service';
-
+import { Component, OnInit } from '@angular/core';
+import { Comanda } from 'src/app/interfacce/comanda';
+import { ComandeService } from 'src/app/services/comande.service';
 
 @Component({
   selector: 'app-sezione-bar',
   templateUrl: './sezione-bar.component.html',
   styleUrls: ['./sezione-bar.component.css']
 })
-export class SezioneBarComponent {
+export class SezioneBarComponent implements OnInit{
 
-  constructor(private tavoliService: TavoliService) {}
+  comande!: Comanda[];
 
-  getComande(){
-    return this.tavoliService.getAllComande(); //ovviamente filtra per quelle "solo cose bar"
+  constructor(private comandeService: ComandeService) {}
+
+  ngOnInit(){
+    this.comandeService.getAllComande().subscribe((data: any) => {
+      this.comande = Object.keys(data).map( (key) => {
+        data[key]['id'] = key;
+        return data[key];
+      });
+    })
   }
 
 }

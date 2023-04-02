@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Tavolo } from '../interfacce/tavolo';
+import { AuthService } from './auth.service';
 
 const API = "https://restaurantdb-812bc-default-rtdb.europe-west1.firebasedatabase.app/"
 
@@ -8,29 +10,25 @@ const API = "https://restaurantdb-812bc-default-rtdb.europe-west1.firebasedataba
 })
 export class TavoliService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getTavoliByRistorante(idRis: number){
-    //console.log("get tavoli by ristorante da fare")
-    return this.http.get(API + 'tavoli.json'); //TODO poi fai query giusta
+  private getToken(){
+    return JSON.parse(this.authService.getCurrentUser()!).token
+  }
+
+  getTavoli(){
+    let token_part = "?auth=" + this.getToken();
+    return this.http.get<Tavolo[]>(API + 'tavoli.json' + token_part);
   }
 
   addTavolo(body: {}){
-    //console.log(body);
-    return this.http.post(API + 'tavoli.json', body);
+    let token_part = "?auth=" + this.getToken();
+    return this.http.post(API + 'tavoli.json' + token_part, body);
   }
 
   deleteTavolo(idTavolo: string){
-    return this.http.delete(API + 'tavoli/' + idTavolo + '.json');
-    //return this.http.delete(`${API}/tables/${idTavolo}.json`); //sintassi diversa con gli apici strani
+    let token_part = "?auth=" + this.getToken();
+    return this.http.delete(API + 'tavoli/' + idTavolo + '.json' + token_part);
   }
 
-  getComandeByTavolo(idTavolo: number){
-    console.log("getComandeByTavolo da fare")
-    //return this.http.get(API + 'comande/' + idTavolo + '.json');
-  }
-
-  getAllComande(){
-    return this.http.get(API + 'comande.json');
-  }
 }

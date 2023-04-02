@@ -1,9 +1,8 @@
 <div class="wrapper">
-  <h1 class="item">COMANDE PER LA CUCINA</h1>
+  <h1 class="item">COMANDE DEL TAVOLO {{idTavolo}}</h1>
   <mat-card class="card" *ngFor="let comanda of comande">
     <mat-card-header>
-      <mat-card-title>id comanda: {{comanda.id}}</mat-card-title>
-      <mat-card-subtitle>tavolo: {{comanda.tavolo}}</mat-card-subtitle>
+      <mat-card-title>Comanda: {{comanda.id}}</mat-card-title>
     </mat-card-header>
     <mat-card-content *ngFor="let elemento of comanda.menuElements">
       <mat-checkbox >{{elemento}}</mat-checkbox>
@@ -13,5 +12,6 @@
       <button class="item" mat-button>ELIMINA</button>
     </mat-card-actions>
   </mat-card>
+  <button class="item" mat-flat-button (click)="openComandaDialog(idTavolo)">Aggiungi Comanda</button>
+  <button class="item" mat-flat-button routerLink="/sezione-tavoli">Indietro</button>
 </div>
-

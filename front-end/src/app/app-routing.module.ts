@@ -9,6 +9,8 @@ import { AuthGuard } from './services/auth.guard';
 import { SezioneBarComponent } from './componenti/sezione-bar/sezione-bar.component';
 import { SezioneCucinaComponent } from './componenti/sezione-cucina/sezione-cucina.component';
 import { SezioneTavoliComponent } from './componenti/sezione-tavoli/sezione-tavoli.component';
+import { MenuComponent } from './componenti/menu/menu.component';
+import { TavoloComponent } from './componenti/tavolo/tavolo.component';
 
 const routes: Routes = [
 
@@ -16,17 +18,20 @@ const routes: Routes = [
     { path: '', redirectTo: 'profile', pathMatch: 'full'},
     { path: 'profile', component: ProfileComponent },
     { path: 'sezione-tavoli', component: SezioneTavoliComponent},
-    { path: 'sezione-tavoli/:id', component: SezioneTavoliComponent},
     { path: 'sezione-cucina', component: SezioneCucinaComponent},
-    { path: 'sezione-bar', component: SezioneBarComponent}
+    { path: 'sezione-bar', component: SezioneBarComponent},
+    { path: 'menu', component: MenuComponent},
+    //{ path: 'registrazione/utente', component: RegistrazioneComponent},
+    { path: 'registrazione', component: RegistrazioneComponent},
+    { path: 'tavolo/:id', component: TavoloComponent}
   ]},
 
   { path: 'login', component: LoginComponent},
-  { path: 'registrazione/:tipo', component: RegistrazioneComponent},
+  //{ path: 'registrazione/ristorante', component: RegistrazioneComponent},
 
   //altri
   { path: '404', component: NotfoundComponent},
-  { path: '**', redirectTo: "/404"} //qualsiasi path che non e tra quelli sopra viene reindirizzato al 404
+  { path: '**', redirectTo: "/404"}
 ];
 
 @NgModule({

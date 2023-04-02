@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,16 +10,23 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   hide = true;
 
   onSubmit(form: NgForm){
-    this.authService.doLogIn(form.value.email, form.value.password).subscribe((data: any) => {
-      console.log("dati: ", data);
-      //probabilmente qua sara da fare un controllo per errori
+    this.authService.doLogIn(form.value.email, form.value.password).subscribe(
+      (data: any) => {
+        this.authService.salvaCurrentUser(data.nome, data.cognome, data.ruolo, data.email, data.idToken);
+        this.router.navigate(['']);
+      },
+      (err: any) => {
+        alert(err.error.error.message);
+      }
 
-    })
+    )
   }
+
+
 
 }

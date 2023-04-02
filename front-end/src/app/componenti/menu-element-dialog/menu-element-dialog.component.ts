@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MenuElementService } from 'src/app/services/menu-element.service';
+import { MenuElementsService } from 'src/app/services/menu-elements.service';
 
 export interface DialogData {
   nome: string;
@@ -16,8 +16,8 @@ export interface DialogData {
 })
 export class MenuElementDialogComponent {
 
-  tipoOperazione: number = -1;
-  idElement: string = "";
+  tipoOperazione!: number;
+  idElement!: string;
   result: any;
 
   form: DialogData = {
@@ -28,8 +28,7 @@ export class MenuElementDialogComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private ref: MatDialogRef<MenuElementDialogComponent>,
-    private menuElementService: MenuElementService) {}
-
+    private menuElementsService: MenuElementsService) {}
 
 
   ngOnInit(): void{
@@ -52,17 +51,15 @@ export class MenuElementDialogComponent {
 
 
   //aggiunge elemento del menu
-  addMenuElement(menuElement: any){
-    this.menuElementService.addMenuElement(
-      {nome: menuElement.nome, descrizione: menuElement.descrizione, prezzo: menuElement.prezzo }
-    ).subscribe(data => {
+  addMenuElement(body: {}){
+    this.menuElementsService.addMenuElement(body).subscribe(data => {
       console.log(data)
     })
   }
 
   //modifica elemento del menu
   modifyMenuElement(id: any, body: {}){
-    this.menuElementService.patchMenuElement(id, body).subscribe(data => {
+    this.menuElementsService.patchMenuElement(id, body).subscribe(data => {
       console.log(data);
     });
   }

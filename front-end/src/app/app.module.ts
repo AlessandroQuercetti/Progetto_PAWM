@@ -18,6 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 
 //components
@@ -32,6 +33,9 @@ import { AddTableDialogComponent } from './componenti/add-table-dialog/add-table
 import { ProfileComponent } from './componenti/profile/profile.component';
 import { MenuElementDialogComponent } from './componenti/menu-element-dialog/menu-element-dialog.component';
 import { RegistrazioneComponent } from './componenti/registrazione/registrazione.component';
+import { MenuComponent } from './componenti/menu/menu.component';
+import { TavoloComponent } from './componenti/tavolo/tavolo.component';
+import { ComandaDialogComponent } from './componenti/comanda-dialog/comanda-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,10 @@ import { RegistrazioneComponent } from './componenti/registrazione/registrazione
     AddTableDialogComponent,
     ProfileComponent,
     MenuElementDialogComponent,
-    RegistrazioneComponent
+    RegistrazioneComponent,
+    MenuComponent,
+    TavoloComponent,
+    ComandaDialogComponent
 
   ],
   //entryComponents: [AddTableDialogComponent], //vedi bene se serve, non lo so
@@ -65,7 +72,8 @@ import { RegistrazioneComponent } from './componenti/registrazione/registrazione
     MatCardModule,
     MatCheckboxModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

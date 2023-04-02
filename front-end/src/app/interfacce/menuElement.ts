@@ -7,9 +7,5 @@ export interface MenuElement{
   nome: string;
   descrizione: string;
   prezzo: number;
-  allergeni: string;
   categoria: Categoria;
-
-  //chiavi secondarie
-  ristorante?: Ristornate;
 }

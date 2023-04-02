@@ -9,5 +9,4 @@ export interface Utente{
   ruolo: Ruolo;
   email: string;
   password: string;
-  codiceRistorante: string;
 }

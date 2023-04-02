@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Comanda } from 'src/app/interfacce/comanda';
+import { ComandeService } from 'src/app/services/comande.service';
 import { TavoliService } from 'src/app/services/tavoli.service';
 
 @Component({
@@ -9,14 +11,17 @@ import { TavoliService } from 'src/app/services/tavoli.service';
 })
 export class SezioneCucinaComponent implements OnInit, OnDestroy{
 
-  comande: any;
+  comande!: Comanda[];
   //sottoscrizione: any;
 
-  constructor(private tavoliService: TavoliService) {}
+  constructor(private tavoliService: TavoliService, private comandeService: ComandeService) {}
 
   ngOnInit(): void {
-    this.tavoliService.getAllComande().subscribe(data => {
-      this.comande = data;
+    this.comandeService.getAllComande().subscribe((data: any) => {
+      this.comande = Object.keys(data).map( (key) => {
+        data[key]['id'] = key;
+        return data[key];
+      });
     })
 
     //in questo punto le comande devi farle attraverso una sottoscrizione ad un observable
@@ -39,7 +44,4 @@ export class SezioneCucinaComponent implements OnInit, OnDestroy{
     //this.sottoscrizione.unsubscribe()
   }
 
-  getComande(){
-    return this.comande; //ovviamente filtra per quelle "da fare"
-  }
 }

@@ -5,9 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class TokenService {
 
-  //TODO vedi tutto
-  tokens = []
-
   constructor() { }
 
   createToken(){

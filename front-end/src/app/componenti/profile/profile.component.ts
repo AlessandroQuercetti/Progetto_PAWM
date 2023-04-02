@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MenuElementService } from 'src/app/services/menu-element.service';
-import { MenuElementDialogComponent } from '../menu-element-dialog/menu-element-dialog.component';
-
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,39 +8,12 @@ import { MenuElementDialogComponent } from '../menu-element-dialog/menu-element-
 })
 export class ProfileComponent implements OnInit{
 
-  menuElements: any;
+  currentUser!: any; //currentUser!: Utente;
 
-  constructor(private menuElementService: MenuElementService, public dialog: MatDialog) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): any{
-    this.menuElementService.getMenuElements().subscribe( (data: any) => {
-      this.menuElements = Object.keys(data).map( (key) => {
-        data[key]['idElement'] = key;
-        return data[key]
-      })
-    })
+    this.currentUser = JSON.parse(this.authService.getCurrentUser()!)
   }
-
-  openDialogMenuElement(tipoOperazione: number, idElement: string|void ){
-
-    const dialogRef = this.dialog.open( MenuElementDialogComponent, {
-      data: { tipoOperazione: tipoOperazione, idElement: idElement }
-    })
-
-    dialogRef.afterClosed().subscribe( result => {} );
-  }
-
-  //restituisce tutti gli elementi del menu
-  getMenuElements(){
-    return this.menuElements;
-  }
-
-  //elimina elemento del menu
-  deleteMenuElement(id: any){
-    this.menuElementService.deleteMenuElement(id).subscribe(data => {
-      console.log(data);
-    });
-  }
-
 
 }
