@@ -1,12 +1,15 @@
-<div>
-  <ul class="navbar">
-    <li><a routerLink="profile" [routerLinkActive]="'active'">Profile</a></li>
-    <li><a routerLink="sezione-tavoli" [routerLinkActive]="'active'">Sezione Tavoli</a></li>
-    <li><a routerLink="sezione-cucina" [routerLinkActive]="'active'">Sezione Cucina</a></li>
-    <li><a routerLink="sezione-bar" [routerLinkActive]="'active'">Sezione Bar</a></li>
-    <li><a routerLink="menu" [routerLinkActive]="'active'">Menu</a></li>
-    <li><a (click)="onClickLogout()">Logout</a></li>
-  </ul>
-
-  <router-outlet></router-outlet>
+<div class="wrapper">
+  <nav mat-tab-nav-bar ngClass="tabs" [tabPanel]="tabPanel">
+    <a mat-tab-link routerLink="/profile" [routerLinkActive]="'active-link'">Profilo</a>
+    <a mat-tab-link routerLink="/sezione-tavoli" [routerLinkActive]="'active-link'">Tavoli</a>
+    <a mat-tab-link routerLink="/sezione-cucina" [routerLinkActive]="'active-link'">Cucina</a>
+    <a mat-tab-link routerLink="/sezione-bar" [routerLinkActive]="'active-link'">Bar</a>
+    <a mat-tab-link routerLink="/menu" [routerLinkActive]="'active-link'">Menu</a>
+    <a mat-tab-link (click)="onClickLogout()">Logout</a>
+  </nav>
 </div>
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>
+
+

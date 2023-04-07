@@ -1,17 +1,19 @@
 <div class="wrapper">
-  <h1 class="item">COMANDE DEL TAVOLO {{idTavolo}}</h1>
+  <h1 class="item" *ngIf="tavolo != undefined">COMANDE DEL TAVOLO {{tavolo.numeroTavolo}}</h1>
   <mat-card class="card" *ngFor="let comanda of comande">
     <mat-card-header>
-      <mat-card-title>Comanda: {{comanda.id}}</mat-card-title>
+      <mat-card-title>ID comanda: {{comanda.id}}</mat-card-title>
+      <mat-card-subtitle>Stato: {{comanda.stato}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content *ngFor="let elemento of comanda.menuElements">
-      <mat-checkbox >{{elemento}}</mat-checkbox>
+      <mat-checkbox >{{elemento.nome}}</mat-checkbox>
     </mat-card-content>
     <mat-card-actions>
-      <button class="item" mat-button>COMPLETATO</button>
-      <button class="item" mat-button>ELIMINA</button>
+      <button class="item" mat-button (click)="changeStatoComanda(comanda, 1, true)">COMPLETATO</button>
+      <button class="item" mat-button (click)="eliminaComanda(comanda.id)">ELIMINA</button>
     </mat-card-actions>
   </mat-card>
   <button class="item" mat-flat-button (click)="openComandaDialog(idTavolo)">Aggiungi Comanda</button>
   <button class="item" mat-flat-button routerLink="/sezione-tavoli">Indietro</button>
+  <button class="item" mat-flat-button (click)="calcolaConto()" [disabled]="comande == null">CONTO</button>
 </div>

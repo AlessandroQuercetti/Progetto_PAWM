@@ -19,7 +19,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatTabsModule } from '@angular/material/tabs';
 
 //components
 import { AppComponent } from './app.component';
@@ -73,7 +73,8 @@ import { ComandaDialogComponent } from './componenti/comanda-dialog/comanda-dial
     MatCheckboxModule,
     MatDialogModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { StatoComanda } from 'src/app/interfacce/StatoComanda';
 import { Comanda } from 'src/app/interfacce/comanda';
 import { ComandeService } from 'src/app/services/comande.service';
 import { TavoliService } from 'src/app/services/tavoli.service';
@@ -9,39 +10,46 @@ import { TavoliService } from 'src/app/services/tavoli.service';
   templateUrl: './sezione-cucina.component.html',
   styleUrls: ['./sezione-cucina.component.css']
 })
-export class SezioneCucinaComponent implements OnInit, OnDestroy{
+export class SezioneCucinaComponent implements OnInit{
 
   comande!: Comanda[];
-  //sottoscrizione: any;
 
-  constructor(private tavoliService: TavoliService, private comandeService: ComandeService) {}
+  constructor(private comandeService: ComandeService) {}
 
   ngOnInit(): void {
+    //filtra solo se le comande sono da fare, quelle consegnate e pagate no
     this.comandeService.getAllComande().subscribe((data: any) => {
       this.comande = Object.keys(data).map( (key) => {
         data[key]['id'] = key;
+        data[key]['stato'] = StatoComanda[data[key]['stato']];
         return data[key];
-      });
+      })
+      //poi puoi metterlo direttamente nella query
+      .filter(comanda => {
+        comanda.stato == "ORDINATO" && comanda.tipo == "CUCINA"}
+        );
     })
 
-    //in questo punto le comande devi farle attraverso una sottoscrizione ad un observable
-    //il cambiamento dovrebbe essere lanciato ogni volta che viene aggiunta una comanda
-    //però forse è piu semplice rifare la richiesta delle comande ogni tot tempo, vedere bene
-
-    /*
-    this.sottoscrizione = new Observable((observer) => {
-      let count = 0;
-      setInterval(() => {
-        observer.next(count);
-        count++;
-      }, 1000);
-     }).subscribe((numero) => {
-      console.log(numero);
-     });*/
+     // imposto un refresh di pagina dopo 30 secondi
+    setTimeout(function() {
+      window.location.reload()
+    }, 30000);
   }
 
-  ngOnDestroy(): void {
-    //this.sottoscrizione.unsubscribe()
+  eliminaComanda(idComanda: any){
+    this.comandeService.deleteComanda(idComanda).subscribe(data => {
+      console.log(data)
+      window.location.reload()
+    })
+  }
+
+  changeStatoComanda(comanda: Comanda, stato: any){
+    stato = StatoComanda[stato];
+    this.comandeService.patchComanda(comanda.id!, {stato: stato}).subscribe(
+      data => {
+        console.log(data)
+        window.location.reload()
+      });
   }
 
 }

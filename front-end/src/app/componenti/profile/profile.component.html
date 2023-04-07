@@ -1,6 +1,9 @@
 <div class="wrapper">
   <h2 class="item">INFORMAZIONI PERSONALI</h2>
-  <p>Email: {{currentUser.email}}</p>
-  <p>token: {{currentUser.token}}</p>
-  <button class="item" mat-raised-button routerLink="/registrazione/utente" >Registra Dipendente</button>
+  <div class="item">
+    <p>Ristorante: {{currentUser.ristorante}}</p>
+    <p>Email: {{currentUser.email}}</p>
+    <p>Ruolo: {{currentUser.ruolo}}</p>
+  </div>
+  <button class="item" mat-raised-button routerLink="/registrazione">Registra Dipendente</button>
 </div>

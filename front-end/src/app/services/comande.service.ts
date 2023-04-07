@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Comanda } from '../interfacce/comanda';
 import { MenuElement } from '../interfacce/menuElement';
 import { AuthService } from './auth.service';
+import { StatoComanda } from '../interfacce/StatoComanda';
 
 const API = "https://restaurantdb-812bc-default-rtdb.europe-west1.firebasedatabase.app/"
 
@@ -22,14 +23,30 @@ export class ComandeService {
     return this.http.get<Comanda[]>(API + 'comande.json' + token_part);
   }
 
-  getComandeByTavolo(id: any){
-    return this.http.get<Comanda[]>(API + 'comande.json?tavolo=' + id);
+  getComandeByTavolo(idTavolo: any){
+    let token_part = "?auth=" + this.getToken();
+    return this.http.get<Comanda[]>(API + 'comande.json/?tavolo=' + idTavolo);
   }
 
-  addComanda(idTavolo: any, menuElements: MenuElement[]){
-    console.log("da fare")
+  addComanda(idTavolo: any, menuElements: MenuElement[], tipo: string){
+    let token_part = "?auth=" + this.getToken();
+    let body = {
+      tavolo: idTavolo,
+      stato: StatoComanda.ORDINATO,
+      menuElements: menuElements,
+      tipo: tipo
+    }
+    return this.http.post(API + 'comande.json' + token_part, body);
   }
 
+  patchComanda(id: string, body: {}){
+    let token_part = "?auth=" + this.getToken();
+    return this.http.patch(API + 'comande/' + id + '.json', body);
+  }
 
+  deleteComanda(id: string){
+    let token_part = "?auth=" + this.getToken();
+    return this.http.delete(API + 'comande/' + id + '.json' + token_part);
+  }
 
 }

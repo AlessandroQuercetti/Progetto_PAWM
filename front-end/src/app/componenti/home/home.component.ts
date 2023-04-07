@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent {
 
-  constructor(private authService: AuthService, private router: Router) {} //private readonly router: Router
+  constructor(private authService: AuthService, private router: Router) {}
 
   onClickLogout() {
     this.authService.doLogOut();

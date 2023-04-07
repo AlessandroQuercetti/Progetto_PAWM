@@ -31,4 +31,9 @@ export class TavoliService {
     return this.http.delete(API + 'tavoli/' + idTavolo + '.json' + token_part);
   }
 
+  getTavolo(idTavolo: string){
+    let token_part = "?auth=" + this.getToken();
+    return this.http.get<Tavolo[]>(API + 'tavoli/' + idTavolo + '.json' + token_part);
+  }
+
 }

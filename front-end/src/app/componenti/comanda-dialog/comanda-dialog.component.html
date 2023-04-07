@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <h2 mat-dialog-title>Aggiungi Comanda al tavolo {{idTavolo}}</h2>
+  <h2 mat-dialog-title>Aggiungi Comanda al tavolo {{tavolo.numeroTavolo}}</h2>
 
   <mat-list role="list">
     <mat-list-item *ngFor="let element of menuElements" role="listitem">
@@ -7,12 +7,11 @@
     </mat-list-item>
   </mat-list>
 
-
-  <p *ngFor="let e of elementiDaAggiungere">
-    {{e.nome}}
+  <p *ngFor="let e of elementiDaAggiungere; index as i">
+    <a (click)="rimuoviElemento(i)">{{e.nome}}</a>
   </p>
 
   <button mat-raised-button mat-dialog-close>Annulla</button>
-  <button mat-raised-button mat-dialog-close color="primary" type="submit" [disabled]="elementiDaAggiungere.length == 0">Conferma</button>
+  <button mat-raised-button mat-dialog-close color="primary" (click)="creaComanda()" [disabled]="elementiDaAggiungere.length == 0">Conferma</button>
 
 </div>

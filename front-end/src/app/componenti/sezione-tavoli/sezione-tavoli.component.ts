@@ -26,17 +26,19 @@ export class SezioneTavoliComponent implements OnInit {
 
   openDialogAddTavolo(): void {
     const dialogRef = this.dialog.open(AddTableDialogComponent, {})
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("result dopo chiusura dialog ", result)
-    });
+    dialogRef.afterClosed().subscribe( data => window.location.reload() );
   }
 
   eliminaTavolo(idTavolo: any){
     this.tavoliService.deleteTavolo(idTavolo).subscribe(
-      data => console.log(data),
+      data => {
+        console.log(data)
+        window.location.reload();
+      },
       err => alert(err.error.error.message)
     );
+
+    //this.comandeService.deleteComande elimina comande del tavolo
   }
 
 }

@@ -1,38 +1,19 @@
-
-.navbar{
-  list-style-type: none;
+.wrapper {
   text-align: center;
+}
+
+.tabs {
+  display: inline-block;
+  background-color: #eee;
+  border-radius: 4px;
+  margin: 1em;
+}
+
+a :last-child{
+  color: red;
+}
+
+.active-link {
   background-color: #4388d1;
-  padding: 1vw;
-  font-size: 0;
-
-  /* questi 3 per bloccare la navbar di sopra */
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 
-.navbar li{
-  display: inline;
-  margin-right: 7vw;
-}
-
-.navbar li:last-child{
-  margin-right: 0;
-}
-
-.navbar a{
-  text-decoration: none;
-  color: black;
-  font-size: 1.5rem;
-}
-
-.navbar a:hover{
-  color:white;
-  transition-duration: 0.5s;
-  cursor: pointer;
-}
-
-.active{
-  font-weight: bold;
-}

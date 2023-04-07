@@ -1,3 +1,3 @@
 export enum StatoComanda{
-  ORDINATO, CONSEGNATO, PAGATO
+  ORDINATO, SERVITO, PAGATO
 }

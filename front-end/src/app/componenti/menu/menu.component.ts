@@ -30,13 +30,14 @@ export class MenuComponent {
       data: { tipoOperazione: tipoOperazione, idElement: idElement }
     })
 
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe(data => window.location.reload());
   }
 
   //elimina elemento del menu
   deleteMenuElement(id: any){
     this.menuElementsService.deleteMenuElement(id).subscribe(data => {
       console.log(data);
+      window.location.reload();
     });
   }
 

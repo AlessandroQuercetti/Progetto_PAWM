@@ -2,15 +2,16 @@
   <h1 class="item">COMANDE PER LA CUCINA</h1>
   <mat-card class="card" *ngFor="let comanda of comande">
     <mat-card-header>
-      <mat-card-title>id comanda: {{comanda.id}}</mat-card-title>
-      <mat-card-subtitle>tavolo: {{comanda.tavolo}}</mat-card-subtitle>
+      <mat-card-title>ID comanda: {{comanda.id}}</mat-card-title>
+      <mat-card-subtitle *ngIf="comanda.tavolo != undefined">Tavolo: {{comanda.tavolo.numeroTavolo}}</mat-card-subtitle>
+      <mat-card-subtitle>Stato: {{comanda.stato}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content *ngFor="let elemento of comanda.menuElements">
-      <mat-checkbox >{{elemento}}</mat-checkbox>
+      <mat-checkbox >{{elemento.nome}}</mat-checkbox>
     </mat-card-content>
     <mat-card-actions>
-      <button class="item" mat-button>COMPLETATO</button>
-      <button class="item" mat-button>ELIMINA</button>
+      <button class="item" mat-button (click)="changeStatoComanda(comanda, 1)">COMPLETATO</button>
+      <button class="item" mat-button (click)="eliminaComanda(comanda.id)">ELIMINA</button>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -21,15 +21,11 @@ const routes: Routes = [
     { path: 'sezione-cucina', component: SezioneCucinaComponent},
     { path: 'sezione-bar', component: SezioneBarComponent},
     { path: 'menu', component: MenuComponent},
-    //{ path: 'registrazione/utente', component: RegistrazioneComponent},
     { path: 'registrazione', component: RegistrazioneComponent},
     { path: 'tavolo/:id', component: TavoloComponent}
   ]},
 
   { path: 'login', component: LoginComponent},
-  //{ path: 'registrazione/ristorante', component: RegistrazioneComponent},
-
-  //altri
   { path: '404', component: NotfoundComponent},
   { path: '**', redirectTo: "/404"}
 ];

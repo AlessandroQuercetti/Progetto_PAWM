@@ -6,8 +6,7 @@
 
   <mat-form-field class="login-full-width">
     <mat-label>Email</mat-label>
-    <input matInput type="email" name="email" ngModel required email> <!--[formControl]="email"-->
-    <!--<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>-->
+    <input matInput type="email" name="email" ngModel required email>
   </mat-form-field>
 
   <mat-form-field class="login-full-width">
@@ -20,8 +19,7 @@
   </mat-form-field>
 
   <mat-action-list>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">LOGIN</button><br><br>
-      <a routerLink="/registrazione/ristorante">Sei un nuovo ristorante? Registrati</a>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">LOGIN</button>
   </mat-action-list>
 
 </form>
