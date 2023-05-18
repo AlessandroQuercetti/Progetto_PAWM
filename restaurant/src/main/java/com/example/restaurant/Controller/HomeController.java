@@ -1,0 +1,26 @@
+package com.example.restaurant.Controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+
+@Controller
+public class HomeController {
+
+    @RequestMapping("/")
+    @ResponseBody
+    public String index()
+    {
+        return "Hello world";
+    }
+
+    @RequestMapping("/demo")
+    @ResponseBody
+    public String demo()
+    {
+        return "demo";
+    }
+
+
+}
