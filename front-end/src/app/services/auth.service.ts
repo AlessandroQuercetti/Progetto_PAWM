@@ -26,6 +26,7 @@ export class AuthService {
   }
 
   doLogOut(){
+    //TODO fai query logout al bd che deve cancellare il token!
     this.isLoggedIn = false;
     localStorage.removeItem('utente');
   }

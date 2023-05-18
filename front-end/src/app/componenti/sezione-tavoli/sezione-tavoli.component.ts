@@ -38,6 +38,7 @@ export class SezioneTavoliComponent implements OnInit {
       err => alert(err.error.error.message)
     );
 
+    alert("devi fare elimina comande del tavolo");
     //this.comandeService.deleteComande elimina comande del tavolo
   }
 

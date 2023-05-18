@@ -14,7 +14,7 @@ import { MenuElementsService } from 'src/app/services/menu-elements.service';
 })
 export class ComandaDialogComponent {
 
-  //tipoOperazione!: number;
+  categorie: any[] = Object.values(Categoria).filter(value => isNaN(Number(value)))
   elementiDaAggiungere: MenuElement[] = [];
   menuElements!: MenuElement[];
 
@@ -26,7 +26,6 @@ export class ComandaDialogComponent {
     private menuElementService: MenuElementsService) {}
 
   ngOnInit(): void{
-    //this.tipoOperazione = this.data.tipoOperazione;
     this.idTavolo = this.data.idTavolo;
     this.tavolo = this.data.tavolo;
 
@@ -34,29 +33,42 @@ export class ComandaDialogComponent {
       this.menuElements = Object.keys(data).map( (key) => {
         data[key]['id'] = key;
         return data[key]
-      })
+      }).sort(this.sortfunct)
     });
+  }
+
+  sortfunct(item1:any, item2:any){
+    if(item1.categoria > item2.categoria){
+      return 1
+    }
+    if(item1.categoria < item2.categoria){
+      return -1
+    }
+    return 0
   }
 
   addElement(menuElement: MenuElement){
     this.elementiDaAggiungere.push(menuElement);
+    this.elementiDaAggiungere = this.elementiDaAggiungere.sort()
   }
 
   rimuoviElemento(indice: number){
-    alert("rimuovi elemento alla pos "+ indice + " da fare");
-    //this.elementiDaAggiungere.
+    delete this.elementiDaAggiungere[indice];
+    this.elementiDaAggiungere = this.elementiDaAggiungere.filter(item => item != undefined);
   }
 
   creaComanda(){
     let perCucina = this.elementiDaAggiungere.filter(elemento => elemento.categoria != Categoria.BEVANDE)
     let perBar = this.elementiDaAggiungere.filter(elemento => elemento.categoria == Categoria.BEVANDE)
+    let ok = 0;
 
-    this.comandeService.addComanda(this.tavolo, perCucina, "CUCINA").subscribe( data => {
-    });
+    if(perCucina.length != 0)
+      this.comandeService.addComanda(this.tavolo, perCucina, "CUCINA").subscribe( data => ok++);
 
-    this.comandeService.addComanda(this.tavolo, perBar, "BAR").subscribe( data => {
-      alert("comanda aggiunta");
-    });
+    if(perCucina.length != 0)
+      this.comandeService.addComanda(this.tavolo, perBar, "BAR").subscribe( data => ok++);
+
+    if(ok>0) alert("comanda aggiunta!")
   }
 
 }

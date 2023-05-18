@@ -35,12 +35,12 @@ export class TavoloComponent implements OnInit {
       (data: any) =>{
         if(data != undefined && data != null){
           this.comande = Object.keys(data)
-          .map((key) => {
-            data[key]['id'] = key;
-            data[key]['stato'] = StatoComanda[data[key]['stato']]
-            return data[key];
-          })
-          .filter((item) => item.tavolo.numeroTavolo == this.tavolo.numeroTavolo);
+            .map((key) => {
+              data[key]['id'] = key;
+              data[key]['stato'] = StatoComanda[data[key]['stato']]
+              return data[key];
+            })
+            .filter((item) => item.tavolo.numeroTavolo == this.tavolo.numeroTavolo);
         }
       }
     );
@@ -64,6 +64,10 @@ export class TavoloComponent implements OnInit {
       data => {
         if(reload) window.location.reload()
       });
+  }
+
+  cliccato(){
+    alert("cliccato")
   }
 
   calcolaConto(){

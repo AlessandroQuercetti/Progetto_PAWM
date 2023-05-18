@@ -1,15 +1,30 @@
 <div class="wrapper">
   <h2 mat-dialog-title>Aggiungi Comanda al tavolo {{tavolo.numeroTavolo}}</h2>
 
+  <!--
   <mat-list role="list">
     <mat-list-item *ngFor="let element of menuElements" role="listitem">
       <button mat-stroked-button (click)="addElement(element)">{{element.nome}} - {{element.categoria}}</button>
     </mat-list-item>
-  </mat-list>
+  </mat-list>-->
 
-  <p *ngFor="let e of elementiDaAggiungere; index as i">
-    <a (click)="rimuoviElemento(i)">{{e.nome}}</a>
-  </p>
+  <div *ngFor="let categoria of categorie">
+    <mat-list role="list">
+      <h4 class="aggiunti">{{categoria}}:</h4>
+    <mat-list-item *ngFor="let element of menuElements" role="listitem">
+      <button mat-stroked-button *ngIf="element.categoria == categoria" (click)="addElement(element)">{{element.nome}} - {{element.categoria}}</button>
+    </mat-list-item>
+    </mat-list>
+
+  </div>
+
+
+  <div class="aggiunti">
+    <h3>Aggiunti:</h3>
+    <p *ngFor="let e of elementiDaAggiungere; index as i">
+      <a (click)="rimuoviElemento(i)">{{e.nome}}</a>
+    </p>
+  </div>
 
   <button mat-raised-button mat-dialog-close>Annulla</button>
   <button mat-raised-button mat-dialog-close color="primary" (click)="creaComanda()" [disabled]="elementiDaAggiungere.length == 0">Conferma</button>

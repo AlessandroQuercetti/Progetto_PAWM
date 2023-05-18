@@ -3,14 +3,17 @@
   <mat-card class="card" *ngFor="let comanda of comande">
     <mat-card-header>
       <mat-card-title>ID comanda: {{comanda.id}}</mat-card-title>
-      <mat-card-subtitle>Stato: {{comanda.stato}}</mat-card-subtitle>
+      <!--<mat-card-subtitle>Stato: {{comanda.stato}}</mat-card-subtitle>-->
     </mat-card-header>
+
     <mat-card-content *ngFor="let elemento of comanda.menuElements">
-      <mat-checkbox >{{elemento.nome}}</mat-checkbox>
+      <mat-checkbox (click)="cliccato()">{{elemento.nome}} </mat-checkbox>
+      <p>stato elememto</p>
     </mat-card-content>
+
     <mat-card-actions>
       <button class="item" mat-button (click)="changeStatoComanda(comanda, 1, true)">COMPLETATO</button>
-      <button class="item" mat-button (click)="eliminaComanda(comanda.id)">ELIMINA</button>
+      <button class="item" mat-button (click)="eliminaComanda(comanda.id)">ELIMINA COMANDA</button>
     </mat-card-actions>
   </mat-card>
   <button class="item" mat-flat-button (click)="openComandaDialog(idTavolo)">Aggiungi Comanda</button>

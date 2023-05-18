@@ -1,3 +1,11 @@
 button {
   margin: 5px;
 }
+
+.aggiunti {
+  margin-left: 20px;
+}
+
+a :hover{
+  cursor: hand;
+}

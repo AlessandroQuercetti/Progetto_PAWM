@@ -14,4 +14,8 @@ export class TokenService {
   getToken(){
     console.log("get token da fare");
   }
+
+  deleteToken(){
+    console.log("delete token da fare");
+  }
 }
