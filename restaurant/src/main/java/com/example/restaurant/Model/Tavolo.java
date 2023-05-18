@@ -23,7 +23,7 @@ public class Tavolo {
     public Tavolo(UUID id, int numeroTavolo, int numeroPersone)
     {
         this.numeroPersone=numeroPersone;
-        this.id=id;
+        this.id=UUID.randomUUID();
         this.numeroTavolo=numeroTavolo;
     }
 

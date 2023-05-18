@@ -30,6 +30,11 @@ public class ComandaService {
         return comandaRepository.findById(id);
     }
 
+    public int getNumComande()
+    {
+        return comandaRepository.findAll().size();
+    }
+
 
 
 

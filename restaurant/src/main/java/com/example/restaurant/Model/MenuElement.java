@@ -4,11 +4,13 @@ package com.example.restaurant.Model;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
 @Getter
 @Setter
+@Document(collection = "menuElement")
 public class MenuElement {
 
     @Id
@@ -25,7 +27,7 @@ public class MenuElement {
 
     public MenuElement(UUID id, String nome, Categoria categoria, String descrizione, float prezzo)
     {
-        this.id=id;
+        this.id=UUID.randomUUID();
         this.nome=nome;
         this.categoria=categoria;
         this.descrizione=descrizione;
