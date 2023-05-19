@@ -14,8 +14,14 @@ public class TavoloService {
     private TavoloRepository tavoloRepository;
 
 
-    public UUID salvaTavolo(Tavolo tavolo)
+    public UUID AggiungiTavolo(Tavolo tavolo)
     {
         return tavoloRepository.save(tavolo).getId();
+    }
+
+    public void removeAllComande(Tavolo tavolo)
+    {
+        tavoloRepository.findAll().remove(tavolo.getComande());
+
     }
 }
