@@ -1,11 +1,15 @@
 package com.example.restaurant.Model;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.annotation.Id;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.security.SecureRandom;
 import java.util.UUID;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Getter
 @Setter
@@ -38,4 +42,7 @@ public class Utente {
         this.ristorante=ristorante;
         this.ruolo=ruolo;
     }
+
+
+
 }

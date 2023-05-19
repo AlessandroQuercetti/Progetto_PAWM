@@ -18,9 +18,12 @@ public class Token {
 
     private Utente utente;
 
-    public Token(Utente utente, UUID id)
-    {
-        this.id=id;
-        this.utente=utente;
+    protected Token() {
+        id = UUID.randomUUID();
+    }
+
+    public Token(Utente utente) {
+        this();
+        this.utente = utente;
     }
 }
