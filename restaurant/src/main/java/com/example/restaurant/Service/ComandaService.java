@@ -35,6 +35,11 @@ public class ComandaService {
         return comandaRepository.findAll().size();
     }
 
+    public void removeComanda(Comanda comanda)
+    {
+        comandaRepository.delete(comanda);
+    }
+
 
 
 

@@ -23,4 +23,9 @@ public class MenuElementService {
     {
         return menuElementRepository.findAll();
     }
+
+    public void removeMenuElement(MenuElement menuElement)
+    {
+        menuElementRepository.delete(menuElement);
+    }
 }
