@@ -1,5 +1,4 @@
 import { Categoria } from "./Categoria";
-import { Ristornate } from "./ristorante";
 
 export interface MenuElement{
 

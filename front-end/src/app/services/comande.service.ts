@@ -29,12 +29,17 @@ export class ComandeService {
   }
 
   addComanda(idTavolo: any, menuElements: MenuElement[], tipo: string){
+
     let token_part = "?auth=" + this.getToken();
+
+    let statoElements: StatoComanda[] = [];
+    for(let i=0; i<menuElements.length; i++ ) statoElements[i] = StatoComanda.ORDINATO;
+
     let body = {
       tavolo: idTavolo,
-      stato: StatoComanda.ORDINATO,
       menuElements: menuElements,
-      tipo: tipo
+      tipo: tipo,
+      statoElements: statoElements
     }
     return this.http.post(API + 'comande.json' + token_part, body);
   }
@@ -44,9 +49,30 @@ export class ComandeService {
     return this.http.patch(API + 'comande/' + id + '.json', body);
   }
 
+  patchStatoElemento(comanda: Comanda, index: number){
+    let appoggio: StatoComanda[] = comanda.statoElements;
+    appoggio[index] = appoggio[index]+1;
+    return this.patchComanda(comanda.id!, { statoElements: appoggio });
+  }
+
+  //prende lo stato da cambiare, ci fa +1
+  patchStatoComanda(comanda: Comanda, stato: StatoComanda){
+    let appoggio: StatoComanda[] = [];
+    for(let i=0; i<comanda.statoElements.length; i++){
+      appoggio[i] = (comanda.statoElements[i] == stato) ? stato+1 : comanda.statoElements[i];
+    }
+    return this.patchComanda(comanda.id!, { statoElements: appoggio });
+  }
+
   deleteComanda(id: string){
     let token_part = "?auth=" + this.getToken();
     return this.http.delete(API + 'comande/' + id + '.json' + token_part);
+  }
+
+  deleteComandeByTavolo(idTavolo: String){
+    let token_part = "?auth=" + this.getToken();
+    alert("delete comande by tavolo da fare")
+    return this.http.delete(API + 'comande/' +  + '.json' + token_part);
   }
 
 }

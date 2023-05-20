@@ -21,10 +21,28 @@ export class SezioneBarComponent implements OnInit{
         data[key]['stato'] = StatoComanda[data[key]['stato']];
         return data[key];
       })
-      .filter(
-        comanda => {comanda.stato == "ORDINATO" && comanda.tipo == "BAR"
-      });
+      .filter(comanda => (comanda.tipo == "BAR" && this.checkStatoElements(comanda)));
     })
+  }
+
+  checkStatoElements(comanda: Comanda){
+    for(let s of comanda.statoElements)
+      if(s == 0) return true;
+
+    return false;
+  }
+
+  changeStatoComanda(comanda: Comanda){
+    this.comandeService.patchStatoComanda(comanda, StatoComanda.ORDINATO).subscribe(data => window.location.reload());
+  }
+
+  changeStatoElemento(comanda: Comanda, index: number){
+    this.comandeService.patchStatoElemento(comanda, index).subscribe(data => window.location.reload());
+
+  }
+
+  eliminaComanda(idComanda: string){
+    this.comandeService.deleteComanda(idComanda).subscribe(data => window.location.reload())
   }
 
 }

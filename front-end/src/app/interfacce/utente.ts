@@ -1,4 +1,3 @@
-import { Ristornate } from "./ristorante";
 import { Ruolo } from "./Ruolo";
 
 export interface Utente{

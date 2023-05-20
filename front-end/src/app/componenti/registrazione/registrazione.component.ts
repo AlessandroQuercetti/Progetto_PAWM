@@ -17,6 +17,10 @@ export class RegistrazioneComponent{
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
 
+  OnInit(){
+
+  }
+
 
   onSubmit(form: NgForm){
 

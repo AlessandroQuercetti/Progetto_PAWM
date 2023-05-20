@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddTableDialogComponent } from '../add-table-dialog/add-table-dialog.component';
 import { TavoliService } from 'src/app/services/tavoli.service';
 import { Tavolo } from 'src/app/interfacce/tavolo';
+import { ComandeService } from 'src/app/services/comande.service';
 
 @Component({
   selector: 'app-sezione-tavoli',
@@ -12,8 +13,9 @@ import { Tavolo } from 'src/app/interfacce/tavolo';
 export class SezioneTavoliComponent implements OnInit {
 
   tavoli!: Tavolo[];
+  modifica: boolean = false;
 
-  constructor(private tavoliService: TavoliService, public dialog: MatDialog) {}
+  constructor(private tavoliService: TavoliService, private comandeService: ComandeService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.tavoliService.getTavoli().subscribe((data: any) => {
@@ -31,15 +33,11 @@ export class SezioneTavoliComponent implements OnInit {
 
   eliminaTavolo(idTavolo: any){
     this.tavoliService.deleteTavolo(idTavolo).subscribe(
-      data => {
-        console.log(data)
-        window.location.reload();
-      },
+      data => window.location.reload(),
       err => alert(err.error.error.message)
     );
 
-    alert("devi fare elimina comande del tavolo");
-    //this.comandeService.deleteComande elimina comande del tavolo
+    this.comandeService.deleteComandeByTavolo(idTavolo) //.subscribe();
   }
 
 }

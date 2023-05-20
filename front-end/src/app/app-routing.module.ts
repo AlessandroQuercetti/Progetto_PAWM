@@ -11,6 +11,7 @@ import { SezioneCucinaComponent } from './componenti/sezione-cucina/sezione-cuci
 import { SezioneTavoliComponent } from './componenti/sezione-tavoli/sezione-tavoli.component';
 import { MenuComponent } from './componenti/menu/menu.component';
 import { TavoloComponent } from './componenti/tavolo/tavolo.component';
+import { MenuElementDialogComponent } from './componenti/menu-element-dialog/menu-element-dialog.component';
 
 const routes: Routes = [
 
@@ -22,7 +23,9 @@ const routes: Routes = [
     { path: 'sezione-bar', component: SezioneBarComponent},
     { path: 'menu', component: MenuComponent},
     { path: 'registrazione', component: RegistrazioneComponent},
-    { path: 'tavolo/:id', component: TavoloComponent}
+    { path: 'tavolo/:id', component: TavoloComponent},
+    { path: 'element', component: MenuElementDialogComponent},
+    { path: 'element/:id', component: MenuElementDialogComponent}
   ]},
 
   { path: 'login', component: LoginComponent},

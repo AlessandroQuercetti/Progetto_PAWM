@@ -36,4 +36,8 @@ export class TavoliService {
     return this.http.get<Tavolo[]>(API + 'tavoli/' + idTavolo + '.json' + token_part);
   }
 
+  patchTavolo(id: string, body: {}){
+    return this.http.patch(API + 'tavoli/' + id + '.json', body);
+  }
+
 }

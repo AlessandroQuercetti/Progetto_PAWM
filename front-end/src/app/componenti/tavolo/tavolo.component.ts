@@ -6,7 +6,6 @@ import { ComandeService } from 'src/app/services/comande.service';
 import { ComandaDialogComponent } from '../comanda-dialog/comanda-dialog.component';
 import { Tavolo } from 'src/app/interfacce/tavolo';
 import { TavoliService } from 'src/app/services/tavoli.service';
-import { MenuElement } from 'src/app/interfacce/menuElement';
 import { StatoComanda } from 'src/app/interfacce/StatoComanda';
 
 @Component({
@@ -31,11 +30,15 @@ export class TavoloComponent implements OnInit {
       this.tavolo = data;
     })
 
+    //questo poi sarà più corto ovviamente
     this.comandeService.getComandeByTavolo(this.idTavolo).subscribe(
       (data: any) =>{
+
+        console.log("da fix") //TODO da fixare mettendo la query giusta
+
         if(data != undefined && data != null){
           this.comande = Object.keys(data)
-            .map((key) => {
+            .map( (key) => {
               data[key]['id'] = key;
               data[key]['stato'] = StatoComanda[data[key]['stato']]
               return data[key];
@@ -44,30 +47,34 @@ export class TavoloComponent implements OnInit {
         }
       }
     );
+
   }
 
-  openComandaDialog(idTavolo: any){
+  openComandaDialog(idTavolo: string){
     const dialogRef = this.dialog.open( ComandaDialogComponent, {
       data: {idTavolo: idTavolo, tavolo: this.tavolo}
     })
+
     dialogRef.afterClosed().subscribe(
       data => window.location.reload()
     );
   }
 
-  eliminaComanda(idComanda: any){
+  eliminaComanda(idComanda: string){
     this.comandeService.deleteComanda(idComanda).subscribe(data => window.location.reload())
   }
 
-  changeStatoComanda(comanda: Comanda, stato: any, reload: boolean){
-    this.comandeService.patchComanda(comanda.id!, {stato: stato}).subscribe(
-      data => {
-        if(reload) window.location.reload()
-      });
+  changeStatoComanda(comanda: Comanda, stato: StatoComanda){
+    this.comandeService.patchStatoComanda(comanda, stato).subscribe(data => window.location.reload());
   }
 
-  cliccato(){
-    alert("cliccato")
+  changeStatoElemento(comanda:Comanda, index: number){
+    this.comandeService.patchStatoElemento(comanda, index).subscribe(
+    );
+  }
+
+  convertStato(s: number){
+    return StatoComanda[s];
   }
 
   calcolaConto(){
@@ -76,8 +83,9 @@ export class TavoloComponent implements OnInit {
       for(let elemento of comanda.menuElements!){
         conto = conto + Number(elemento.prezzo);
       }
-      this.changeStatoComanda(comanda, 2, false);
+      this.changeStatoComanda(comanda, 1);
     }
+
     alert("il conto è " + conto + " euro");
   }
 

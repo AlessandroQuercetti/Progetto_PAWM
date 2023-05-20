@@ -6,6 +6,7 @@ import { MenuElement } from 'src/app/interfacce/menuElement';
 import { Tavolo } from 'src/app/interfacce/tavolo';
 import { ComandeService } from 'src/app/services/comande.service';
 import { MenuElementsService } from 'src/app/services/menu-elements.service';
+import { MenuElementDialogComponent } from '../menu-element-dialog/menu-element-dialog.component';
 
 @Component({
   selector: 'app-comanda-dialog',
@@ -22,6 +23,7 @@ export class ComandaDialogComponent {
   tavolo!: Tavolo;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+    private ref: MatDialogRef<MenuElementDialogComponent>,
     private comandeService: ComandeService,
     private menuElementService: MenuElementsService) {}
 
@@ -63,12 +65,10 @@ export class ComandaDialogComponent {
     let ok = 0;
 
     if(perCucina.length != 0)
-      this.comandeService.addComanda(this.tavolo, perCucina, "CUCINA").subscribe( data => ok++);
+      this.comandeService.addComanda(this.tavolo, perCucina, "CUCINA").subscribe();
 
-    if(perCucina.length != 0)
-      this.comandeService.addComanda(this.tavolo, perBar, "BAR").subscribe( data => ok++);
-
-    if(ok>0) alert("comanda aggiunta!")
+    if(perBar.length != 0)
+      this.comandeService.addComanda(this.tavolo, perBar, "BAR").subscribe();
   }
 
 }

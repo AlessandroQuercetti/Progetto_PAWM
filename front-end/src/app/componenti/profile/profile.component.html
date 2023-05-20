@@ -1,9 +1,32 @@
 <div class="wrapper">
   <h2 class="item">INFORMAZIONI PERSONALI</h2>
   <div class="item">
+    <p>{{currentUser.nome}} {{currentUser.cognome}}</p>
     <p>Ristorante: {{currentUser.ristorante}}</p>
     <p>Email: {{currentUser.email}}</p>
+    <p>Password: {{currentUser.password}}</p>
     <p>Ruolo: {{currentUser.ruolo}}</p>
   </div>
-  <button class="item" mat-raised-button routerLink="/registrazione">Registra Dipendente</button>
+
+  <div class="item" *ngIf ="isProprietario">
+    <h1 class="item">UTENTI</h1>
+
+    <mat-card class="card" *ngFor="let utente of utenti">
+      <mat-card-header>
+        <mat-card-title>{{utente.nome}} {{utente.cognome}}</mat-card-title>
+        <mat-card-subtitle>ID: {{utente.id}}</mat-card-subtitle>
+        <mat-card-subtitle>Ruolo: {{utente.ruolo}}</mat-card-subtitle>
+        <mat-card-subtitle>Email: {{utente.email}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-flat-button (click)="eliminaUtente(utente.id!)"><mat-icon>delete</mat-icon></button>
+        <button mat-flat-button routerLink="/registrazione">Modifica</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <button class="item" mat-raised-button routerLink="/registrazione">Registra Dipendente</button>
+  </div>
+
 </div>
+
+

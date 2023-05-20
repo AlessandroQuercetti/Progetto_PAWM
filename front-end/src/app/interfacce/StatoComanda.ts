@@ -1,3 +1,5 @@
 export enum StatoComanda{
-  ORDINATO, SERVITO, PAGATO
+  ORDINATO = 0,
+  SERVITO = 1,
+  PAGATO = 2
 }

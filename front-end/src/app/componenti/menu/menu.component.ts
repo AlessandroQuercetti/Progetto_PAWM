@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MenuElement } from 'src/app/interfacce/menuElement';
 import { MenuElementsService } from 'src/app/services/menu-elements.service';
-import { MenuElementDialogComponent } from '../menu-element-dialog/menu-element-dialog.component';
+import { Categoria } from 'src/app/interfacce/Categoria';
 
 @Component({
   selector: 'app-menu',
@@ -12,8 +11,9 @@ import { MenuElementDialogComponent } from '../menu-element-dialog/menu-element-
 export class MenuComponent {
 
   menuElements!: MenuElement[];
+  categorie: any[] = Object.values(Categoria).filter(value => isNaN(Number(value)))
 
-  constructor(private menuElementsService: MenuElementsService, public dialog: MatDialog) {}
+  constructor(private menuElementsService: MenuElementsService) {}
 
   ngOnInit(): any{
     this.menuElementsService.getMenuElements().subscribe( (data: any) => {
@@ -24,16 +24,6 @@ export class MenuComponent {
     });
   }
 
-  openDialogMenuElement(tipoOperazione: number, idElement: string|void ){
-
-    const dialogRef = this.dialog.open( MenuElementDialogComponent, {
-      data: { tipoOperazione: tipoOperazione, idElement: idElement }
-    })
-
-    dialogRef.afterClosed().subscribe(data => window.location.reload());
-  }
-
-  //elimina elemento del menu
   deleteMenuElement(id: any){
     this.menuElementsService.deleteMenuElement(id).subscribe(data => {
       console.log(data);

@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { StatoComanda } from 'src/app/interfacce/StatoComanda';
 import { Comanda } from 'src/app/interfacce/comanda';
 import { ComandeService } from 'src/app/services/comande.service';
-import { TavoliService } from 'src/app/services/tavoli.service';
 
 @Component({
   selector: 'app-sezione-cucina',
@@ -17,6 +16,7 @@ export class SezioneCucinaComponent implements OnInit{
   constructor(private comandeService: ComandeService) {}
 
   ngOnInit(): void {
+
     //filtra solo se le comande sono da fare, quelle consegnate e pagate no
     this.comandeService.getAllComande().subscribe((data: any) => {
       this.comande = Object.keys(data).map( (key) => {
@@ -25,9 +25,7 @@ export class SezioneCucinaComponent implements OnInit{
         return data[key];
       })
       //poi puoi metterlo direttamente nella query
-      .filter(comanda => {
-        comanda.stato == "ORDINATO" && comanda.tipo == "CUCINA"}
-        );
+      .filter( (comanda) => (comanda.tipo == "CUCINA" && this.checkStatoElements(comanda)) )
     })
 
      // imposto un refresh di pagina dopo 30 secondi
@@ -36,20 +34,23 @@ export class SezioneCucinaComponent implements OnInit{
     }, 30000);
   }
 
-  eliminaComanda(idComanda: any){
-    this.comandeService.deleteComanda(idComanda).subscribe(data => {
-      console.log(data)
-      window.location.reload()
-    })
+  checkStatoElements(comanda: Comanda){
+    for(let s of comanda.statoElements)
+      if(s == 0) return true;
+
+    return false;
   }
 
-  changeStatoComanda(comanda: Comanda, stato: any){
-    stato = StatoComanda[stato];
-    this.comandeService.patchComanda(comanda.id!, {stato: stato}).subscribe(
-      data => {
-        console.log(data)
-        window.location.reload()
-      });
+  changeStatoElemento(comanda: Comanda, index: number){
+    this.comandeService.patchStatoElemento(comanda, index).subscribe(data => window.location.reload());
+  }
+
+  eliminaComanda(idComanda: any){
+    this.comandeService.deleteComanda(idComanda).subscribe(data => window.location.reload());
+  }
+
+  changeStatoComanda(comanda: Comanda){
+    this.comandeService.patchStatoComanda(comanda, StatoComanda.ORDINATO).subscribe(data => window.location.reload());
   }
 
 }

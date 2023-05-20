@@ -1,4 +1,3 @@
-import { Ristornate } from "./ristorante";
 
 export interface Tavolo{
 

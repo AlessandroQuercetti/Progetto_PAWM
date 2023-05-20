@@ -1,22 +1,29 @@
-<div class="wrapper">
-  <h1 class="item" *ngIf="tavolo != undefined">COMANDE DEL TAVOLO {{tavolo.numeroTavolo}}</h1>
-  <mat-card class="card" *ngFor="let comanda of comande">
+<div class="wrapper" *ngIf="tavolo != undefined">
+
+  <h1 class="item" >COMANDE DEL TAVOLO {{tavolo.numeroTavolo}}</h1>
+  <h3 class="item" *ngIf="comande == undefined">Nessuna comanda per il tavolo</h3>
+
+  <mat-card class="card" *ngFor="let comanda of comande; index as numero">
     <mat-card-header>
-      <mat-card-title>ID comanda: {{comanda.id}}</mat-card-title>
-      <!--<mat-card-subtitle>Stato: {{comanda.stato}}</mat-card-subtitle>-->
+      <mat-card-subtitle>{{numero+1}}, ID comanda: {{comanda.id}}</mat-card-subtitle>
+      <mat-card-subtitle>Tipo: {{comanda.tipo}}</mat-card-subtitle>
     </mat-card-header>
 
-    <mat-card-content *ngFor="let elemento of comanda.menuElements">
-      <mat-checkbox (click)="cliccato()">{{elemento.nome}} </mat-checkbox>
-      <p>stato elememto</p>
+    <mat-card-content  *ngFor="let elemento of comanda.menuElements; index as i" >
+      <button [disabled]="comanda.statoElements[i] == 2" class="item" mat-button (click)="changeStatoElemento(comanda, i)">
+        {{elemento.nome}} <mat-icon>done</mat-icon>
+      </button>
+      <p class="elemento">stato: {{convertStato(comanda.statoElements[i])}}</p>
     </mat-card-content>
 
     <mat-card-actions>
-      <button class="item" mat-button (click)="changeStatoComanda(comanda, 1, true)">COMPLETATO</button>
-      <button class="item" mat-button (click)="eliminaComanda(comanda.id)">ELIMINA COMANDA</button>
+      <button class="item" mat-button (click)="changeStatoComanda(comanda, 0)">COMPLETATO</button>
+      <button class="item" mat-button (click)="eliminaComanda(comanda.id!)"><mat-icon>delete</mat-icon></button>
     </mat-card-actions>
   </mat-card>
-  <button class="item" mat-flat-button (click)="openComandaDialog(idTavolo)">Aggiungi Comanda</button>
+
   <button class="item" mat-flat-button routerLink="/sezione-tavoli">Indietro</button>
-  <button class="item" mat-flat-button (click)="calcolaConto()" [disabled]="comande == null">CONTO</button>
+  <button class="item" mat-flat-button (click)="openComandaDialog(idTavolo)">Aggiungi Comanda</button>
+  <button class="item" mat-flat-button (click)="calcolaConto()" [disabled]="comande == undefined">CONTO</button>
 </div>
+

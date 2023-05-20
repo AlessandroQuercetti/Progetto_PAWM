@@ -1,44 +1,49 @@
-<form #registrazioneForm="ngForm" class="login-form" (ngSubmit)="onSubmit(registrazioneForm)">
+<div class="wrapper">
+  <form #registrazioneForm="ngForm" class="login-form" (ngSubmit)="onSubmit(registrazioneForm)">
 
-  <div class="title">
-    <h1>REGISTRAZIONE DIPENDENTE</h1>
-  </div>
+    <div class="title">
+      <h1>REGISTRAZIONE DIPENDENTE</h1>
+    </div>
 
-  <mat-form-field class="login-full-width">
-    <mat-label>Nome</mat-label>
-    <input matInput type="text" name="nome" ngModel required/>
-  </mat-form-field>
+    <mat-form-field class="login-full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput type="text" name="nome" ngModel required/>
+    </mat-form-field>
 
-  <mat-form-field class="login-full-width">
-    <mat-label>Cognome</mat-label>
-    <input matInput type="text" name="cognome" ngModel required/>
-  </mat-form-field>
+    <mat-form-field class="login-full-width">
+      <mat-label>Cognome</mat-label>
+      <input matInput type="text" name="cognome" ngModel required/>
+    </mat-form-field>
 
-  <mat-form-field class="login-full-width">
-    <mat-label>Ruolo</mat-label>
-    <mat-select [(ngModel)]= "selectedRuolo" name="ruolo">
-      <mat-option *ngFor="let ruolo of ruoli" [value]="ruolo">{{ruolo}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field class="login-full-width">
+      <mat-label>Ruolo</mat-label>
+      <mat-select [(ngModel)]= "selectedRuolo" name="ruolo">
+        <mat-option *ngFor="let ruolo of ruoli" [value]="ruolo">{{ruolo}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field class="login-full-width">
-    <mat-label>Email</mat-label>
-    <input matInput type="email" name="email" ngModel required/>
-  </mat-form-field>
+    <mat-form-field class="login-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" name="email" ngModel required/>
+    </mat-form-field>
 
-  <mat-form-field class="login-full-width">
-    <mat-label>Password</mat-label>
-    <input matInput name="password" [type]="hide ? 'password' : 'text'" ngModel required>
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-      [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-  </mat-form-field>
+    <mat-form-field class="login-full-width">
+      <mat-label>Password</mat-label>
+      <input matInput name="password" [type]="hide ? 'password' : 'text'" ngModel required>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
 
-  <mat-action-list>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!registrazioneForm.valid">Conferma</button>
-    <button mat-raised-button color="primary" routerLink="/profile" >Indietro</button>
-  </mat-action-list>
-</form>
+    <mat-action-list>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!registrazioneForm.valid">Conferma</button>
+      <button mat-raised-button color="primary" routerLink="/profile" >Indietro</button>
+    </mat-action-list>
+  </form>
+
+</div>
+
+
 
 

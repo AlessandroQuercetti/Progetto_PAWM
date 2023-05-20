@@ -1,4 +1,4 @@
-button {
+.btn {
   margin: 5px;
 }
 
@@ -6,6 +6,6 @@ button {
   margin-left: 20px;
 }
 
-a :hover{
-  cursor: hand;
+.wrapper{
+  max-height: 600px;
 }
