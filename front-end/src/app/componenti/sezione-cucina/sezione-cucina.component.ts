@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { StatoComanda } from 'src/app/interfacce/StatoComanda';
 import { Comanda } from 'src/app/interfacce/comanda';
 import { ComandeService } from 'src/app/services/comande.service';

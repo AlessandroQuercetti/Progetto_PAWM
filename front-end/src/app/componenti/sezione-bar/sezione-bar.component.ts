@@ -23,6 +23,10 @@ export class SezioneBarComponent implements OnInit{
       })
       .filter(comanda => (comanda.tipo == "BAR" && this.checkStatoElements(comanda)));
     })
+
+    setTimeout(function() {
+      window.location.reload()
+    }, 30000);
   }
 
   checkStatoElements(comanda: Comanda){
