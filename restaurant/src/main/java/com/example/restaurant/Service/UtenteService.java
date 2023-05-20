@@ -35,15 +35,38 @@ public class UtenteService {
         return utenteRepository.save(utente);
     }
 
-    /*public Optional<Utente> login(UUID id,String password)
+    public void deleteUtente(Utente utente)
     {
-        if(utenteRepository.findById(id).get().getPassword().equals(password))
-        {
-            return utenteRepository.findById(id);
+        utenteRepository.delete(utente);
+    }
+
+    public Utente updateUtente(Utente utente)
+    {
+        var utenteToUpdate = utenteRepository.findAll().stream().filter(u -> u.equals(utente)).findFirst();
+        if (utenteToUpdate.isPresent()) {
+            var userToEdit = utenteToUpdate.get();
+            if (utente.getEmail() != null && !utente.getEmail().isEmpty()) {
+                userToEdit.setEmail(utente.getEmail());
+            }
+            if (utente.getPassword() != null && !utente.getPassword().isEmpty()) {
+                userToEdit.setPassword(utente.getPassword());
+            }
+            if (utente.getNome() != null && !utente.getNome().isEmpty()) {
+                userToEdit.setNome(utente.getNome());
+            }
+            if (utente.getCognome() != null && !utente.getCognome().isEmpty()) {
+                userToEdit.setCognome(utente.getCognome());
+            }
+            if (utente.getRistorante() != null && !utente.getRistorante().isEmpty()) {
+                userToEdit.setRistorante(utente.getRistorante());
+            }
+            if (utente.getRuolo()!=null && utente.getRuolo()!=null) {
+                userToEdit.setRuolo(utente.getRuolo());
+            }
+            return utenteRepository.save(userToEdit);
         }
         return null;
     }
-*/
 
     public Token login(String email, String password)
     {
@@ -62,6 +85,12 @@ public class UtenteService {
     public List<Utente> getUtente(){
         return utenteRepository.findAll();
     }
+
+    public void logout(Token token)
+    {
+        tokenService.removeToken(token);
+    }
+
 
 
 }
