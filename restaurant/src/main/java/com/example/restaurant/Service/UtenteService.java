@@ -82,7 +82,7 @@ public class UtenteService {
         return null;
 
     }
-    public List<Utente> getUtente(){
+    public List<Utente> getUtenti(){
         return utenteRepository.findAll();
     }
 
