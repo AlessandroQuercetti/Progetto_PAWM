@@ -24,6 +24,6 @@ public class Token {
 
     public Token(Utente utente) {
         this();
-        this.utente = utente;
+        this.utente=utente;
     }
 }

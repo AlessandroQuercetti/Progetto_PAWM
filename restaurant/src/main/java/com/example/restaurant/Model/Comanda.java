@@ -17,17 +17,20 @@ public class Comanda {
     @Id
     private UUID id;
 
-    private StatoComanda statoComanda;
+    private List<StatoComanda> statoElements;
 
-    private Categoria tipo;
+    private String tipo;
 
     private List<MenuElement> menuElements;
 
 
-    public Comanda(UUID id,StatoComanda statoComanda,Categoria tipo,List<MenuElement> menuElements)
+    public Comanda(String tipo,List<MenuElement> menuElements)
     {
-        this.id=id;
-        this.statoComanda=statoComanda;
+        for(int i=0;i<menuElements.size();i++)
+        {
+            statoElements.add(StatoComanda.ORDINATO);
+        }
+        this.id=UUID.randomUUID();
         this.tipo=tipo;
         this.menuElements= menuElements;
     }
