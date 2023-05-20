@@ -23,6 +23,7 @@ const routes: Routes = [
     { path: 'sezione-bar', component: SezioneBarComponent},
     { path: 'menu', component: MenuComponent},
     { path: 'registrazione', component: RegistrazioneComponent},
+    { path: 'registrazione/:id', component: RegistrazioneComponent},
     { path: 'tavolo/:id', component: TavoloComponent},
     { path: 'element', component: MenuElementDialogComponent},
     { path: 'element/:id', component: MenuElementDialogComponent}

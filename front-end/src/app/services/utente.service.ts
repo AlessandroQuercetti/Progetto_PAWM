@@ -16,6 +16,11 @@ export class UtenteService {
     return JSON.parse(this.authService.getCurrentUser()!).token
   }
 
+  getUtente(id: string){
+    let token_part = "?auth=" + this.getToken();
+    return this.http.get(API + 'utenti/' + id + '.json' + token_part);
+  }
+
   getUtenti(){
     let token_part = "?auth=" + this.getToken();
     return this.http.get<Utente[]>(API + 'utenti.json' + token_part);

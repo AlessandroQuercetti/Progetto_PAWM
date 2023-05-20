@@ -49,24 +49,20 @@ export class MenuElementDialogComponent {
       this.addMenuElement(form.value);
     else
       this.modifyMenuElement(this.idElement, form.value);
+
+    setTimeout(() => {
+      this.router.navigate(['menu'])
+    }, 1000);
   }
 
   //aggiunge elemento del menu
   addMenuElement(body: {}){
-    this.menuElementsService.addMenuElement(body).subscribe(data => {
-      console.log(data)
-    })
-
-    this.router.navigate(['menu'])
+    this.menuElementsService.addMenuElement(body).subscribe()
   }
 
   //modifica elemento del menu
   modifyMenuElement(id: any, body: {}){
-    this.menuElementsService.patchMenuElement(id, body).subscribe(data => {
-      console.log(data);
-    });
-
-    this.router.navigate(['menu'])
+    this.menuElementsService.patchMenuElement(id, body).subscribe();
   }
 
 

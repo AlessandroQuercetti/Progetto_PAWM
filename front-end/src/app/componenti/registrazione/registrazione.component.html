@@ -2,7 +2,8 @@
   <form #registrazioneForm="ngForm" class="login-form" (ngSubmit)="onSubmit(registrazioneForm)">
 
     <div class="title">
-      <h1>REGISTRAZIONE DIPENDENTE</h1>
+      <h1 *ngIf="tipoOperazione == 0">REGISTRAZIONE DIPENDENTE</h1>
+      <h1 *ngIf="tipoOperazione == 1 && utente != null">MODIFICA {{utente.nome}} {{utente.cognome}}</h1>
     </div>
 
     <mat-form-field class="login-full-width">
