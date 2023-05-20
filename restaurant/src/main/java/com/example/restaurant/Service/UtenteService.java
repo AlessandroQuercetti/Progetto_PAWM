@@ -7,6 +7,7 @@ import com.example.restaurant.Repository.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -33,6 +34,11 @@ public class UtenteService {
             return utenteRepository.findById(id);
         }
         return null;
+    }
+
+    public List<Utente> getUtente()
+    {
+        return utenteRepository.findAll();
     }
 
 
