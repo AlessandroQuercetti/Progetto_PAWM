@@ -15,7 +15,7 @@ public class UtenteController {
     @Autowired
     private UtenteService utenteService;
     @PostMapping("/crea")
-    public UUID creaUtente(@RequestBody Utente utente)
+    public Utente creaUtente(@RequestBody Utente utente)
     {
         return utenteService.creaUtente(utente);
     }
