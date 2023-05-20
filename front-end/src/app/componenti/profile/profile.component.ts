@@ -30,6 +30,12 @@ export class ProfileComponent implements OnInit{
         }).filter((utente) => (utente.id != this.currentUser.id));
       })
     }
+
+    /*
+    this.utenteService.getUtente(this.idUtente).subscribe((data:any) => {
+        this.utente = data;
+      })
+    */
   }
 
   eliminaUtente(id: string){

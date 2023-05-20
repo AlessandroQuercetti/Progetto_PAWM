@@ -20,7 +20,7 @@
       </mat-card-header>
       <mat-card-actions>
         <button mat-flat-button (click)="eliminaUtente(utente.id!)"><mat-icon>delete</mat-icon></button>
-        <button mat-flat-button routerLink="/registrazione">Modifica</button>
+        <button mat-flat-button routerLink="/registrazione/{{utente.id}}">Modifica</button>
       </mat-card-actions>
     </mat-card>
 

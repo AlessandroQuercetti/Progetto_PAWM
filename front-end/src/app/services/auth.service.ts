@@ -41,19 +41,10 @@ export class AuthService {
     return localStorage.getItem('utente');
   }
 
-  doRegistrazioneUtente(nome: string, cognome: string, ruolo: Ruolo, email: string, password: string){
+  doRegistrazioneUtente(body: {}){
     //TODO controllo sull'email e sul codice del ristorante
     //this.http.post(API + "utenti.json", {nome: nome, cognome: cognome, ruolo: ruolo, email: email, password: password, ristorante: ristorante} );
-    return this.http.post(signupUrl, {email: email, password: password, returnSecureToken: true});
+    return this.http.post(signupUrl, {});
   }
-
-  doRegistrazioneRistorante(nome: string, email: string, password: string, codice: string) {
-    console.log("registra ristorante da fare");
-    //TODO controllo sull'email
-    //return this.http.post(API + "ristoranti.json" , {nome: nome, email: email, password: password, codice: codice});
-    //this.http.post(API + "ristoranti.json", {nome: nome, email: email, password: password} );
-    //return this.http.post(signupUrl, {email: email, password: password, returnSecureToken: true});
-  }
-
 
 }
