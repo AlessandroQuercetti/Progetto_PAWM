@@ -39,9 +39,9 @@ public class UtenteService {
     {
         return utenteRepository.findById(id).get();
     }
-    public void deleteUtente(Utente utente)
+    public void deleteUtente(UUID id)
     {
-        utenteRepository.delete(utente);
+        utenteRepository.deleteById(id);
     }
 
     public Utente updateUtente(Utente utente)

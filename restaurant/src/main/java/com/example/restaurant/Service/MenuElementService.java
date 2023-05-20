@@ -19,15 +19,36 @@ public class MenuElementService {
         return menuElementRepository.save(menuElement).getId();
     }
 
-    public List<MenuElement> getAllMenuElement()
+    public List<MenuElement> getAllMenuElements()
     {
         return menuElementRepository.findAll();
     }
 
-    public void removeMenuElement(MenuElement menuElement)
+    public void removeMenuElement(UUID id)
     {
-        menuElementRepository.delete(menuElement);
+        menuElementRepository.deleteById(id);
     }
 
+    public MenuElement modificaMenuElement(MenuElement menuElement)
+    {
+        var elementToUpdate = menuElementRepository.findAll().stream().filter(u -> u.equals(menuElement)).findFirst();
+        if (elementToUpdate.isPresent()) {
+            var elementToEdit = elementToUpdate.get();
+            if (menuElement.getNome() != null && !menuElement.getNome().isEmpty()) {
+                elementToEdit.setNome(menuElement.getNome());
+            }
+            if (menuElement.getCategoria() != null) {
+                elementToEdit.setCategoria(menuElement.getCategoria());
+            }
+            if (menuElement.getPrezzo() != 0) {
+                elementToEdit.setPrezzo(menuElement.getPrezzo());
+            }
+            if (menuElement.getDescrizione() != null && !menuElement.getDescrizione().isEmpty()) {
+                elementToEdit.setDescrizione(menuElement.getDescrizione());
+            }
 
+            return menuElementRepository.save(elementToEdit);
+        }
+        return null;
+    }
 }

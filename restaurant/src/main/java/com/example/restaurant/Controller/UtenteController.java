@@ -29,9 +29,9 @@ public class UtenteController {
     }
 
     @PostMapping("/delete")
-    public void deleteUtente(@RequestBody Utente utente)
+    public void deleteUtente(@RequestBody UUID id)
     {
-        utenteService.deleteUtente(utente);
+        utenteService.deleteUtente(id);
     }
     @PostMapping("/login")
     public Token login(@RequestBody String email,String password)

@@ -3,10 +3,7 @@ package com.example.restaurant.Controller;
 import com.example.restaurant.Model.MenuElement;
 import com.example.restaurant.Service.MenuElementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,21 +17,28 @@ public class MenuElementController {
     private MenuElementService menuElementService;
 
     @PostMapping("/addMenuElement")
-    public UUID addMenuElement(MenuElement menuElement)
+    public UUID addMenuElement(@RequestBody MenuElement menuElement)
     {
         return menuElementService.salva(menuElement);
     }
 
     @PostMapping("/getAllMenuElement")
-    public List<MenuElement> getAllMenuElement()
+    public List<MenuElement> getAllMenuElements()
     {
-        return menuElementService.getAllMenuElement();
+        return menuElementService.getAllMenuElements();
     }
 
     @PostMapping("/removeMenuElement")
-    public void removeMenuElement(MenuElement menuElement)
+    public void removeMenuElement(@RequestBody UUID id)
     {
-        menuElementService.removeMenuElement(menuElement);
+        menuElementService.removeMenuElement(id);
+    }
+
+    @PostMapping("/updateMenuElement")
+
+    public MenuElement updateMenuElement(@RequestBody MenuElement menuElement)
+    {
+        return menuElementService.modificaMenuElement(menuElement);
     }
 
 }
