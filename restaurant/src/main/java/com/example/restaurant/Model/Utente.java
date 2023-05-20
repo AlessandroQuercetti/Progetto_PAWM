@@ -1,13 +1,19 @@
 package com.example.restaurant.Model;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.annotation.Id;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.security.SecureRandom;
 import java.util.UUID;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Getter
 @Setter
+@Document(collection="utenti")
 public class Utente {
 
     @Id
@@ -26,9 +32,9 @@ public class Utente {
     private Ruolo ruolo;
 
 
-    public Utente(UUID id,String nome,String cognome, String email,String password,String ristorante,Ruolo ruolo)
+    public Utente(String nome,String cognome, String email,String password,String ristorante,Ruolo ruolo)
     {
-        this.id=id;
+        this.id=UUID.randomUUID();
         this.nome=nome;
         this.cognome=cognome;
         this.email=email;
@@ -36,4 +42,7 @@ public class Utente {
         this.ristorante=ristorante;
         this.ruolo=ruolo;
     }
+
+
+
 }

@@ -7,5 +7,6 @@ public enum Categoria {
     ANTIPASTO,
     CONTORNO,
     DOLCE,
+    ALTRO,
     BEVANDE;
 }
