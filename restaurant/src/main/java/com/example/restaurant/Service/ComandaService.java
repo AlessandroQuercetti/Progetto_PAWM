@@ -1,6 +1,7 @@
 package com.example.restaurant.Service;
 
 import com.example.restaurant.Model.Comanda;
+import com.example.restaurant.Model.Tavolo;
 import com.example.restaurant.Repository.ComandaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,21 +26,50 @@ public class ComandaService {
         return comandaRepository.findAll();
     }
 
-    public Optional<Comanda> getComandaById(UUID id)
+
+
+    public Comanda updateComanda(Comanda comanda)
     {
-        return comandaRepository.findById(id);
+        var comandaToUpdate = comandaRepository.findAll().stream().filter(u -> u.equals(comanda)).findFirst();
+        if (comandaToUpdate.isPresent()) {
+            var comandaToEdit = comandaToUpdate.get();
+            if (comanda.getTipo() != null && !comanda.getTipo().isEmpty()) {
+                comandaToEdit.setTipo(comanda.getTipo());
+            }
+            if (comanda.getStatoElements() != null && !comanda.getStatoElements().isEmpty()) {
+                comandaToEdit.setStatoElements(comanda.getStatoElements());
+            }
+            if (comanda.getTavolo() != null) {
+                comandaToEdit.setTavolo(comanda.getTavolo());
+            }
+            if (comanda.getMenuElements() != null && !comanda.getMenuElements().isEmpty()) {
+                comandaToEdit.setMenuElements(comanda.getMenuElements());
+            }
+
+
+            return comandaRepository.save(comandaToEdit);
+        }
+        return null;
+    }
+    public void removeComanda(UUID id)
+    {
+        comandaRepository.deleteById(id);
     }
 
-    public int getNumComande()
+
+    public void removeComandaByTavolo(UUID idTavolo)
     {
-        return comandaRepository.findAll().size();
+        List<Comanda> listaComande = comandaRepository.findAll().stream().filter(comanda -> comanda.getTavolo().getId().equals(idTavolo)).toList();
+        for(int i=0;i<listaComande.size();i++)
+        {
+            comandaRepository.deleteById(listaComande.get(i).getId());
+        }
     }
 
-    public void removeComanda(Comanda comanda)
+    public List<Comanda> getComandeByTavolo(UUID idTavolo)
     {
-        comandaRepository.delete(comanda);
+        return comandaRepository.findAll().stream().filter(comanda -> comanda.getTavolo().getId().equals(idTavolo)).toList();
     }
-
 
 
 

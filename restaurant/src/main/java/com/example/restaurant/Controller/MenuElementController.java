@@ -31,4 +31,10 @@ public class MenuElementController {
         return menuElementService.getAllMenuElement();
     }
 
+    @PostMapping("/removeMenuElement")
+    public void removeMenuElement(MenuElement menuElement)
+    {
+        menuElementService.removeMenuElement(menuElement);
+    }
+
 }

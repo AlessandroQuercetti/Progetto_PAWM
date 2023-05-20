@@ -45,10 +45,16 @@ public class UtenteController {
         utenteService.logout(token);
     }
 
-    @PostMapping("getUtenti")
+    @PostMapping("/getUtenti")
     public List<Utente> getUtenti()
     {
         return utenteService.getUtenti();
+    }
+
+    @PostMapping("/getUtente")
+    public Utente getUtente(UUID id)
+    {
+        return utenteService.getUtente(id);
     }
 
 

@@ -35,6 +35,10 @@ public class UtenteService {
         return utenteRepository.save(utente);
     }
 
+    public Utente getUtente(UUID id)
+    {
+        return utenteRepository.findById(id).get();
+    }
     public void deleteUtente(Utente utente)
     {
         utenteRepository.delete(utente);

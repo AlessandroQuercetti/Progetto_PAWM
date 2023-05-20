@@ -22,4 +22,10 @@ public class TavoloController {
         return tavoloService.AggiungiTavolo(tavolo);
     }
 
+    @PostMapping("/removeAllComande")
+    public void removeAllComande(Tavolo tavolo)
+    {
+        tavoloService.removeAllComande(tavolo);
+    }
+
 }

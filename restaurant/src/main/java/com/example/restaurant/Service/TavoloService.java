@@ -19,9 +19,8 @@ public class TavoloService {
         return tavoloRepository.save(tavolo).getId();
     }
 
-    public void removeAllComande(Tavolo tavolo)
+    public void removeComandeByTavolo(Tavolo tavolo)
     {
         tavoloRepository.findAll().remove(tavolo.getComande());
-
     }
 }
