@@ -32,14 +32,6 @@ export class ComandaDialogComponent {
     this.menuElementService.getMenuElements().subscribe(data => {
       this.menuElements = data.sort(this.sortfunct)
     })
-
-    /*
-    this.menuElementService.getMenuElements().subscribe((data: any) => {
-      this.menuElements = Object.keys(data).map( (key) => {
-        data[key]['id'] = key;
-        return data[key]
-      }).sort(this.sortfunct)
-    });*/
   }
 
   sortfunct(item1:any, item2:any){

@@ -16,20 +16,15 @@ export class MenuComponent {
   constructor(private menuElementsService: MenuElementsService) {}
 
   ngOnInit(): any{
-    this.menuElementsService.getMenuElements().subscribe( (data: any) => {
-      this.menuElements = Object.keys(data).map( (key) => {
-        data[key]['id'] = key;
-        return data[key]
-      })
-    });
+
+    this.menuElementsService.getMenuElements().subscribe( (data: MenuElement[]) => {
+      this.menuElements = data;
+    })
   }
 
   deleteMenuElement(id: any){
-    this.menuElementsService.deleteMenuElement(id).subscribe(data => {
-      console.log(data);
-      window.location.reload();
-    });
+    this.menuElementsService.deleteMenuElement(id).subscribe();
+    window.location.reload()
   }
-
 
 }

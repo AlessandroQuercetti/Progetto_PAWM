@@ -48,7 +48,7 @@ export class MenuElementDialogComponent {
     if(this.tipoOperazione == 0)
       this.addMenuElement(form.value);
     else
-      this.modifyMenuElement(this.idElement, form.value);
+      this.modifyMenuElement(form.value);
 
     setTimeout(() => {
       this.router.navigate(['menu'])
@@ -56,13 +56,27 @@ export class MenuElementDialogComponent {
   }
 
   //aggiunge elemento del menu
-  addMenuElement(body: {}){
-    this.menuElementsService.addMenuElement(body).subscribe()
+  addMenuElement(element: MenuElement){
+    this.menuElementsService.addMenuElement(element).subscribe(
+      (data: any) => {
+        console.log(data)
+      },
+      (err: any) => {
+        alert(err.error.message);
+      }
+    )
   }
 
   //modifica elemento del menu
-  modifyMenuElement(id: any, body: {}){
-    this.menuElementsService.patchMenuElement(id, body).subscribe();
+  modifyMenuElement(element: MenuElement){
+    this.menuElementsService.patchMenuElement(element).subscribe(
+      (data: any) => {
+        console.log(data)
+      },
+      (err: any) => {
+        alert(err.error.message);
+      }
+    );
   }
 
 

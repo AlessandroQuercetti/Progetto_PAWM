@@ -17,11 +17,12 @@ export class LoginComponent {
   onSubmit(form: NgForm){
     this.authService.doLogIn(form.value.email, form.value.password).subscribe(
       (data: any) => {
+        this.token
         this.authService.salvaCurrentUser(data.nome, data.cognome, data.ruolo, data.email, data.idToken);
         this.router.navigate(['']);
       },
       (err: any) => {
-        alert(err.error.error.message);
+        alert(err.error.message);
       }
 
     )
