@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 public class UtenteController {
 
