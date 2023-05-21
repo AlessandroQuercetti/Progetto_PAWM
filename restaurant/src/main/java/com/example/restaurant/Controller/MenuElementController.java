@@ -9,33 +9,31 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/menuElement")
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 public class MenuElementController {
 
     @Autowired
     private MenuElementService menuElementService;
 
-    @PostMapping("/addMenuElement")
+    @RequestMapping(value="/menuElement", method=RequestMethod.POST)
     public UUID addMenuElement(@RequestBody MenuElement menuElement)
     {
         return menuElementService.salva(menuElement);
     }
 
-    @PostMapping("/getAllMenuElement")
+    @RequestMapping(value="/menuElement/all", method=RequestMethod.GET)
     public List<MenuElement> getAllMenuElements()
     {
         return menuElementService.getAllMenuElements();
     }
 
-    @PostMapping("/removeMenuElement")
-    public void removeMenuElement(@RequestBody UUID id)
+    @RequestMapping(value="/menuElement/{id}", method=RequestMethod.DELETE)
+    public void removeMenuElement(@PathVariable UUID id)
     {
         menuElementService.removeMenuElement(id);
     }
 
-    @PostMapping("/updateMenuElement")
-
+    @RequestMapping(value="/menuElement", method=RequestMethod.PUT)
     public MenuElement updateMenuElement(@RequestBody MenuElement menuElement)
     {
         return menuElementService.modificaMenuElement(menuElement);

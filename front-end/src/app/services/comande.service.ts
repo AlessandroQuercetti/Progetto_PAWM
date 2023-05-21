@@ -5,7 +5,7 @@ import { MenuElement } from '../interfacce/menuElement';
 import { AuthService } from './auth.service';
 import { StatoComanda } from '../interfacce/StatoComanda';
 
-const API = "https://restaurantdb-812bc-default-rtdb.europe-west1.firebasedatabase.app/"
+const url = "http://localhost:8080/"
 
 @Injectable({
   providedIn: 'root'
@@ -19,40 +19,36 @@ export class ComandeService {
   }
 
   getAllComande(){
-    let token_part = "?auth=" + this.getToken();
-    return this.http.get<Comanda[]>(API + 'comande.json' + token_part);
+    return this.http.get<Comanda[]>(url + 'comanda')
   }
 
   getComandeByTavolo(idTavolo: any){
-    let token_part = "?auth=" + this.getToken();
-    return this.http.get<Comanda[]>(API + 'comande.json/?tavolo=' + idTavolo);
+    return this.http.get<Comanda[]>(url + 'comanda/bytavolo/' + idTavolo);
   }
 
   addComanda(idTavolo: any, menuElements: MenuElement[], tipo: string){
 
-    let token_part = "?auth=" + this.getToken();
-
     let statoElements: StatoComanda[] = [];
     for(let i=0; i<menuElements.length; i++ ) statoElements[i] = StatoComanda.ORDINATO;
 
-    let body = {
-      tavolo: idTavolo,
-      menuElements: menuElements,
+    let body: Comanda = {
       tipo: tipo,
-      statoElements: statoElements
+      statoElements: statoElements,
+      tavolo: idTavolo,
+      menuElements: menuElements
     }
-    return this.http.post(API + 'comande.json' + token_part, body);
+    return this.http.post(url + 'comanda', body);
   }
 
-  patchComanda(id: string, body: {}){
-    let token_part = "?auth=" + this.getToken();
-    return this.http.patch(API + 'comande/' + id + '.json', body);
+  modificaComanda(comanda: Comanda){
+    return this.http.put(url + 'comanda/' , comanda);
   }
 
   patchStatoElemento(comanda: Comanda, index: number){
     let appoggio: StatoComanda[] = comanda.statoElements;
     appoggio[index] = appoggio[index]+1;
-    return this.patchComanda(comanda.id!, { statoElements: appoggio });
+    comanda.statoElements = appoggio;
+    return this.modificaComanda(comanda);
   }
 
   //prende lo stato da cambiare, ci fa +1
@@ -61,18 +57,16 @@ export class ComandeService {
     for(let i=0; i<comanda.statoElements.length; i++){
       appoggio[i] = (comanda.statoElements[i] == stato) ? stato+1 : comanda.statoElements[i];
     }
-    return this.patchComanda(comanda.id!, { statoElements: appoggio });
+    comanda.statoElements = appoggio;
+    return this.modificaComanda(comanda);
   }
 
   deleteComanda(id: string){
-    let token_part = "?auth=" + this.getToken();
-    return this.http.delete(API + 'comande/' + id + '.json' + token_part);
+    return this.http.delete(url + 'comanda/' + id);
   }
 
   deleteComandeByTavolo(idTavolo: String){
-    let token_part = "?auth=" + this.getToken();
-    alert("delete comande by tavolo da fare")
-    return this.http.delete(API + 'comande/' +  + '.json' + token_part);
+    return this.http.delete(url + 'comanda/bytavolo' + idTavolo);
   }
 
 }

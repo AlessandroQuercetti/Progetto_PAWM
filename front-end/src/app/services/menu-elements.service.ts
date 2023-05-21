@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MenuElement } from '../interfacce/menuElement';
 import { AuthService } from './auth.service';
 
-const API = "https://restaurantdb-812bc-default-rtdb.europe-west1.firebasedatabase.app/"
+const url="http://localhost/8080"
 
 @Injectable({
   providedIn: 'root'
@@ -12,24 +12,23 @@ export class MenuElementsService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getTokenPart(){ //ricordati di rimettere questo per autenticare le chiamate
+  getTokenPart(){
     return "?auth=" + JSON.parse(this.authService.getCurrentUser()!).token;
   }
 
   getMenuElements(){
-    //const configs = { 'token': this.getToken() }; oppure fai con il configs
-    return this.http.get<MenuElement[]>(API + "menuElements.json");
+    return this.http.get<MenuElement[]>(url + "menuElement/all");
   }
 
-  addMenuElement(body: {}){
-    return this.http.post(API + 'menuElements.json', body);
+  addMenuElement(e: MenuElement){
+    return this.http.post(url + "menuElement", e);
   }
 
-  patchMenuElement(id: string, body: {}){
-    return this.http.patch(API + 'menuElements/' + id + '.json', body);
+  patchMenuElement(e: MenuElement){
+    return this.http.put(url + 'menuElement', e);
   }
 
   deleteMenuElement(id: string){
-    return this.http.delete(API + 'menuElements/' + id + '.json');
+    return this.http.delete(url + 'menuElement/' + id);
   }
 }

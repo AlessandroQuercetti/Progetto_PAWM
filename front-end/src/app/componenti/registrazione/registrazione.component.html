@@ -37,6 +37,11 @@
       </button>
     </mat-form-field>
 
+    <mat-form-field class="login-full-width">
+      <mat-label>Ristorante</mat-label>
+      <input matInput type="text" name="ristorante" ngModel required/>
+    </mat-form-field>
+
     <mat-action-list>
       <button mat-raised-button color="primary" type="submit" [disabled]="!registrazioneForm.valid">Conferma</button>
       <button mat-raised-button color="primary" routerLink="/profile" >Indietro</button>

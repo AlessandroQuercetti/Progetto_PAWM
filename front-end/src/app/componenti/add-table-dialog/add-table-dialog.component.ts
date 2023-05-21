@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Tavolo } from 'src/app/interfacce/tavolo';
 import { TavoliService } from 'src/app/services/tavoli.service';
 
 export interface DialogData {
@@ -30,24 +31,13 @@ export class AddTableDialogComponent implements OnInit{
     console.log("open add table dialog")
   }
 
-  /*
-  closeDialog(){
-    console.log(this.form)
-    this.ref.close("closing from function");
-  }*/
-
   onSubmit(form: NgForm){
-      this.addTable(form.value);
-  }
+      let t: Tavolo =  {
+        numeroTavolo: form.value.numeroTavolo,
+        numeroPersone: form.value.numeroPersone
+      }
 
-  //aggiungi tavolo
-  addTable(table: any){
-    this.tavoliService.addTavolo(
-      {numeroTavolo: table.numeroTavolo, numeroPersone: table.numeroPersone }
-    ).subscribe(data => {
-      console.log(data)
-    })
-
+      this.tavoliService.addTavolo(t).subscribe(data => alert("tavolo aggiunto"))
   }
 
 }

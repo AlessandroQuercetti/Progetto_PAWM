@@ -16,17 +16,12 @@ public class ComandaService {
     @Autowired
     private ComandaRepository comandaRepository;
 
-    public UUID salvaComanda(Comanda comanda)
-    {
-        return comandaRepository.save(comanda).getId();
-    }
+    public UUID salvaComanda(Comanda comanda) { return comandaRepository.save(comanda).getId(); }
 
     public List<Comanda> getAllComande()
     {
         return comandaRepository.findAll();
     }
-
-
 
     public Comanda updateComanda(Comanda comanda)
     {

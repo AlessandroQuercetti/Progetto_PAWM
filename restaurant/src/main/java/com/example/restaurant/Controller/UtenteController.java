@@ -10,55 +10,53 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/utente")
+
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 public class UtenteController {
 
     @Autowired
     private UtenteService utenteService;
 
-
-    @PostMapping("/crea")
+    @RequestMapping(value = "/utente", method = RequestMethod.POST)
     public Utente creaUtente(@RequestBody Utente utente)
     {
         return utenteService.creaUtente(utente);
     }
 
-    @PostMapping("/update")
+    @RequestMapping(value = "/utente", method = RequestMethod.PUT)
     public Utente updateUtente(@RequestBody Utente utente)
     {
         return utenteService.updateUtente(utente);
     }
 
-    @PostMapping("/delete")
-    public void deleteUtente(@RequestBody UUID id)
+    @RequestMapping(value = "/utente/{id}", method = RequestMethod.DELETE)
+    public void deleteUtente(@PathVariable UUID id)
     {
         utenteService.deleteUtente(id);
     }
-    @PostMapping("/login")
-    public Token login(@RequestBody String email,String password)
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Token login(@RequestParam String email,@RequestParam String password)
     {
         return utenteService.login(email, password);
     }
 
-    @PostMapping("/logout")
-    public void logout(@RequestBody Token token)
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public void logout(@RequestParam Token token)
     {
         utenteService.logout(token);
     }
 
-    @PostMapping("/getUtenti")
+    @RequestMapping(value = "/utente", method = RequestMethod.GET)
     public List<Utente> getUtenti()
     {
         return utenteService.getUtenti();
     }
 
-    @PostMapping("/getUtente")
-    public Utente getUtente(UUID id)
+    @RequestMapping(value = "/utente/{id}", method = RequestMethod.GET)
+    public Utente getUtente(@PathVariable UUID id)
     {
         return utenteService.getUtente(id);
     }
-
-
 
 }

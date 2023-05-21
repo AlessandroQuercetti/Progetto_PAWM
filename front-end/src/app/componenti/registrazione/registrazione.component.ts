@@ -37,8 +37,8 @@ export class RegistrazioneComponent{
 
   }
 
-
   onSubmit(form: NgForm){
+    console.log(form.value)
 
     if(this.tipoOperazione == 0)
       this.registra(form);
@@ -47,25 +47,19 @@ export class RegistrazioneComponent{
   }
 
   registra(form: NgForm){
-    this.authService.doRegistrazioneUtente(form).subscribe(
-      data => {
+    this.utenteService.addUtente(form.value).subscribe(
+      (data: any) => {
         alert("registrazione avvenuta con successo")
         this.router.navigate(['profile']);
-      },
-      (err: any) => {
-        alert(err.error.error.message);
       }
     );
   }
 
   modifica(form: NgForm){
-    this.utenteService.patchUtente(this.idUtente!, form).subscribe(
-      data => {
+    this.utenteService.patchUtente(this.idUtente!, form.value).subscribe(
+      (data: any) => {
         alert("modifica avvenuta con successo")
         this.router.navigate(['profile']);
-      },
-      (err: any) => {
-        alert(err.error.error.message);
       }
     );
   }

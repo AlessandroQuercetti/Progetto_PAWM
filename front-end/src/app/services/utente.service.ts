@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Utente } from '../interfacce/utente';
 
-const API = "https://restaurantdb-812bc-default-rtdb.europe-west1.firebasedatabase.app/"
+const url = "http://localhost:8080/"
 
 @Injectable({
   providedIn: 'root'
@@ -17,23 +17,23 @@ export class UtenteService {
   }
 
   getUtente(id: string){
-    let token_part = "?auth=" + this.getToken();
-    return this.http.get(API + 'utenti/' + id + '.json' + token_part);
+    return this.http.get<Utente>(url + 'utente/' + id);
   }
 
   getUtenti(){
-    let token_part = "?auth=" + this.getToken();
-    return this.http.get<Utente[]>(API + 'utenti.json' + token_part);
+    return this.http.get<Utente[]>(url + 'utente');
   }
 
   deleteUtente(id: string){
-    let token_part = "?auth=" + this.getToken();
-    return this.http.delete(API + 'utenti/' + id + '.json' + token_part);
+    return this.http.delete(url + 'utente/' + id);
   }
 
-  patchUtente(id: string, body: {}){
-    return this.http.patch(API + 'utenti/' + id + '.json', body);
+  patchUtente(id: string, u: Utente){
+    return this.http.patch(url + 'utenti/' + id, u);
   }
 
-  //addUtente sta su authservice
+  addUtente(u: Utente){
+    return this.http.post(url + "utenti", u);
+  }
+
 }
