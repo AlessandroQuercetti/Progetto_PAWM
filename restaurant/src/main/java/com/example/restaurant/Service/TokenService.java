@@ -6,7 +6,6 @@ import com.example.restaurant.Repository.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class TokenService {
@@ -18,19 +17,19 @@ public class TokenService {
     public Token createToken(Utente utente) {
         deleteToken(utente);
         var token = new Token(utente);
-        tokenRepository.save(token.getId());
+        tokenRepository.save(token);
         return token;
     }
 
     public void removeToken(Token token)
     {
-        tokenRepository.delete(token.getId());
+        tokenRepository.delete(token);
     }
 
 
     private void deleteToken(Utente utente) {
 
-        tokenRepository.deleteById(utente);
+        tokenRepository.deleteById(utente.getId());
     }
 
 }

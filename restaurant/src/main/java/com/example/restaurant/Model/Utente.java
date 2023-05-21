@@ -1,5 +1,6 @@
 package com.example.restaurant.Model;
 
+import lombok.Data;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.annotation.Id;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Getter
 @Setter
 @Document(collection="utenti")
+@Data
 public class Utente {
 
     @Id

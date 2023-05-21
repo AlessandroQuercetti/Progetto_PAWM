@@ -12,6 +12,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Document(collection="comande")
+@Data
 public class Comanda {
 
     @Id

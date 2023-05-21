@@ -9,7 +9,7 @@ import java.security.SecureRandom;
 @Configuration
 public class PasswordEncoderConfig {
 
-    @Bean
+@Bean
     public BCryptPasswordEncoder passwordEncoder() {
         //10 is the default strength value for the BCryptPasswordEncoder
         return new BCryptPasswordEncoder(10, new SecureRandom());
