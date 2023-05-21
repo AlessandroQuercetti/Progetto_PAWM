@@ -1,5 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Categoria } from 'src/app/interfacce/Categoria';
 import { MenuElement } from 'src/app/interfacce/menuElement';
@@ -23,13 +22,16 @@ export class ComandaDialogComponent {
   tavolo!: Tavolo;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-    private ref: MatDialogRef<MenuElementDialogComponent>,
     private comandeService: ComandeService,
     private menuElementService: MenuElementsService) {}
 
   ngOnInit(): void{
     this.idTavolo = this.data.idTavolo;
     this.tavolo = this.data.tavolo;
+
+    this.menuElementService.getMenuElements().subscribe(data => {
+      this.menuElements = data.sort(this.sortfunct)
+    })
 
     this.menuElementService.getMenuElements().subscribe((data: any) => {
       this.menuElements = Object.keys(data).map( (key) => {
