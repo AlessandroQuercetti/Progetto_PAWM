@@ -32,19 +32,8 @@ export class TavoloComponent implements OnInit {
 
     //questo poi sarà più corto ovviamente
     this.comandeService.getComandeByTavolo(this.idTavolo).subscribe(
-      (data: any) =>{
-
-        console.log("da fix") //TODO da fixare mettendo la query giusta
-
-        if(data != undefined && data != null){
-          this.comande = Object.keys(data)
-            .map( (key) => {
-              data[key]['id'] = key;
-              data[key]['stato'] = StatoComanda[data[key]['stato']]
-              return data[key];
-            })
-            .filter((item) => item.tavolo.numeroTavolo == this.tavolo.numeroTavolo);
-        }
+      (data: Comanda[]) =>{
+        this.comande = data
       }
     );
 
@@ -61,7 +50,8 @@ export class TavoloComponent implements OnInit {
   }
 
   eliminaComanda(idComanda: string){
-    this.comandeService.deleteComanda(idComanda).subscribe(data => window.location.reload())
+    this.comandeService.deleteComanda(idComanda).subscribe()
+    window.location.reload()
   }
 
   changeStatoComanda(comanda: Comanda, stato: StatoComanda){
@@ -69,8 +59,7 @@ export class TavoloComponent implements OnInit {
   }
 
   changeStatoElemento(comanda:Comanda, index: number){
-    this.comandeService.patchStatoElemento(comanda, index).subscribe(
-    );
+    this.comandeService.patchStatoElemento(comanda, index).subscribe();
   }
 
   convertStato(s: number){

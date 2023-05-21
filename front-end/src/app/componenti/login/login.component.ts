@@ -16,10 +16,8 @@ export class LoginComponent {
 
   onSubmit(form: NgForm){
     this.authService.doLogIn(form.value.email, form.value.password).subscribe(
-      (data: any) => {
-        this.token
-        this.authService.salvaCurrentUser(data.nome, data.cognome, data.ruolo, data.email, data.idToken);
-        this.router.navigate(['']);
+      (data: String) => {
+        this.setParams(data)
       },
       (err: any) => {
         alert(err.error.message);
@@ -28,6 +26,12 @@ export class LoginComponent {
     )
   }
 
+  setParams(token: String){
+    if(token != null && token != undefined){
+      this.authService.salvaCurrentUser(token);
+      this.router.navigate(['']);
+    }
 
+  }
 
 }

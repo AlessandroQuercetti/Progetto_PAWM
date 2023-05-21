@@ -39,6 +39,7 @@ public class UtenteService {
     {
         return utenteRepository.findById(id).get();
     }
+
     public void deleteUtente(UUID id)
     {
         utenteRepository.deleteById(id);
@@ -90,9 +91,9 @@ public class UtenteService {
         return utenteRepository.findAll();
     }
 
-    public void logout(Token token)
+    public void logout(UUID id)
     {
-        tokenService.removeToken(token);
+        tokenService.deleteToken(id);
     }
 
 

@@ -2,6 +2,7 @@ package com.example.restaurant.Controller;
 
 import com.example.restaurant.Model.Token;
 import com.example.restaurant.Model.Utente;
+import com.example.restaurant.Service.TokenService;
 import com.example.restaurant.Service.UtenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ public class UtenteController {
 
     @Autowired
     private UtenteService utenteService;
+    private TokenService tokenService;
 
     @RequestMapping(value = "/utente", method = RequestMethod.POST)
     public Utente creaUtente(@RequestBody Utente utente)
@@ -36,15 +38,15 @@ public class UtenteController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Token login(@RequestParam String email,@RequestParam String password)
+    public String login(@RequestParam String email,@RequestParam String password)
     {
-        return utenteService.login(email, password);
+        return utenteService.login(email, password).getId().toString();
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public void logout(@RequestParam Token token)
+    @RequestMapping(value = "/logout{token}", method = RequestMethod.POST)
+    public void logout(@PathVariable UUID id)
     {
-        utenteService.logout(token);
+        utenteService.logout(id);
     }
 
     @RequestMapping(value = "/utente", method = RequestMethod.GET)
@@ -57,6 +59,12 @@ public class UtenteController {
     public Utente getUtente(@PathVariable UUID id)
     {
         return utenteService.getUtente(id);
+    }
+
+    @RequestMapping(value = "/utentebytoken/{id}", method = RequestMethod.GET)
+    public Utente getUtenteByToken(@PathVariable UUID id)
+    {
+        return tokenService.getUtenteByToken(id);
     }
 
 }

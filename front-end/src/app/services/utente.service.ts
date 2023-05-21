@@ -28,12 +28,16 @@ export class UtenteService {
     return this.http.delete(url + 'utente/' + id);
   }
 
-  patchUtente(id: string, u: Utente){
-    return this.http.patch(url + 'utenti/' + id, u);
+  modificaUtente(u: Utente){
+    return this.http.put(url + 'utente', u);
   }
 
   addUtente(u: Utente){
-    return this.http.post(url + "utenti", u);
+    return this.http.post(url + "utente", u);
+  }
+
+  getUtenteByToken(token: String){
+    return this.http.get<Utente>(url + "utentebytoken/" + token)
   }
 
 }

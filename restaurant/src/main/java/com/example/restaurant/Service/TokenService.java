@@ -6,6 +6,8 @@ import com.example.restaurant.Repository.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 
 @Service
 public class TokenService {
@@ -15,21 +17,22 @@ public class TokenService {
     private TokenRepository tokenRepository;
 
     public Token createToken(Utente utente) {
-        deleteToken(utente);
         var token = new Token(utente);
         tokenRepository.save(token);
         return token;
     }
 
-    public void removeToken(Token token)
-    {
-        tokenRepository.delete(token);
+    public void deleteToken(UUID id){
+        Token token =  tokenRepository.findAll().stream().filter(t -> (t.getId().equals(id))).findFirst().get();
+        this.tokenRepository.delete(token);
+    }
+
+    public Utente getUtenteByToken(UUID id){
+        Token token =  tokenRepository.findAll().stream().filter(t -> (t.getId().equals(id))).findFirst().get();
+        return token.getUtente();
     }
 
 
-    private void deleteToken(Utente utente) {
 
-        tokenRepository.deleteById(utente.getId());
-    }
 
 }

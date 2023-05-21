@@ -18,11 +18,8 @@ export class SezioneTavoliComponent implements OnInit {
   constructor(private tavoliService: TavoliService, private comandeService: ComandeService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.tavoliService.getTavoli().subscribe((data: any) => {
-      this.tavoli = Object.keys(data).map((key) => {
-        data[key]['id'] = key;
-        return data[key];
-      });
+    this.tavoliService.getTavoli().subscribe((data: Tavolo[]) => {
+      this.tavoli = data
     })
   }
 
@@ -33,8 +30,8 @@ export class SezioneTavoliComponent implements OnInit {
 
   eliminaTavolo(idTavolo: any){
     this.tavoliService.deleteTavolo(idTavolo).subscribe(
-      data => window.location.reload(),
-      err => alert(err.error.error.message)
+      data => window.location.reload(), //vedi bene questo
+      err => alert(err.error.message)
     );
 
     this.comandeService.deleteComandeByTavolo(idTavolo) //.subscribe();

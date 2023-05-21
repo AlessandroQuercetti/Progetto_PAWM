@@ -15,14 +15,9 @@ export class SezioneBarComponent implements OnInit{
   constructor(private comandeService: ComandeService) {}
 
   ngOnInit(){
-    this.comandeService.getAllComande().subscribe((data: any) => {
-      this.comande = Object.keys(data).map( (key) => {
-        data[key]['id'] = key;
-        data[key]['stato'] = StatoComanda[data[key]['stato']];
-        return data[key];
+    this.comandeService.getAllComande().subscribe((data: Comanda[]) => {
+      this.comande = data.filter(comanda => (comanda.tipo == "BAR" && this.checkStatoElements(comanda)))
       })
-      .filter(comanda => (comanda.tipo == "BAR" && this.checkStatoElements(comanda)));
-    })
 
     setTimeout(function() {
       window.location.reload()
@@ -46,7 +41,8 @@ export class SezioneBarComponent implements OnInit{
   }
 
   eliminaComanda(idComanda: string){
-    this.comandeService.deleteComanda(idComanda).subscribe(data => window.location.reload())
+    this.comandeService.deleteComanda(idComanda).subscribe()
+    window.location.reload()
   }
 
 }

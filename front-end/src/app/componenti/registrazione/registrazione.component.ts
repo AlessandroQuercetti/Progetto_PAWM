@@ -56,7 +56,7 @@ export class RegistrazioneComponent{
   }
 
   modifica(form: NgForm){
-    this.utenteService.patchUtente(this.idUtente!, form.value).subscribe(
+    this.utenteService.modificaUtente(form.value).subscribe(
       (data: any) => {
         alert("modifica avvenuta con successo")
         this.router.navigate(['profile']);

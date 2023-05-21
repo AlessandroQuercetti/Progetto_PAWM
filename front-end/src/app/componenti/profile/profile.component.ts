@@ -23,25 +23,17 @@ export class ProfileComponent implements OnInit{
     this.isProprietario = true;
 
     if(this.isProprietario){
-      this.utenteService.getUtenti().subscribe((data:any) => {
-        this.utenti = Object.keys(data).map((key) => {
-          data[key]['id'] = key;
-          return data[key];
-        }).filter((utente) => (utente.id != this.currentUser.id));
+      this.utenteService.getUtenti().subscribe((data:Utente[]) => {
+        this.utenti = data.filter((utente) => (utente.id != this.currentUser.id));
       })
     }
 
-    /*
-    this.utenteService.getUtente(this.idUtente).subscribe((data:any) => {
-        this.utente = data;
-      })
-    */
   }
 
   eliminaUtente(id: string){
     this.utenteService.deleteUtente(id).subscribe(
       data => window.location.reload(),
-      err => alert(err.error.error.message)
+      err => alert(err.error.message)
     );
   }
 
