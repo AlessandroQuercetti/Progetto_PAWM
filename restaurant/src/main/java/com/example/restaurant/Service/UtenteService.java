@@ -26,13 +26,13 @@ public class UtenteService {
 
     public Utente creaUtente(Utente utente)
     {
-        if (utenteRepository.findAll().stream().anyMatch(u ->
+        /*if (utenteRepository.findAll().stream().anyMatch(u ->
                 utente.getEmail().equals(u.getEmail()) ||
                         utente.getEmail().equals(u.getEmail()))) {
             return null;
         }
-        utente.setPassword(passwordEncoder.passwordEncoder().encode(utente.getPassword()));
-        return utenteRepository.save(utente);
+       utente.setPassword(passwordEncoder.passwordEncoder().encode(utente.getPassword()));
+        */return utenteRepository.save(utente);
     }
 
     public Utente getUtente(UUID id)

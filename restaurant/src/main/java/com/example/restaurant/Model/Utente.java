@@ -31,10 +31,10 @@ public class Utente {
 
     private String password;
 
-    private Ruolo ruolo;
+    private String ruolo;
 
 
-    public Utente(String nome,String cognome, String email,String password,String ristorante,Ruolo ruolo)
+    public Utente(String nome,String cognome, String email,String password,String ristorante,String ruolo)
     {
         this.id=UUID.randomUUID();
         this.nome=nome;
