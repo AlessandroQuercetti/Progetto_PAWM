@@ -24,13 +24,18 @@ public class UtenteService {
 
     public Utente creaUtente(Utente utente)
     {
-        if (utenteRepository.findAll().stream().anyMatch(u ->
+        /*if (utenteRepository.findAll().stream().anyMatch(u ->
                 utente.getEmail().equals(u.getEmail()) ||
                         utente.getEmail().equals(u.getEmail()))) {
             return null;
         }
+<<<<<<< HEAD
         //utente.setPassword(passwordEncoder.passwordEncoder().encode(utente.getPassword()));
         return utenteRepository.save(utente);
+=======
+       utente.setPassword(passwordEncoder.passwordEncoder().encode(utente.getPassword()));
+        */return utenteRepository.save(utente);
+>>>>>>> 6462cd90caef09f63528fdd86d88569c0df1929d
     }
 
     public Utente getUtente(UUID id)

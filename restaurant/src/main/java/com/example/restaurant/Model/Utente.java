@@ -37,11 +37,18 @@ public class Utente implements UserDetails {
 
     private String password;
 
+<<<<<<< HEAD
     @Enumerated(EnumType.STRING)
     private Ruolo ruolo;
 
 
     public Utente(String nome, String cognome, String email,String password, Ruolo ruolo)
+=======
+    private String ruolo;
+
+
+    public Utente(String nome,String cognome, String email,String password,String ristorante,String ruolo)
+>>>>>>> 6462cd90caef09f63528fdd86d88569c0df1929d
     {
         this.id=UUID.randomUUID();
         this.nome=nome;

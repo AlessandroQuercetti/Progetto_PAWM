@@ -2,47 +2,80 @@ package com.example.restaurant.Controller;
 
 import com.example.restaurant.Model.Token;
 import com.example.restaurant.Model.Utente;
-import com.example.restaurant.Service.TokenService;
 import com.example.restaurant.Service.UtenteService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 import java.util.UUID;
 
+import java.util.List;
+
 @RestController
+<<<<<<< HEAD
+=======
+@RequestMapping("/utente")
+@CrossOrigin(origins = "*",allowedHeaders = "*")
+>>>>>>> 6462cd90caef09f63528fdd86d88569c0df1929d
 public class UtenteController {
 
     @Autowired
     private UtenteService utenteService;
-    private TokenService tokenService;
 
+<<<<<<< HEAD
     //sul front end utente.service
 
     @RequestMapping(value = "/utente", method = RequestMethod.POST)
+=======
+
+    @PostMapping("/crea")
+>>>>>>> 6462cd90caef09f63528fdd86d88569c0df1929d
     public Utente creaUtente(@RequestBody Utente utente)
     {
         return utenteService.creaUtente(utente);
     }
 
-    @RequestMapping(value = "/utente", method = RequestMethod.PUT)
+    @PostMapping("/update")
     public Utente updateUtente(@RequestBody Utente utente)
     {
         return utenteService.updateUtente(utente);
     }
 
-    @RequestMapping(value = "/utente/{id}", method = RequestMethod.DELETE)
-    public void deleteUtente(@PathVariable UUID id)
+    @PostMapping("/delete")
+    public void deleteUtente(@RequestBody java.util.UUID id)
     {
         utenteService.deleteUtente(id);
     }
+<<<<<<< HEAD
 
     @RequestMapping(value = "/utente/{id}", method = RequestMethod.GET)
     public Utente getUtente(@PathVariable UUID id)
+=======
+    @PostMapping("/login")
+    public Token login(@RequestBody String email,String password)
+    {
+        return utenteService.login(email, password);
+    }
+
+    @PostMapping("/logout")
+    public void logout(@RequestBody UUID id)
+    {
+        utenteService.logout(id);
+    }
+
+    @PostMapping("/getUtenti")
+    public List<Utente> getUtenti()
+    {
+        return utenteService.getUtenti();
+    }
+
+    @PostMapping("/getUtente")
+    public Utente getUtente(UUID id)
+>>>>>>> 6462cd90caef09f63528fdd86d88569c0df1929d
     {
         return utenteService.getUtente(id);
     }
 
+<<<<<<< HEAD
     @RequestMapping(value = "/utente//all", method = RequestMethod.GET)
     public List<Utente> getUtenti()
     {
@@ -54,6 +87,9 @@ public class UtenteController {
     {
         return tokenService.getUtenteByToken(id);
     }
+=======
+
+>>>>>>> 6462cd90caef09f63528fdd86d88569c0df1929d
 
     //sul front end auth.service
 
