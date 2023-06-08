@@ -9,14 +9,13 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class ComandaController {
 
     @Autowired
     private ComandaService comandaService;
 
     @RequestMapping(value="/comanda", method = RequestMethod.POST)
-    public UUID creaComanda(Comanda comanda)
+    public Comanda creaComanda(Comanda comanda)
     {
         return comandaService.salvaComanda(comanda);
     }
@@ -27,16 +26,22 @@ public class ComandaController {
         return comandaService.updateComanda(comanda);
     }
 
+    @RequestMapping(value="/comanda/{id}", method = RequestMethod.DELETE)
+    public void deleteComanda(@PathVariable  UUID id)
+    {
+        comandaService.removeComanda(id);
+    }
+
     @RequestMapping(value="/comanda/all", method = RequestMethod.GET)
     public List<Comanda> getAllComande()
     {
         return comandaService.getAllComande();
     }
 
-    @RequestMapping(value="/comanda/{id}", method = RequestMethod.DELETE)
-    public void deleteComanda(@PathVariable  UUID id)
+    @RequestMapping(value="/comanda/bytavolo/{id}", method = RequestMethod.GET)
+    public List<Comanda> getComandeByTavolo(@PathVariable UUID id)
     {
-        comandaService.removeComanda(id);
+        return comandaService.getComandeByTavolo(id);
     }
 
     @RequestMapping(value="/comanda/bytavolo/{id}", method = RequestMethod.DELETE)
@@ -45,9 +50,4 @@ public class ComandaController {
         comandaService.removeComandaByTavolo(id);
     }
 
-    @RequestMapping(value="/comanda/bytavolo/{id}", method = RequestMethod.GET)
-    public List<Comanda> getComandeByTavolo(@PathVariable UUID id)
-    {
-        return comandaService.getComandeByTavolo(id);
-    }
 }

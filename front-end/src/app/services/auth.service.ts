@@ -14,11 +14,13 @@ export class AuthService {
 
   constructor(private utenteService: UtenteService, private http: HttpClient) {}
 
+  //login e return del token (di tipo string)
   doLogIn(email: string, password: string){
     let params = new HttpParams().append('email', email).append('password', password);
     return this.http.post<String>(url + "login", { params: params })
   }
 
+  //TODO vedi se è meglio passare il token negli headers
   doLogOut(){
     let token = localStorage.getItem('token');
     localStorage.removeItem('token');
@@ -26,6 +28,7 @@ export class AuthService {
     return this.http.post(url + "logout", token)
   }
 
+  //salva utente e token nel local storage
   salvaCurrentUser(token: String){
     let utente: Utente|null = null;
     this.utenteService.getUtenteByToken(token).subscribe(
@@ -44,6 +47,10 @@ export class AuthService {
 
   getCurrentUser(){
     return localStorage.getItem('utente');
+  }
+
+  getCurrentToken(){
+    return localStorage.getItem('token');
   }
 
 }

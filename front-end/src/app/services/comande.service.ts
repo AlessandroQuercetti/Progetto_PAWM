@@ -14,18 +14,6 @@ export class ComandeService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  private getToken(){
-    return JSON.parse(this.authService.getCurrentUser()!).token
-  }
-
-  getAllComande(){
-    return this.http.get<Comanda[]>(url + 'comanda')
-  }
-
-  getComandeByTavolo(idTavolo: any){
-    return this.http.get<Comanda[]>(url + 'comanda/bytavolo/' + idTavolo);
-  }
-
   addComanda(idTavolo: any, menuElements: MenuElement[], tipo: string){
 
     let statoElements: StatoComanda[] = [];
@@ -41,9 +29,29 @@ export class ComandeService {
   }
 
   modificaComanda(comanda: Comanda){
-    return this.http.put(url + 'comanda/' , comanda);
+    return this.http.put(url + 'comanda' , comanda);
   }
 
+  deleteComanda(id: string){
+    return this.http.delete(url + 'comanda/' + id);
+  }
+
+  getAllComande(){
+    return this.http.get<Comanda[]>(url + 'comanda/all')
+  }
+
+  getComandeByTavolo(idTavolo: any){
+    return this.http.get<Comanda[]>(url + 'comanda/bytavolo/' + idTavolo);
+  }
+
+  deleteComandeByTavolo(idTavolo: String){
+    return this.http.delete<Comanda[]>(url + 'comanda/bytavolo/' + idTavolo);
+  }
+
+
+  //queste due non fanno direttamente chiamate
+
+  //cambia stato di un solo elemento
   patchStatoElemento(comanda: Comanda, index: number){
     let appoggio: StatoComanda[] = comanda.statoElements;
     appoggio[index] = appoggio[index]+1;
@@ -51,7 +59,7 @@ export class ComandeService {
     return this.modificaComanda(comanda);
   }
 
-  //prende lo stato da cambiare, ci fa +1
+  //prende tutti gli elementi allo stato da cambiare e lo incrementa
   patchStatoComanda(comanda: Comanda, stato: StatoComanda){
     let appoggio: StatoComanda[] = [];
     for(let i=0; i<comanda.statoElements.length; i++){
@@ -59,14 +67,6 @@ export class ComandeService {
     }
     comanda.statoElements = appoggio;
     return this.modificaComanda(comanda);
-  }
-
-  deleteComanda(id: string){
-    return this.http.delete(url + 'comanda/' + id);
-  }
-
-  deleteComandeByTavolo(idTavolo: String){
-    return this.http.delete(url + 'comanda/bytavolo' + idTavolo);
   }
 
 }

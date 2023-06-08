@@ -12,10 +12,6 @@ export class TavoliService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  private getToken(){
-    return JSON.parse(this.authService.getCurrentUser()!).token
-  }
-
   getTavoli(){
     return this.http.get<Tavolo[]>(url + 'tavolo/all');
   }

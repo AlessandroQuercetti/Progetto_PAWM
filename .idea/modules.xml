@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Progetto_PAWM.iml" filepath="$PROJECT_DIR$/.idea/Progetto_PAWM.iml" />
       <module fileurl="file://$PROJECT_DIR$/restaurant/Restaurant.iml" filepath="$PROJECT_DIR$/restaurant/Restaurant.iml" />
     </modules>
   </component>

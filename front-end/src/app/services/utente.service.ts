@@ -10,10 +10,19 @@ const url = "http://localhost:8080/"
 })
 export class UtenteService {
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient) { }
 
-  private getToken(){
-    return JSON.parse(this.authService.getCurrentUser()!).token
+
+  addUtente(u: Utente){
+    return this.http.post(url + "utente", u);
+  }
+
+  modificaUtente(u: Utente){
+    return this.http.put(url + 'utente', u);
+  }
+
+  deleteUtente(id: string){
+      return this.http.delete(url + 'utente/' + id);
   }
 
   getUtente(id: string){
@@ -21,19 +30,7 @@ export class UtenteService {
   }
 
   getUtenti(){
-    return this.http.get<Utente[]>(url + 'utente');
-  }
-
-  deleteUtente(id: string){
-    return this.http.delete(url + 'utente/' + id);
-  }
-
-  modificaUtente(u: Utente){
-    return this.http.put(url + 'utente', u);
-  }
-
-  addUtente(u: Utente){
-    return this.http.post(url + "utente", u);
+    return this.http.get<Utente[]>(url + 'utente/all');
   }
 
   getUtenteByToken(token: String){

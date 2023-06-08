@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //angular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 //angular material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -36,6 +36,7 @@ import { RegistrazioneComponent } from './componenti/registrazione/registrazione
 import { MenuComponent } from './componenti/menu/menu.component';
 import { TavoloComponent } from './componenti/tavolo/tavolo.component';
 import { ComandaDialogComponent } from './componenti/comanda-dialog/comanda-dialog.component';
+import { TokenInterceptor } from './services/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,9 @@ import { ComandaDialogComponent } from './componenti/comanda-dialog/comanda-dial
     MatSelectModule,
     MatTabsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

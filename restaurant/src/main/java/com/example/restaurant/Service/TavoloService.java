@@ -20,11 +20,6 @@ public class TavoloService {
         return tavoloRepository.save(tavolo).getId();
     }
 
-    public void removeComandeByTavolo(Tavolo tavolo)
-    {
-        tavoloRepository.findAll().remove(tavolo.getComande());
-    }
-
     public List<Tavolo> getTavoli()
     {
         return tavoloRepository.findAll();

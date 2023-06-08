@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.authService.getCurrentUser()){
+    if(this.authService.getCurrentToken()){
       this.authService.isLoggedIn = true;
       //this.router.navigate(['']);
     }

@@ -11,12 +11,13 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins = "*",allowedHeaders = "*")
 public class UtenteController {
 
     @Autowired
     private UtenteService utenteService;
     private TokenService tokenService;
+
+    //sul front end utente.service
 
     @RequestMapping(value = "/utente", method = RequestMethod.POST)
     public Utente creaUtente(@RequestBody Utente utente)
@@ -36,28 +37,16 @@ public class UtenteController {
         utenteService.deleteUtente(id);
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam String email,@RequestParam String password)
-    {
-        return utenteService.login(email, password).getId().toString();
-    }
-
-    @RequestMapping(value = "/logout{token}", method = RequestMethod.POST)
-    public void logout(@PathVariable UUID id)
-    {
-        utenteService.logout(id);
-    }
-
-    @RequestMapping(value = "/utente", method = RequestMethod.GET)
-    public List<Utente> getUtenti()
-    {
-        return utenteService.getUtenti();
-    }
-
     @RequestMapping(value = "/utente/{id}", method = RequestMethod.GET)
     public Utente getUtente(@PathVariable UUID id)
     {
         return utenteService.getUtente(id);
+    }
+
+    @RequestMapping(value = "/utente//all", method = RequestMethod.GET)
+    public List<Utente> getUtenti()
+    {
+        return utenteService.getUtenti();
     }
 
     @RequestMapping(value = "/utentebytoken/{id}", method = RequestMethod.GET)
@@ -65,5 +54,21 @@ public class UtenteController {
     {
         return tokenService.getUtenteByToken(id);
     }
+
+    //sul front end auth.service
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(@RequestParam String email,@RequestParam String password)
+    {
+        return utenteService.login(email, password).getId().toString();
+    }
+
+    @RequestMapping(value = "/logout/{token}", method = RequestMethod.POST)
+    public void logout(@PathVariable UUID id)
+    {
+        utenteService.logout(id);
+    }
+
+
 
 }

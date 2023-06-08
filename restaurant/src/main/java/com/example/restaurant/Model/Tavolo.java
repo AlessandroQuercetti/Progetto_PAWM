@@ -24,7 +24,7 @@ public class Tavolo {
 
     private List<Comanda> comande;
 
-    public Tavolo(UUID id, int numeroTavolo, int numeroPersone)
+    public Tavolo(int numeroTavolo, int numeroPersone)
     {
         this.numeroPersone=numeroPersone;
         this.id=UUID.randomUUID();

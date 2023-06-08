@@ -1,7 +1,6 @@
 package com.example.restaurant.Service;
 
 
-import com.example.restaurant.Config.PasswordEncoderConfig;
 import com.example.restaurant.Model.Token;
 import com.example.restaurant.Model.Utente;
 import com.example.restaurant.Repository.UtenteRepository;
@@ -18,8 +17,7 @@ public class UtenteService {
     @Autowired
     private UtenteRepository utenteRepository;
 
-    @Autowired
-    private PasswordEncoderConfig passwordEncoder;
+    //@Autowired private PasswordEncoderConfig passwordEncoder;
 
     @Autowired
     private TokenService tokenService;
@@ -31,7 +29,7 @@ public class UtenteService {
                         utente.getEmail().equals(u.getEmail()))) {
             return null;
         }
-        utente.setPassword(passwordEncoder.passwordEncoder().encode(utente.getPassword()));
+        //utente.setPassword(passwordEncoder.passwordEncoder().encode(utente.getPassword()));
         return utenteRepository.save(utente);
     }
 
@@ -62,9 +60,6 @@ public class UtenteService {
             if (utente.getCognome() != null && !utente.getCognome().isEmpty()) {
                 userToEdit.setCognome(utente.getCognome());
             }
-            if (utente.getRistorante() != null && !utente.getRistorante().isEmpty()) {
-                userToEdit.setRistorante(utente.getRistorante());
-            }
             if (utente.getRuolo()!=null && utente.getRuolo()!=null) {
                 userToEdit.setRuolo(utente.getRuolo());
             }
@@ -77,7 +72,7 @@ public class UtenteService {
     {
         var utente =utenteRepository.findAll().stream()
                 .filter(u ->
-                        ( email.equals(u.getEmail()) && (passwordEncoder.passwordEncoder().matches(password,u.getPassword()))
+                        ( email.equals(u.getEmail()) && password.equals(u.getPassword())
 
                         )).findFirst();
 

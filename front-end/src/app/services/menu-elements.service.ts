@@ -12,10 +12,6 @@ export class MenuElementsService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  getTokenPart(){
-    return "?auth=" + JSON.parse(this.authService.getCurrentUser()!).token;
-  }
-
   getMenuElements(){
     return this.http.get<MenuElement[]>(url + "menuElement/all");
   }
