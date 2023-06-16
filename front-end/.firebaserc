@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "restaurantdb-aeb27": {
+      "hosting": {
+        "front-end": [
+          "restaurantdb-aeb27"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "restaurantdb-aeb27"
+  }
+}

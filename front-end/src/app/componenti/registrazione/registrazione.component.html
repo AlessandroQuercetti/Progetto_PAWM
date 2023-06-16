@@ -2,26 +2,8 @@
   <form #registrazioneForm="ngForm" class="login-form" (ngSubmit)="onSubmit(registrazioneForm)">
 
     <div class="title">
-      <h1 *ngIf="tipoOperazione == 0">REGISTRAZIONE DIPENDENTE</h1>
-      <h1 *ngIf="tipoOperazione == 1 && utente != null">MODIFICA {{utente.nome}} {{utente.cognome}}</h1>
+      <h1>REGISTRAZIONE DIPENDENTE</h1>
     </div>
-
-    <mat-form-field class="login-full-width">
-      <mat-label>Nome</mat-label>
-      <input matInput type="text" name="nome" ngModel required/>
-    </mat-form-field>
-
-    <mat-form-field class="login-full-width">
-      <mat-label>Cognome</mat-label>
-      <input matInput type="text" name="cognome" ngModel required/>
-    </mat-form-field>
-
-    <mat-form-field class="login-full-width">
-      <mat-label>Ruolo</mat-label>
-      <mat-select [(ngModel)]= "selectedRuolo" name="ruolo">
-        <mat-option *ngFor="let ruolo of ruoli" [value]="ruolo">{{ruolo}}</mat-option>
-      </mat-select>
-    </mat-form-field>
 
     <mat-form-field class="login-full-width">
       <mat-label>Email</mat-label>
