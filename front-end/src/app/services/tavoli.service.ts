@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Tavolo } from '../interfacce/tavolo';
+import { Tavolo } from '../models/tavolo';
 import { AuthService } from './auth.service';
 
 const url = "https://restaurantdb-aeb27-default-rtdb.europe-west1.firebasedatabase.app/"

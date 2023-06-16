@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Tavolo } from 'src/app/interfacce/tavolo';
+import { Tavolo } from 'src/app/models/tavolo';
 import { TavoliService } from 'src/app/services/tavoli.service';
 
 export interface DialogData {

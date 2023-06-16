@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { MenuElement } from 'src/app/interfacce/menuElement';
+import { MenuElement } from 'src/app/models/menuElement';
 import { MenuElementsService } from 'src/app/services/menu-elements.service';
-import { Categoria } from 'src/app/interfacce/Categoria';
+import { Categoria } from 'src/app/models/Categoria';
 import { MatDialog } from '@angular/material/dialog';
 import { MenuElementDialogComponent } from '../menu-element-dialog/menu-element-dialog.component';
 

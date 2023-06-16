@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Categoria } from 'src/app/interfacce/Categoria';
-import { MenuElement } from 'src/app/interfacce/menuElement';
-import { Tavolo } from 'src/app/interfacce/tavolo';
+import { Categoria } from 'src/app/models/Categoria';
+import { MenuElement } from 'src/app/models/menuElement';
+import { Tavolo } from 'src/app/models/tavolo';
 import { ComandeService } from 'src/app/services/comande.service';
 import { MenuElementsService } from 'src/app/services/menu-elements.service';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StatoComanda } from 'src/app/interfacce/StatoComanda';
-import { Comanda } from 'src/app/interfacce/comanda';
+import { StatoComanda } from 'src/app/models/StatoComanda';
+import { Comanda } from 'src/app/models/comanda';
 import { ComandeService } from 'src/app/services/comande.service';
 
 @Component({

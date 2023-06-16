@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Comanda } from 'src/app/interfacce/comanda';
+import { Comanda } from 'src/app/models/comanda';
 import { ComandeService } from 'src/app/services/comande.service';
 import { ComandaDialogComponent } from '../comanda-dialog/comanda-dialog.component';
-import { Tavolo } from 'src/app/interfacce/tavolo';
+import { Tavolo } from 'src/app/models/tavolo';
 import { TavoliService } from 'src/app/services/tavoli.service';
-import { StatoComanda } from 'src/app/interfacce/StatoComanda';
+import { StatoComanda } from 'src/app/models/StatoComanda';
 
 @Component({
   selector: 'app-tavolo',

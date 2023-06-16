@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Categoria } from 'src/app/interfacce/Categoria';
-import { MenuElement } from 'src/app/interfacce/menuElement';
+import { Categoria } from 'src/app/models/Categoria';
+import { MenuElement } from 'src/app/models/menuElement';
 import { MenuElementsService } from 'src/app/services/menu-elements.service';
 
 export interface DialogData {

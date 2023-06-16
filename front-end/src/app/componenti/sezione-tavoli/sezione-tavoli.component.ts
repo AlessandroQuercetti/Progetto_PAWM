@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTableDialogComponent } from '../add-table-dialog/add-table-dialog.component';
 import { TavoliService } from 'src/app/services/tavoli.service';
-import { Tavolo } from 'src/app/interfacce/tavolo';
+import { Tavolo } from 'src/app/models/tavolo';
 import { ComandeService } from 'src/app/services/comande.service';
 
 @Component({

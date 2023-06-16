@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Comanda } from '../interfacce/comanda';
-import { MenuElement } from '../interfacce/menuElement';
+import { Comanda } from '../models/comanda';
+import { MenuElement } from '../models/menuElement';
 import { AuthService } from './auth.service';
-import { StatoComanda } from '../interfacce/StatoComanda';
+import { StatoComanda } from '../models/StatoComanda';
 
 const url = "https://restaurantdb-aeb27-default-rtdb.europe-west1.firebasedatabase.app/"
 
