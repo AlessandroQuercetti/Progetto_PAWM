@@ -17,8 +17,18 @@ export class SezioneCucinaComponent implements OnInit{
   ngOnInit(): void {
 
     //filtra solo se le comande sono da fare, quelle consegnate e pagate no
-    this.comandeService.getAllComande().subscribe((data: Comanda[]) => {
-      this.comande = data.filter( (comanda) => (comanda.tipo == "CUCINA" && this.checkStatoElements(comanda)) )
+    this.comandeService.getAllComande().subscribe((data: any) => {
+
+      console.log(data)
+      this.comande = Object.keys(data).map( (key) => {
+        console.log(data[key]['tipo'] == 'CUCINA')
+        data[key]['id'] = key;
+        data[key]['stato'] = StatoComanda[data[key]['stato']];
+        return data[key];
+      })
+      .filter(
+        comanda => comanda.tipo == 'CUCINA' && this.checkStatoElements(comanda)
+      );
     })
 
      // imposto un refresh di pagina dopo 30 secondi
@@ -35,16 +45,21 @@ export class SezioneCucinaComponent implements OnInit{
   }
 
   changeStatoElemento(comanda: Comanda, index: number){
-    this.comandeService.patchStatoElemento(comanda, index).subscribe(data => window.location.reload());
+    this.comandeService.patchStatoElemento(comanda, index).subscribe(
+      data => window.location.reload()
+    );
   }
 
   eliminaComanda(idComanda: any){
-    this.comandeService.deleteComanda(idComanda).subscribe(data => window.location.reload());
+    this.comandeService.deleteComanda(idComanda).subscribe(
+      data => window.location.reload()
+    );
   }
 
   changeStatoComanda(comanda: Comanda){
-    this.comandeService.patchStatoComanda(comanda, StatoComanda.ORDINATO).subscribe();
-    window.location.reload()
+    this.comandeService.patchStatoComanda(comanda, StatoComanda.ORDINATO).subscribe(
+      data => window.location.reload()
+    );
   }
 
 }

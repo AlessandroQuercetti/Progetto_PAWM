@@ -26,17 +26,25 @@ export class TavoloComponent implements OnInit {
 
     this.idTavolo = this.route.snapshot.paramMap.get('id');
 
-    this.tavoliService.getTavolo(this.idTavolo).subscribe( (data: any) => {
+    this.tavoliService.getTavolo(this.idTavolo).subscribe( (data: Tavolo) => {
       this.tavolo = data;
     })
 
-    //questo poi sarà più corto ovviamente
-    this.comandeService.getComandeByTavolo(this.idTavolo).subscribe(
-      (data: Comanda[]) =>{
-        this.comande = data
-      }
-    );
+    this.getComande()
+  }
 
+  getComande(){
+    this.comandeService.getAllComande().subscribe( (data: any) => {
+      this.comande = Object.keys(data).map( (key) => {
+        console.log(data[key].tavolo.numeroTavolo)
+        data[key]['id'] = key;
+        data[key]['stato'] = StatoComanda[data[key]['stato']];
+        return data[key];
+      }).filter(
+        comanda => comanda.tavolo.numeroTavolo == this.tavolo.numeroTavolo
+      )
+    })
+    return this.comande
   }
 
   openComandaDialog(idTavolo: string){
@@ -45,21 +53,26 @@ export class TavoloComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(
-      data => window.location.reload()
+      //data => window.location.reload()
     );
   }
 
   eliminaComanda(idComanda: string){
-    this.comandeService.deleteComanda(idComanda).subscribe()
-    window.location.reload()
+    this.comandeService.deleteComanda(idComanda).subscribe(
+      data => window.location.reload()
+    )
   }
 
   changeStatoComanda(comanda: Comanda, stato: StatoComanda){
-    this.comandeService.patchStatoComanda(comanda, stato).subscribe(data => window.location.reload());
+    this.comandeService.patchStatoComanda(comanda, stato).subscribe(
+      data => window.location.reload()
+    );
   }
 
   changeStatoElemento(comanda:Comanda, index: number){
-    this.comandeService.patchStatoElemento(comanda, index).subscribe();
+    this.comandeService.patchStatoElemento(comanda, index).subscribe(
+      //data => window.location.reload()
+    );
   }
 
   convertStato(s: number){

@@ -7,6 +7,7 @@
 
     <div *ngFor="let element of menuElements">
       <mat-card class="card" *ngIf="element.categoria == categoria" >
+
         <mat-card-header>
           <mat-card-title>Nome: {{element.nome}}</mat-card-title>
           <mat-card-subtitle>Descrizione: {{element.descrizione}}</mat-card-subtitle>
@@ -14,14 +15,15 @@
         </mat-card-header>
 
         <mat-card-actions>
-          <button mat-flat-button routerLink="/element/{{element.id}}">Modifica</button>
+          <button mat-flat-button (click)="openElementDialog(1, element)">Modifica</button>
           <button mat-icon-button aria-label="Elimina" (click)="deleteMenuElement(element.id)"><mat-icon>delete</mat-icon></button>
         </mat-card-actions>
+
       </mat-card>
     </div>
 
   </div>
 
-  <button class="item" mat-flat-button routerLink="/element">Aggiungi Elemento del Menu</button>
+  <button class="item" mat-flat-button (click)="openElementDialog(0)">Aggiungi Elemento del Menu</button>
 </div>
 

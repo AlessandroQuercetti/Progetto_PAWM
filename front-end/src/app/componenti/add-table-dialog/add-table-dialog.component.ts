@@ -32,12 +32,18 @@ export class AddTableDialogComponent implements OnInit{
   }
 
   onSubmit(form: NgForm){
-      let t: Tavolo =  {
-        numeroTavolo: form.value.numeroTavolo,
-        numeroPersone: form.value.numeroPersone
-      }
+    let t: Tavolo =  {
+      numeroTavolo: form.value.numeroTavolo,
+      numeroPersone: form.value.numeroPersone
+    }
 
-      this.tavoliService.addTavolo(t).subscribe(data => alert("tavolo aggiunto"))
+    this.tavoliService.addTavolo(t).subscribe(
+      data => {
+        alert("tavolo aggiunto")
+        window.location.reload()
+      },
+      err => alert("errore con l'aggiunta del tavolo")
+    );
   }
 
 }

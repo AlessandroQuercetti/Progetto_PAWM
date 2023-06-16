@@ -17,26 +17,8 @@ public class UtenteService {
     @Autowired
     private UtenteRepository utenteRepository;
 
-    //@Autowired private PasswordEncoderConfig passwordEncoder;
-
     @Autowired
     private TokenService tokenService;
-
-    public Utente creaUtente(Utente utente)
-    {
-        /*if (utenteRepository.findAll().stream().anyMatch(u ->
-                utente.getEmail().equals(u.getEmail()) ||
-                        utente.getEmail().equals(u.getEmail()))) {
-            return null;
-        }
-<<<<<<< HEAD
-        //utente.setPassword(passwordEncoder.passwordEncoder().encode(utente.getPassword()));
-        return utenteRepository.save(utente);
-=======
-       utente.setPassword(passwordEncoder.passwordEncoder().encode(utente.getPassword()));
-        */return utenteRepository.save(utente);
->>>>>>> 6462cd90caef09f63528fdd86d88569c0df1929d
-    }
 
     public Utente getUtente(UUID id)
     {
@@ -48,6 +30,7 @@ public class UtenteService {
         utenteRepository.deleteById(id);
     }
 
+    //TODO non servono i controlli, si fanno nel front
     public Utente updateUtente(Utente utente)
     {
         var utenteToUpdate = utenteRepository.findAll().stream().filter(u -> u.equals(utente)).findFirst();
@@ -73,27 +56,14 @@ public class UtenteService {
         return null;
     }
 
-    public Token login(String email, String password)
-    {
-        var utente =utenteRepository.findAll().stream()
-                .filter(u ->
-                        ( email.equals(u.getEmail()) && password.equals(u.getPassword())
-
-                        )).findFirst();
-
-        if(!utente.isEmpty()){
-            return tokenService.createToken(utente.get());
-        }
-        return null;
-
-    }
     public List<Utente> getUtenti(){
         return utenteRepository.findAll();
     }
 
     public void logout(UUID id)
     {
-        tokenService.deleteToken(id);
+        //TODO da vedere se fare in authService
+        //tokenService.deleteToken(id);
     }
 
 

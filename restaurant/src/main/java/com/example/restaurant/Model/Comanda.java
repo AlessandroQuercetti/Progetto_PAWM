@@ -26,11 +26,11 @@ public class Comanda {
 
     private Tavolo tavolo;
 
-    public Comanda(String tipo, List<MenuElement> menuElements, List<StatoComanda> statoElements, Tavolo tavolo)
+    public Comanda(String tipo, Tavolo tavolo, List<MenuElement> menuElements, List<StatoComanda> statoElements)
     {
         this.id=UUID.randomUUID();
-        this.tavolo=tavolo;
         this.tipo=tipo;
+        this.tavolo=tavolo;
         this.menuElements= menuElements;
         this.statoElements = statoElements;
     }

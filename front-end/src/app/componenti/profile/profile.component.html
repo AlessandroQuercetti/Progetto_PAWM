@@ -1,12 +1,14 @@
 <div class="wrapper">
+  <!--
   <h2 class="item">INFORMAZIONI PERSONALI</h2>
   <div class="item">
-    <p>{{currentUser.nome}} {{currentUser.cognome}}</p>
-    <p>Email: {{currentUser.email}}</p>
-    <!--<p>Password: {{currentUser.password}}</p>-->
-    <p>Ruolo: {{currentUser.ruolo}}</p>
+    <p>Nome: {{utenteConInfo.nome}}</p>
+    <p>Cognome: {{utenteConInfo.cognome}}</p>
+    <p>Email: {{utenteConInfo.email}}</p>
+    <p>Ruolo: {{utenteConInfo.ruolo}}</p>
+    <p>Password: {{utenteConInfo.password}}</p>
   </div>
-
+-->
   <div class="item" *ngIf ="isProprietario">
     <h1 class="item">UTENTI</h1>
 

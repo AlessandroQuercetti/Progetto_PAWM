@@ -15,7 +15,7 @@ public class TavoloService {
     private TavoloRepository tavoloRepository;
 
 
-    public UUID AggiungiTavolo(Tavolo tavolo)
+    public UUID aggiungiTavolo(Tavolo tavolo)
     {
         return tavoloRepository.save(tavolo).getId();
     }

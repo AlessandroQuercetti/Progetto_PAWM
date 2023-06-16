@@ -1,6 +1,6 @@
 import { Ruolo } from "./Ruolo";
 
-export interface Utente{
+export interface UtenteConInfo{
 
   id?: string;
   nome: string;
@@ -9,3 +9,4 @@ export interface Utente{
   email: string;
   password: string;
 }
+

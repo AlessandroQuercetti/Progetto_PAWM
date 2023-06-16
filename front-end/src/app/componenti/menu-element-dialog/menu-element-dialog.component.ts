@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute, ChildrenOutletContexts, Router } from '@angular/router';
 import { Categoria } from 'src/app/interfacce/Categoria';
 import { MenuElement } from 'src/app/interfacce/menuElement';
 import { MenuElementsService } from 'src/app/services/menu-elements.service';
@@ -22,7 +21,7 @@ export class MenuElementDialogComponent {
 
   categorie: any[] = Object.values(Categoria).filter(value => isNaN(Number(value)));
   tipoOperazione!: number;
-  idElement!: string |null;
+  element!: MenuElement |null;
 
   form: DialogData = {
     nome: "",
@@ -31,50 +30,43 @@ export class MenuElementDialogComponent {
     prezzo: 0
   };
 
-  constructor( private route: ActivatedRoute, private menuElementsService: MenuElementsService,
-    private router: Router) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+    private ref: MatDialogRef<MenuElementDialogComponent>,
+    private menuElementsService: MenuElementsService) {}
 
-  ngOnInit(): void{
-    this.idElement = this.route.snapshot.paramMap.get('id');
-    //alert("prendi anche l'elemento")
-    if(this.idElement == null)
-      this.tipoOperazione = 0;
-    else
-      this.tipoOperazione = 1;
-  }
+    ngOnInit(): void{
+      this.tipoOperazione = this.data.tipoOperazione;
+      this.element = this.data.menuElement;
+    }
 
   onSubmit(form: NgForm){
-    console.log(form)
     if(this.tipoOperazione == 0)
       this.addMenuElement(form.value);
     else
-      this.modifyMenuElement(form.value);
-
-    setTimeout(() => {
-      this.router.navigate(['menu'])
-    }, 1000);
+      this.modifyMenuElement(this.element?.id, form.value);
   }
 
   //aggiunge elemento del menu
   addMenuElement(element: MenuElement){
+    console.log(element)
     this.menuElementsService.addMenuElement(element).subscribe(
       (data: any) => {
-        console.log(data)
+        window.location.reload();
       },
       (err: any) => {
-        alert(err.error.message);
+        alert("errore nell'aggiunta dell'elemento del menu");
       }
     )
   }
 
   //modifica elemento del menu
-  modifyMenuElement(element: MenuElement){
-    this.menuElementsService.patchMenuElement(element).subscribe(
+  modifyMenuElement(id: any, body: {}){
+    this.menuElementsService.patchMenuElement(id, body).subscribe(
       (data: any) => {
-        console.log(data)
+        window.location.reload();
       },
       (err: any) => {
-        alert(err.error.message);
+        alert("errore nella modifica dell'elemento del menu");
       }
     );
   }

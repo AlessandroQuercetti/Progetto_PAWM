@@ -2,7 +2,7 @@
   <form #menuElementForm="ngForm" (ngSubmit)="onSubmit(menuElementForm)" >
 
     <h2 *ngIf="tipoOperazione == 0" mat-dialog-title>Aggiungi Elemento del Menu</h2>
-    <h2 *ngIf="tipoOperazione == 1" mat-dialog-title>Modifica: {{idElement}}</h2>
+    <h2 *ngIf="tipoOperazione == 1" mat-dialog-title>Modifica: {{element!.nome}}</h2>
 
     <div mat-dialog-content>
 
@@ -31,8 +31,10 @@
     </div>
 
     <div mat-dialog-actions>
-      <button mat-raised-button routerLink="/menu">Annulla</button>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!menuElementForm.valid">Conferma</button>
+      <button mat-raised-button mat-dialog-close>Annulla</button>
+      <button mat-raised-button mat-dialog-close color="primary" type="submit" [disabled]="!menuElementForm.valid">
+        Conferma
+      </button>
     </div>
 
   </form>

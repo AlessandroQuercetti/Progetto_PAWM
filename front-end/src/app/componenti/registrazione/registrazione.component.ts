@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ruolo } from 'src/app/interfacce/Ruolo';
-import { Utente } from 'src/app/interfacce/utente';
+import { UtenteConInfo } from 'src/app/interfacce/utenteConInfo';
 import { AuthService } from 'src/app/services/auth.service';
 import { UtenteService } from 'src/app/services/utente.service';
 
@@ -19,7 +19,7 @@ export class RegistrazioneComponent{
 
   idUtente!: string|null;
   tipoOperazione!: number;
-  utente!: Utente;
+  utente!: UtenteConInfo;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
     private utenteService: UtenteService) {}
@@ -30,8 +30,8 @@ export class RegistrazioneComponent{
       this.tipoOperazione = 0;
     else{
       this.tipoOperazione = 1;
-      this.utenteService.getUtente(this.idUtente).subscribe((data:any) => {
-        this.utente = data;
+      this.utenteService.getUtente(this.idUtente).subscribe((data: UtenteConInfo) => {
+        this.utente = data
       })
     }
 
@@ -47,12 +47,17 @@ export class RegistrazioneComponent{
   }
 
   registra(form: NgForm){
-    this.utenteService.addUtente(form.value).subscribe(
-      (data: any) => {
-        alert("registrazione avvenuta con successo")
-        this.router.navigate(['profile']);
-      }
-    );
+
+    this.authService.registrazione(form.value.email, form.value.password)
+      .subscribe(
+        (data: any) => {
+          alert("registrazione avvenuta con successo")
+          this.router.navigate(['profile']);
+          //crea anche l'utente sulla tab normale
+        }
+      );
+
+    form.reset();
   }
 
   modifica(form: NgForm){
@@ -60,6 +65,7 @@ export class RegistrazioneComponent{
       (data: any) => {
         alert("modifica avvenuta con successo")
         this.router.navigate(['profile']);
+        //modifica anche utente normale
       }
     );
   }

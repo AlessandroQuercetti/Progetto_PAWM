@@ -41,7 +41,6 @@ public class ComandaService {
                 comandaToEdit.setMenuElements(comanda.getMenuElements());
             }
 
-
             return comandaRepository.save(comandaToEdit);
         }
         return null;

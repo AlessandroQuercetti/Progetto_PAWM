@@ -26,13 +26,10 @@ public class Tavolo {
 
     public Tavolo(int numeroTavolo, int numeroPersone)
     {
-        this.numeroPersone=numeroPersone;
         this.id=UUID.randomUUID();
         this.numeroTavolo=numeroTavolo;
+        this.numeroPersone=numeroPersone;
     }
 
-    public void addComanda(Comanda comanda)
-    {
-        this.comande.add(comanda);
-    }
+    public void addComanda(Comanda comanda){ this.comande.add(comanda);}
 }

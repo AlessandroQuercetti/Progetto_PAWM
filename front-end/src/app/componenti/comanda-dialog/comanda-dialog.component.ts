@@ -5,7 +5,6 @@ import { MenuElement } from 'src/app/interfacce/menuElement';
 import { Tavolo } from 'src/app/interfacce/tavolo';
 import { ComandeService } from 'src/app/services/comande.service';
 import { MenuElementsService } from 'src/app/services/menu-elements.service';
-import { MenuElementDialogComponent } from '../menu-element-dialog/menu-element-dialog.component';
 
 @Component({
   selector: 'app-comanda-dialog',
@@ -29,8 +28,13 @@ export class ComandaDialogComponent {
     this.idTavolo = this.data.idTavolo;
     this.tavolo = this.data.tavolo;
 
-    this.menuElementService.getMenuElements().subscribe(data => {
-      this.menuElements = data.sort(this.sortfunct)
+    this.menuElementService.getMenuElements().subscribe((data:any) => {
+
+      this.menuElements = Object.keys(data).map( (key) => {
+        data[key]['id'] = key;
+        return data[key]
+      }).sort(this.sortfunct)
+
     })
   }
 
@@ -60,10 +64,14 @@ export class ComandaDialogComponent {
     let ok = 0;
 
     if(perCucina.length != 0)
-      this.comandeService.addComanda(this.tavolo, perCucina, "CUCINA").subscribe();
+      this.comandeService.addComanda(this.tavolo, perCucina, "CUCINA").subscribe(
+        data => window.location.reload()
+      );
 
     if(perBar.length != 0)
-      this.comandeService.addComanda(this.tavolo, perBar, "BAR").subscribe();
+      this.comandeService.addComanda(this.tavolo, perBar, "BAR").subscribe(
+        data => window.location.reload()
+      );
   }
 
 }

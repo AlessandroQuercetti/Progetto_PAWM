@@ -24,9 +24,7 @@ const routes: Routes = [
     { path: 'menu', component: MenuComponent},
     { path: 'registrazione', component: RegistrazioneComponent},
     { path: 'registrazione/:id', component: RegistrazioneComponent},
-    { path: 'tavolo/:id', component: TavoloComponent},
-    { path: 'element', component: MenuElementDialogComponent},
-    { path: 'element/:id', component: MenuElementDialogComponent}
+    { path: 'tavolo/:id', component: TavoloComponent}
   ]},
 
   { path: 'login', component: LoginComponent},

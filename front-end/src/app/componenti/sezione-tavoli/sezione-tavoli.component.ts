@@ -18,20 +18,25 @@ export class SezioneTavoliComponent implements OnInit {
   constructor(private tavoliService: TavoliService, private comandeService: ComandeService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.tavoliService.getTavoli().subscribe((data: Tavolo[]) => {
-      this.tavoli = data
+    this.tavoliService.getTavoli().subscribe((data: any) => {
+      this.tavoli = Object.keys(data).map( (key) => {
+        data[key]['id'] = key;
+        return data[key];
+      })
     })
   }
 
   openDialogAddTavolo(): void {
     const dialogRef = this.dialog.open(AddTableDialogComponent, {})
-    dialogRef.afterClosed().subscribe( data => window.location.reload() );
+    dialogRef.afterClosed().subscribe( )
   }
 
   eliminaTavolo(idTavolo: any){
 
+    /*
+    TODO
     this.comandeService.deleteComandeByTavolo(idTavolo).subscribe();
-
+    */
     this.tavoliService.deleteTavolo(idTavolo).subscribe(
       data => window.location.reload(), //vedi bene questo
       err => alert(err.error.message)

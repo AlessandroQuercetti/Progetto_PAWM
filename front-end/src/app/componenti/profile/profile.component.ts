@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ruolo } from 'src/app/interfacce/Ruolo';
-import { Utente } from 'src/app/interfacce/utente';
+import { UtenteConInfo } from 'src/app/interfacce/utenteConInfo';
+import { Utente } from 'src/app/models/utente.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { UtenteService } from 'src/app/services/utente.service';
 
@@ -11,21 +12,23 @@ import { UtenteService } from 'src/app/services/utente.service';
 })
 export class ProfileComponent implements OnInit{
 
-  currentUser!: any; //currentUser!: Utente;
+  currentUser!: Utente;
+  userConInfo!: UtenteConInfo;
   isProprietario: boolean = false;
-  utenti: Utente[] = [];
+  utenti: UtenteConInfo[] = [];
 
   constructor(private authService: AuthService, private utenteService: UtenteService) {}
 
   ngOnInit(): any{
-    this.currentUser = JSON.parse(this.authService.getCurrentUser()!)
-    this.isProprietario = (this.currentUser.role == Ruolo.PROPRIETARIO);
-    this.isProprietario = true;
 
+    this.currentUser = this.authService.currentUser!;
+    //this.userConInfo = this.authService.userConInfo!;
+    //this.getUtenti()
+    //this.isProprietario = (this.userConInfo.ruolo == Ruolo.PROPRIETARIO);
+
+    this.isProprietario == true
     if(this.isProprietario){
-      this.utenteService.getUtenti().subscribe((data:Utente[]) => {
-        this.utenti = data.filter((utente) => (utente.id != this.currentUser.id));
-      })
+      this.utenti = this.utenti.filter((utente: UtenteConInfo) => (utente.email != this.currentUser.email));
     }
 
   }

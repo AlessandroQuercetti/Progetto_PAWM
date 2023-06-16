@@ -5,7 +5,7 @@ import { MenuElement } from '../interfacce/menuElement';
 import { AuthService } from './auth.service';
 import { StatoComanda } from '../interfacce/StatoComanda';
 
-const url = "http://localhost:8080/"
+const url = "https://restaurantdb-aeb27-default-rtdb.europe-west1.firebasedatabase.app/"
 
 @Injectable({
   providedIn: 'root'
@@ -25,29 +25,28 @@ export class ComandeService {
       tavolo: idTavolo,
       menuElements: menuElements
     }
-    return this.http.post(url + 'comanda', body);
+    return this.http.post(url + 'comanda.json', body);
   }
 
-  modificaComanda(comanda: Comanda){
-    return this.http.put(url + 'comanda' , comanda);
+  modificaComanda(id: any, body: {}){
+    return this.http.patch(url + 'comanda/' + id + '.json' , body);
   }
 
   deleteComanda(id: string){
-    return this.http.delete(url + 'comanda/' + id);
+    return this.http.delete(url + 'comanda/' + id + ".json");
   }
 
   getAllComande(){
-    return this.http.get<Comanda[]>(url + 'comanda/all')
+    return this.http.get<Comanda[]>(url + 'comanda.json')
   }
 
   getComandeByTavolo(idTavolo: any){
-    return this.http.get<Comanda[]>(url + 'comanda/bytavolo/' + idTavolo);
+    return null
   }
 
   deleteComandeByTavolo(idTavolo: String){
-    return this.http.delete<Comanda[]>(url + 'comanda/bytavolo/' + idTavolo);
+    return null
   }
-
 
   //queste due non fanno direttamente chiamate
 
@@ -55,8 +54,15 @@ export class ComandeService {
   patchStatoElemento(comanda: Comanda, index: number){
     let appoggio: StatoComanda[] = comanda.statoElements;
     appoggio[index] = appoggio[index]+1;
-    comanda.statoElements = appoggio;
-    return this.modificaComanda(comanda);
+
+    let body = {
+      menuElements: comanda.menuElements,
+      statoElements: appoggio,
+      tavolo: comanda.tavolo,
+      tipo: comanda.tipo
+    }
+
+    return this.modificaComanda(comanda.id, body);
   }
 
   //prende tutti gli elementi allo stato da cambiare e lo incrementa
@@ -65,8 +71,15 @@ export class ComandeService {
     for(let i=0; i<comanda.statoElements.length; i++){
       appoggio[i] = (comanda.statoElements[i] == stato) ? stato+1 : comanda.statoElements[i];
     }
-    comanda.statoElements = appoggio;
-    return this.modificaComanda(comanda);
+
+    let body = {
+      menuElements: comanda.menuElements,
+      statoElements: appoggio,
+      tavolo: comanda.tavolo,
+      tipo: comanda.tipo
+    }
+
+    return this.modificaComanda(comanda.id, body);
   }
 
 }

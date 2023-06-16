@@ -25,26 +25,6 @@ public class TokenService {
 
     private static final String SECRET_KET = "vqK3th8KxZ0hDCbiMP1EWf3ROUESx5yflB6J4Jd4yHTiMIxGOBhHjBYUAdrXeLmqnn";
 
-    /*
-    @Autowired
-    private TokenRepository tokenRepository;
-
-    public Token createToken(Utente utente) {
-        var token = new Token(utente);
-        tokenRepository.save(token);
-        return token;
-    }
-
-    public void deleteToken(UUID id){
-        Token token =  tokenRepository.findAll().stream().filter(t -> (t.getId().equals(id))).findFirst().get();
-        this.tokenRepository.delete(token);
-    }
-
-    public Utente getUtenteByToken(UUID id){
-        Token token =  tokenRepository.findAll().stream().filter(t -> (t.getId().equals(id))).findFirst().get();
-        return token.getUtente();
-    } */
-
     public String extractUserEmail(String token){
         return extractClaim(token, Claims::getSubject);
     }

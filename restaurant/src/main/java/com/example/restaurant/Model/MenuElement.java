@@ -27,7 +27,7 @@ public class MenuElement {
     private float prezzo;
 
 
-    public MenuElement(UUID id, String nome, Categoria categoria, String descrizione, float prezzo)
+    public MenuElement(String nome, Categoria categoria, String descrizione, float prezzo)
     {
         this.id=UUID.randomUUID();
         this.nome=nome;

@@ -14,10 +14,9 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-
-    if(this.authService.getCurrentToken()){
-      this.authService.isLoggedIn = true;
-      //this.router.navigate(['']);
+    if(localStorage.getItem('utente')){
+      const utente = JSON.parse(localStorage.getItem('utente')!)
+      this.authService.salvaCurrentUser(utente.id, utente.email, utente._token, utente._expirationDate)
     }
   }
 }

@@ -17,7 +17,7 @@ public class TavoloController {
     @RequestMapping(value="/tavolo", method = RequestMethod.POST)
     public UUID aggiungiTavolo(@RequestBody Tavolo tavolo)
     {
-        return tavoloService.AggiungiTavolo(tavolo);
+        return tavoloService.aggiungiTavolo(tavolo);
     }
 
     @RequestMapping(value = "/tavolo/all", method = RequestMethod.GET)
