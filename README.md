@@ -14,4 +14,4 @@ Ogni volta che viene fatta una richiesta http al server entra in gioco un interc
 
 Lato server: 
 Realtime database gestisce i dati attraverso file JSON. autenticare le chiamate è presente una console dove vanno indicate le regole di acesso al db.
-Nel nostro caso l'accesso alle tabelle riferite ai tavoli, elementi del menu e comande è consentito a tutti gli utenti autenticati, mentre quello alla tabella riferita agli utenti è riservato solo agli admin
+Nel nostro caso l'accesso alle tabelle riferite ai tavoli, elementi del menu e comande è consentito a tutti gli utenti autenticati, mentre quello alla tabella riferita agli utenti e agli admin è riservato solo agli admin
