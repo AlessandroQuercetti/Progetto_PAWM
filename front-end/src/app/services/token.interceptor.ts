@@ -27,8 +27,6 @@ export class TokenInterceptor implements HttpInterceptor {
           url: request.url + "?auth=" + this.authService.currentUser!.token
         })
 
-        console.log(this.authService.currentUser!.token)
-        console.log(newRequest)
       return next.handle(newRequest);
     }
     return next.handle(request);

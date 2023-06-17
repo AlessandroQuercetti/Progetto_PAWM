@@ -12,11 +12,17 @@ export class ProfileComponent implements OnInit{
   currentUser!: Utente;
   isProprietario: boolean = false;
 
-
   constructor(private authService: AuthService) {}
 
   ngOnInit(): any{
-    this.currentUser = this.authService.currentUser!;
+
+    setTimeout(() => {
+      this.currentUser = this.authService.currentUser!;
+      this.isProprietario = this.authService.isProprietario;
+      console.log(this.isProprietario)
+    }, 1000);
+
+
   }
 
 }

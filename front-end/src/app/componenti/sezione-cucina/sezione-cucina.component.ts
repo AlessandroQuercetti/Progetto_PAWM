@@ -19,9 +19,7 @@ export class SezioneCucinaComponent implements OnInit{
     //filtra solo se le comande sono da fare, quelle consegnate e pagate no
     this.comandeService.getAllComande().subscribe((data: any) => {
 
-      console.log(data)
       this.comande = Object.keys(data).map( (key) => {
-        console.log(data[key]['tipo'] == 'CUCINA')
         data[key]['id'] = key;
         data[key]['stato'] = StatoComanda[data[key]['stato']];
         return data[key];
@@ -40,7 +38,6 @@ export class SezioneCucinaComponent implements OnInit{
   checkStatoElements(comanda: Comanda){
     for(let s of comanda.statoElements)
       if(s == 0) return true;
-
     return false;
   }
 
