@@ -40,14 +40,6 @@ export class ComandeService {
     return this.http.get<Comanda[]>(url + 'comanda.json')
   }
 
-  getComandeByTavolo(idTavolo: any){
-    return null
-  }
-
-  deleteComandeByTavolo(idTavolo: String){
-    return null
-  }
-
   //queste due non fanno direttamente chiamate
 
   //cambia stato di un solo elemento

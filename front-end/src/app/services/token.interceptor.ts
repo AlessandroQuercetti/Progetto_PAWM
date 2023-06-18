@@ -21,11 +21,15 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    if(this.authService.isLoggedIn){
+    console.log(request)
+    if(this.authService.requestIsRegister){
+      return next.handle(request);
+    }
 
-        let newRequest = request.clone({
-          url: request.url + "?auth=" + this.authService.currentUser!.token
-        })
+    if(this.authService.isLoggedIn){
+      let newRequest = request.clone({
+        url: request.url + "?auth=" + this.authService.currentUser!.token
+      })
 
       return next.handle(newRequest);
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class RegistrazioneComponent{
 
   idUtente!: string|null;
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(){
 
@@ -27,12 +27,13 @@ export class RegistrazioneComponent{
 
   registra(form: NgForm){
 
+    console.log(form.value.email, form.value.password)
     this.authService.registrazione(form.value.email, form.value.password)
       .subscribe(
         (data: any) => {
           alert("registrazione avvenuta con successo")
           this.router.navigate(['profile']);
-          //crea anche l'utente sulla tab normale
+          this.authService.requestIsRegister = false;
         }
       );
 

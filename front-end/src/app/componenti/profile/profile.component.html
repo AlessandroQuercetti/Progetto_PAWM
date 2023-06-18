@@ -1,12 +1,12 @@
 <div class="wrapper">
+
   <h2 class="item">INFORMAZIONI PERSONALI</h2>
   <div class="item">
     <p>email: {{currentUser.email}}</p>
   </div>
-  <button class="item" mat-raised-button routerLink="/registrazione">Registra Dipendente</button>
-  <div class="item" *ngIf ="isProprietario">
-    <h1 class="item">UTENTI</h1>
 
+  <div class="item" *ngIf ="isProprietario">
+    <button mat-raised-button routerLink="/registrazione">Registra Dipendente</button>
   </div>
 
 </div>

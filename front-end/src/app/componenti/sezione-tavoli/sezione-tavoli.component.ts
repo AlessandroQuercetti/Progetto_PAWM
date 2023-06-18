@@ -31,19 +31,6 @@ export class SezioneTavoliComponent implements OnInit {
     dialogRef.afterClosed().subscribe( )
   }
 
-  eliminaTavolo(idTavolo: any){
-
-    /*
-    TODO
-    this.comandeService.deleteComandeByTavolo(idTavolo).subscribe();
-    */
-    this.tavoliService.deleteTavolo(idTavolo).subscribe(
-      data => window.location.reload(), //vedi bene questo
-      err => alert(err.error.message)
-    );
-
-  }
-
 }
 
 

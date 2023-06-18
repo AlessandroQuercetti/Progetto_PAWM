@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Comanda } from 'src/app/models/comanda';
 import { ComandeService } from 'src/app/services/comande.service';
 import { ComandaDialogComponent } from '../comanda-dialog/comanda-dialog.component';
@@ -17,10 +17,11 @@ export class TavoloComponent implements OnInit {
 
   idTavolo!: any;
   tavolo!: Tavolo;
-  comande!: Comanda[];
+  comande: Comanda[] = [];
 
   constructor( private route: ActivatedRoute, private comandeService: ComandeService,
-    public dialog: MatDialog, private tavoliService: TavoliService) {}
+    public dialog: MatDialog, private tavoliService: TavoliService,
+    private router: Router) {}
 
   ngOnInit(): any{
 
@@ -36,7 +37,6 @@ export class TavoloComponent implements OnInit {
   getComande(){
     this.comandeService.getAllComande().subscribe( (data: any) => {
       this.comande = Object.keys(data).map( (key) => {
-        console.log(data[key].tavolo.numeroTavolo)
         data[key]['id'] = key;
         data[key]['stato'] = StatoComanda[data[key]['stato']];
         return data[key];
@@ -89,6 +89,31 @@ export class TavoloComponent implements OnInit {
     }
 
     alert("il conto è " + conto + " euro");
+  }
+
+  eliminaTavolo(){
+    if(window.confirm("Eliminare tavolo?")){
+
+      this.tavoliService.deleteTavolo(this.idTavolo).subscribe(
+        data => {
+          this.eliminaComande()
+          this.router.navigate(['sezione-tavoli']);
+        },
+        err => alert("errore nell'eliminazione del tavolo")
+      );
+    }
+
+  }
+
+  eliminaComande(){
+    if(this.comande.length != 0){
+      for(let comanda of this.comande){
+        this.comandeService.deleteComanda(comanda.id!).subscribe(
+          data => console.log(data),
+          err => alert("errore")
+        )
+      }
+    }
   }
 
 }

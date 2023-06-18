@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ProfileComponent implements OnInit{
 
-  currentUser!: Utente;
+  currentUser: Utente = new Utente('', ' ', ' ', new Date());
   isProprietario: boolean = false;
 
   constructor(private authService: AuthService) {}
@@ -19,9 +19,7 @@ export class ProfileComponent implements OnInit{
     setTimeout(() => {
       this.currentUser = this.authService.currentUser!;
       this.isProprietario = this.authService.isProprietario;
-      console.log(this.isProprietario)
     }, 1000);
-
 
   }
 

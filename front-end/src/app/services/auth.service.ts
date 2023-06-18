@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 const url = "https://restaurantdb-aeb27-default-rtdb.europe-west1.firebasedatabase.app/"
 const key = "AIzaSyDpsNgVSbPeTc08gxwMywnv2gHOxSajcHc"
 const register_url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + key
-const login_url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + key
+const login_url =    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + key
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,7 @@ export class AuthService {
   isLoggedIn = false;
   currentUser!: Utente | null;
   isProprietario: boolean = false;
+  requestIsRegister = false;
 
   constructor(
     private fireauth: AngularFireAuth,
@@ -42,7 +43,7 @@ export class AuthService {
   }
 
   registrazione(email: string, password: string ){
-    //todo aggiungi anche utenteConInfo
+    this.requestIsRegister = true;
     return this.http.post(register_url, {email: email, password: password, returnSecureToken: true});
   }
 

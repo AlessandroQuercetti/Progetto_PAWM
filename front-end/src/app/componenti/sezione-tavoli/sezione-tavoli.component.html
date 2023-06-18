@@ -7,8 +7,6 @@
     </mat-card-header>
     <mat-card-actions>
       <button mat-flat-button routerLink="/tavolo/{{tavolo.id}}">Vedi Comande</button>
-      <button mat-flat-button (click)="eliminaTavolo(tavolo.id)"><mat-icon>delete</mat-icon></button>
-      <!--<button mat-flat-button>Modifica</button>-->
     </mat-card-actions>
   </mat-card>
   <button class="item" mat-flat-button (click)="openDialogAddTavolo()">Aggiungi Tavolo</button>
